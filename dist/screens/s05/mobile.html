@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="th" style="width: 100%; min-height: 100%; overflow-x: hidden; overflow-y: auto;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>S-05 — Event List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#acc7ff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#ffcaa0",
+                    "primary": "#00428e",
+                    "surface": "#f9f9ff",
+                    "inverse-primary": "#acc7ff",
+                    "on-primary-container": "#c3d5ff",
+                    "surface-container-high": "#e3e8f9",
+                    "tertiary-container": "#8b4c00",
+                    "on-tertiary-fixed": "#2e1500",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "outline": "#727784",
+                    "on-secondary-container": "#0b723b",
+                    "tertiary-fixed": "#ffdcc1",
+                    "on-secondary-fixed-variant": "#005228",
+                    "background": "#f9f9ff",
+                    "secondary-container": "#98f3af",
+                    "tertiary": "#693800",
+                    "on-primary-fixed": "#001a40",
+                    "on-surface": "#161c28",
+                    "on-surface-variant": "#424752",
+                    "surface-variant": "#dde2f3",
+                    "surface-tint": "#075bbd",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#dde2f3",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004492",
+                    "secondary": "#006d37",
+                    "surface-container": "#e8eeff",
+                    "tertiary-fixed-dim": "#ffb779",
+                    "inverse-surface": "#2a303d",
+                    "primary-container": "#0059bb",
+                    "surface-dim": "#d4daeb",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c2c6d5",
+                    "on-tertiary-fixed-variant": "#6c3a00",
+                    "secondary-fixed": "#9bf6b2",
+                    "surface-container-low": "#f1f3ff",
+                    "secondary-fixed-dim": "#80d997",
+                    "on-background": "#161c28",
+                    "on-secondary-fixed": "#00210c",
+                    "primary-fixed": "#d7e2ff",
+                    "inverse-on-surface": "#ecf0ff",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    "2xl": "1rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "margin-desktop": "32px",
+                    "xl": "40px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "base": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-md": [
+                            "Be Vietnam Pro"
+                    ],
+                    "body-md": [
+                            "Be Vietnam Pro"
+                    ],
+                    "label-sm": [
+                            "Be Vietnam Pro"
+                    ],
+                    "body-lg": [
+                            "Be Vietnam Pro"
+                    ],
+                    "headline-xl": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-xl": [
+                            "40px",
+                            {
+                                    "lineHeight": "48px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-effect {
+            background: rgba(249, 249, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .nav-shadow {
+            box-shadow: 0 -4px 12px rgba(0,89,187,0.08);
+        }
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 16px);
+        }
+        .text-truncate-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md min-h-screen pb-[90px]">
+<!-- TopAppBar (PublicHeader) -->
+<header class="fixed top-0 w-full z-50 glass-effect border-b border-white/20 shadow-[0_4px_12px_rgba(0,89,187,0.08)]">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed">TonPao Map</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Explore</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md" href="#">Events</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Itineraries</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hidden md:flex text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="font-label-md text-label-md text-primary bg-primary-container/10 px-sm py-xs rounded-full hover:bg-primary-container/20 transition-colors">Sign In</button>
+</div>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<!-- Search & Filter Section -->
+<section class="sticky top-[72px] z-40 bg-surface/95 backdrop-blur-md pt-sm pb-md -mx-margin-mobile px-margin-mobile md:-mx-0 md:px-0 shadow-[0_4px_12px_rgba(0,89,187,0.03)] mb-md">
+<!-- Search Bar -->
+<div class="relative w-full mb-md">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-12 pl-[48px] pr-md rounded-full bg-surface-container-highest/50 border-none focus:ring-2 focus:ring-primary text-on-surface font-body-md placeholder-on-surface-variant" placeholder="ค้นหากิจกรรม..." type="text">
+</div>
+<!-- EventFilterChipBar -->
+<div class="flex gap-sm overflow-x-auto no-scrollbar pb-xs">
+<button class="whitespace-nowrap px-md py-sm rounded-full bg-primary text-on-primary font-label-md">ทั้งหมด</button>
+<button class="whitespace-nowrap px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant">กำลังดำเนินอยู่</button>
+<button class="whitespace-nowrap px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant">กำลังจะมาถึง</button>
+<button class="whitespace-nowrap px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant">วันนี้</button>
+<button class="whitespace-nowrap px-md py-sm rounded-full bg-surface-container text-on-surface-variant font-label-md border border-outline-variant">สุดสัปดาห์นี้</button>
+</div>
+<!-- DatePickerStrip -->
+<div class="flex gap-sm overflow-x-auto no-scrollbar mt-md pb-xs items-center">
+<button class="flex flex-col items-center justify-center min-w-[60px] h-[72px] rounded-2xl bg-surface-container border border-outline-variant">
+<span class="font-label-sm text-on-surface-variant">พฤ.</span>
+<span class="font-headline-md text-on-surface">14</span>
+</button>
+<button class="flex flex-col items-center justify-center min-w-[60px] h-[72px] rounded-2xl bg-primary text-on-primary shadow-md">
+<span class="font-label-sm text-primary-fixed-dim">ศ.</span>
+<span class="font-headline-md text-on-primary">15</span>
+</button>
+<button class="flex flex-col items-center justify-center min-w-[60px] h-[72px] rounded-2xl bg-surface-container border border-outline-variant">
+<span class="font-label-sm text-on-surface-variant">ส.</span>
+<span class="font-headline-md text-on-surface">16</span>
+</button>
+<button class="flex flex-col items-center justify-center min-w-[60px] h-[72px] rounded-2xl bg-surface-container border border-outline-variant">
+<span class="font-label-sm text-on-surface-variant">อา.</span>
+<span class="font-headline-md text-on-surface">17</span>
+</button>
+<button class="flex flex-col items-center justify-center min-w-[60px] h-[72px] rounded-2xl bg-surface-container border border-outline-variant">
+<span class="font-label-sm text-on-surface-variant">จ.</span>
+<span class="font-headline-md text-on-surface">18</span>
+</button>
+<button class="flex flex-col items-center justify-center min-w-[60px] h-[72px] rounded-2xl bg-surface-container border border-outline-variant">
+<span class="font-label-sm text-on-surface-variant">อ.</span>
+<span class="font-headline-md text-on-surface">19</span>
+</button>
+</div>
+</section>
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-md mt-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">กิจกรรมและเทศกาล</h1>
+<span class="font-label-md text-primary">ดูแผนที่</span>
+</div>
+<!-- EventCardGrid (Mobile List) -->
+<div class="flex flex-col gap-lg">
+<!-- Card 1 (Ongoing/Live) -->
+<article class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant overflow-hidden flex flex-col md:flex-row">
+<div class="relative h-48 md:h-auto md:w-1/3">
+<img class="w-full h-full object-cover" data-alt="A vibrant outdoor festival scene during the day. Colorful traditional Thai umbrellas are displayed prominently. The lighting is bright and sunny, highlighting the rich reds, yellows, and blues of the crafts. People are casually strolling in the background. The mood is lively and festive, reflecting a modern cultural celebration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDhotOMJOHzJh6s0NDY3LzBkpShYJ3isS3-_ueE9icw_HLrqfVLbgOLQ81KIu_6vJMwy0SDezjnfglScwSGFQGn08IkciigB7-N1wU7zggoiaPomP3fZ6u0kNdhwD6TOWIfRXKQiCQY52ZRaZ9f7hG-q9C0Poo_HPU1xiiBVsMYpruPOyItxLY_aNRYjcBycQij1llDIW5KQJzo5T_7ArwuTv23R9SDgyjBv8DMEo4YHpm2qA4kMmE">
+<div class="absolute top-sm left-sm bg-surface-container-lowest/90 backdrop-blur-sm px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-secondary font-bold uppercase tracking-wider">กำลังดำเนินอยู่</span>
+</div>
+</div>
+<div class="p-md flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-start justify-between gap-sm mb-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface text-truncate-2">เทศกาลร่มบ่อสร้างและหัตถกรรมสันกำแพง</h2>
+<button class="text-outline hover:text-primary transition-colors flex-shrink-0">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-label-md">15 - 17 ม.ค. 2567 • 09:00 - 22:00</span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-md">ศูนย์อุตสาหกรรมทำร่มบ่อสร้าง</span>
+<span class="font-label-sm text-outline mx-xs">•</span>
+<span class="font-label-sm text-outline">2.5 กม.</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-sm">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular portrait of a smiling person wearing a casual blue shirt against a light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwlHVafmVDxx4qereQEQ9MoRs8u7lUpknT-sk5aMXuJll1sahdY7teuxFyGoh0BPQFX4ZpL7Tg0lHQbNmImJf8XNj2LTYh6aA1kEb01m20gCkJPcRCQloWMZChYPQ6C3Mr34lNy8umJKuOQXHIhHEd-MHQsh4bU-qX7BsntoKhphbURjj5zf_oyNxDOyfK-2amyEilVe2WXrN1RPMPTXoJnb2oudF23azEeG2BIl3CyyP4G2g3G_bx">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small circular portrait of a person with short hair wearing a yellow top against a bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-bh8mQ6icn-6j4dsFdFj6aqqP7oNnN4tasTXfC5bEAH8WrthBzgCwTTEpfzrodrvBPC4viKmLkX38Ma--9rESJozvEeLqacBNJDOOgTstDyFSJ_iCmkWJ4I3YiY4CPXqWK9g8Vrp170s1MFk55kOPe8vW9M446ldWG8HJWO__2JDuhSqCI82NH5zGM9BqOmwpMVpX6a9jXjm_EFlih1Fe-ALYoT5YbluVlB4Rxo59Hhh1W9Ec_z9o">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-variant flex items-center justify-center font-label-sm text-on-surface-variant">+12</div>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md shadow-sm active:scale-95 transition-transform">ดูรายละเอียด</button>
+</div>
+</div>
+</article>
+<!-- Card 2 (Upcoming) -->
+<article class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant overflow-hidden flex flex-col md:flex-row">
+<div class="relative h-48 md:h-auto md:w-1/3">
+<img class="w-full h-full object-cover" data-alt="A tranquil evening scene at a local market. Soft warm lights illuminate wooden stalls selling crafts. The atmosphere is calm and inviting, with a modern rustic aesthetic. The color palette features deep blues of the evening sky and warm orange glows from the lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDomHit6-eZcaOYzGApaCSUT6jz0_I9lQmfSmmBK1N7u1BUioW3MOFDPjbe9itTyDmhnAePdR3KwJJEKVgDbwmjnZn-1rMxrx3RpYh6R1CkStMxyh0O0Cggg_xZN_cXJgu-qanfPJG24cYaeeZR3aigp2xWVyzWHha-m5voumhR6YhYqhiKrEw7kilYNHDVOFL7hy6dqYA0o2b1sO5ak1TfV_KnTcGwCo9dzv_0A6VzAAdMSvYm-aXm">
+<div class="absolute top-sm left-sm bg-surface-container-lowest/90 backdrop-blur-sm px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">schedule</span>
+<span class="font-label-sm text-primary font-bold uppercase tracking-wider">กำลังจะมาถึง</span>
+</div>
+</div>
+<div class="p-md flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-start justify-between gap-sm mb-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface text-truncate-2">กาดนัดฮิมคาว (ตลาดนัดริมน้ำ)</h2>
+<button class="text-outline hover:text-primary transition-colors flex-shrink-0">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span class="font-label-md">ทุกวันเสาร์-อาทิตย์ • 15:00 - 21:00</span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant mb-md">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span class="font-label-md">ริมแม่น้ำคาว ต้นเปา</span>
+<span class="font-label-sm text-outline mx-xs">•</span>
+<span class="font-label-sm text-outline">4.1 กม.</span>
+</div>
+</div>
+<div class="flex justify-end mt-sm">
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md shadow-sm active:scale-95 transition-transform">ดูรายละเอียด</button>
+</div>
+</div>
+</article>
+<!-- Skeleton Loading State (Example) -->
+<article class="bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant overflow-hidden flex flex-col md:flex-row animate-pulse">
+<div class="h-48 md:h-auto md:w-1/3 bg-surface-variant"></div>
+<div class="p-md flex flex-col justify-between flex-1">
+<div>
+<div class="h-6 bg-surface-variant rounded w-3/4 mb-sm"></div>
+<div class="h-4 bg-surface-variant rounded w-1/2 mb-xs"></div>
+<div class="h-4 bg-surface-variant rounded w-2/3 mb-md"></div>
+</div>
+<div class="flex justify-end mt-sm">
+<div class="h-10 w-28 bg-surface-variant rounded-full"></div>
+</div>
+</div>
+</article>
+<!-- Empty State (Hidden by default, shown here for completeness) -->
+<!--
+            <div class="flex flex-col items-center justify-center py-xl text-center">
+                <span class="material-symbols-outlined text-[64px] text-surface-variant mb-md">event_busy</span>
+                <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">ยังไม่มีกิจกรรมในช่วงเวลานี้</h3>
+                <p class="font-body-md text-on-surface-variant max-w-[280px]">ลองเลือกวันที่อื่น หรือล้างตัวกรองเพื่อดูกิจกรรมทั้งหมดในพื้นที่</p>
+                <button class="mt-md px-lg py-sm rounded-full border border-primary text-primary font-label-md hover:bg-primary-container/10 transition-colors">ล้างตัวกรอง</button>
+            </div>
+            -->
+</div>
+</main>
+<!-- BottomNavBar (PublicBottomTab) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-safe h-16 bg-surface/95 backdrop-blur-xl dark:bg-surface-container-highest/95 rounded-t-xl z-50 shadow-lg border-none shadow-[0_-4px_12px_rgba(0,89,187,0.08)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant/30 tap-highlight-transparent transition-transform active:scale-90 w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">explore</span>
+<span class="font-label-sm text-label-sm">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant/30 tap-highlight-transparent transition-transform active:scale-90 w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-label-sm text-label-sm">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 tap-highlight-transparent transition-transform active:scale-90 h-12 my-auto" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label-sm text-label-sm font-bold">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:bg-surface-variant/30 tap-highlight-transparent transition-transform active:scale-90 w-16 h-full" href="#">
+<span class="material-symbols-outlined mb-1">bookmark</span>
+<span class="font-label-sm text-label-sm">Saved</span>
+</a>
+</nav>
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div><script src="/prototype-nav.js"></script></body></html>

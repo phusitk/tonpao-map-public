@@ -1,0 +1,325 @@
+<!DOCTYPE html><html class="light" lang="th" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TonPao Map — สำรวจแผนที่ต้นเปา</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#98f3af",
+                        "on-primary-fixed-variant": "#004492",
+                        "on-secondary-fixed": "#00210c",
+                        "inverse-primary": "#acc7ff",
+                        "tertiary": "#693800",
+                        "surface-container-high": "#e3e8f9",
+                        "on-surface": "#161c28",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#acc7ff",
+                        "outline-variant": "#c2c6d5",
+                        "on-secondary-fixed-variant": "#005228",
+                        "background": "#f9f9ff",
+                        "secondary": "#006d37",
+                        "surface-container": "#e8eeff",
+                        "primary": "#00428e",
+                        "primary-container": "#0059bb",
+                        "on-primary-fixed": "#001a40",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-variant": "#dde2f3",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#424752",
+                        "on-tertiary-container": "#ffcaa0",
+                        "on-background": "#161c28",
+                        "inverse-surface": "#2a303d",
+                        "on-secondary-container": "#0b723b",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "secondary-fixed-dim": "#80d997",
+                        "primary-fixed": "#d7e2ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#075bbd",
+                        "surface-container-highest": "#dde2f3",
+                        "surface-container-low": "#f1f3ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "surface-dim": "#d4daeb",
+                        "secondary-fixed": "#9bf6b2",
+                        "on-tertiary-fixed": "#2e1500",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "tertiary-container": "#8b4c00",
+                        "on-primary-container": "#c3d5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "base": "4px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "headline-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .map-shadow {
+            box-shadow: 0 8px 32px rgba(0, 66, 142, 0.12);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dde2f3;
+            border-radius: 10px;
+        }
+        .marker-pulse::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: inherit;
+            opacity: 0.4;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        #poiPanel .poi-scroll-area { min-height: 0; overscroll-behavior: contain; }
+        #tonpaoMap { position: absolute; inset: 0; z-index: 0; }
+        .leaflet-container { font-family: "Be Vietnam Pro", sans-serif; background: #e8eeff; }
+        .poi-map-marker { background: transparent; border: 0; }
+        .poi-map-marker span {
+            display: grid; place-items: center; width: 34px; height: 34px;
+            color: white; border: 3px solid white; border-radius: 999px;
+            box-shadow: 0 4px 14px rgba(0, 38, 82, .28); font-size: 18px;
+        }
+        .poi-popup h3 { color: #00428e; font-size: 16px; font-weight: 800; margin: 0 0 4px; }
+        .poi-popup p { color: #4f5663; font-size: 13px; line-height: 1.5; margin: 0 0 8px; }
+        .poi-popup a { color: #0059bb; font-size: 13px; font-weight: 700; }
+        .map-filter.is-active, .map-layer-button.is-active { background: #00428e !important; color: #fff !important; }
+        @media (max-height: 650px) and (min-width: 768px) {
+            #poiPanel .h-40 { height: 92px !important; }
+            #poiPanel .p-md { padding: 10px !important; }
+            .map-weather-panel { padding: 10px 14px !important; }
+            .map-weather-panel .weather-hours { gap: 12px !important; }
+            .map-weather-panel .weather-hour { min-width: 44px !important; }
+            .map-weather-panel .weather-hour span { font-size: 18px !important; }
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface overflow-hidden flex flex-col">
+<!-- Header Navigation -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-xl">
+<a class="font-headline-lg text-headline-lg font-extrabold text-primary tracking-tight transition-all duration-[250ms]" href="/#/">TonPao Map</a>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md" href="/#/">หน้าแรก</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md" href="/#/map">สำรวจแผนที่</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md" href="/#/events">กิจกรรม</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md" href="/#/plan/templates">แผนเที่ยว</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md" href="/#/about">เกี่ยวกับเรา</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<button class="px-md py-2 bg-primary text-on-primary rounded-full font-label-md hover:shadow-lg transition-all">
+                    เข้าสู่ระบบ
+                </button>
+</div>
+</div>
+</header>
+<main class="mt-16 h-[calc(100vh-64px)] flex overflow-hidden">
+<!-- Left Sidebar: POI Results -->
+<aside class="w-[360px] h-full bg-surface-container border-r border-outline-variant/50 flex flex-col transition-all duration-300 relative z-40" id="poiPanel">
+<div class="p-md border-b border-outline-variant/30 bg-surface">
+<div class="flex items-center justify-between mb-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface">สถานที่แนะนำ</h2>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors" onclick="toggleSidebar()">
+<span class="material-symbols-outlined">keyboard_double_arrow_left</span>
+</button>
+</div>
+<div class="flex gap-2 p-1 bg-surface-variant/30 rounded-xl">
+<button id="mapViewButton" data-map-control class="flex-1 py-1.5 bg-white shadow-sm rounded-lg text-primary font-label-md text-center">แผนที่</button>
+<button id="listViewButton" data-map-control class="flex-1 py-1.5 text-on-surface-variant hover:bg-white/50 rounded-lg transition-all font-label-md text-center duration-[250ms]">รายการ</button>
+</div>
+</div>
+<!-- POI List Scroll Area -->
+<div class="poi-scroll-area flex-1 overflow-y-auto p-md">
+<p id="poiResultSummary" class="text-label-sm text-on-surface-variant mb-sm"></p>
+<div id="poiList" class="space-y-md"></div>
+</div>
+</aside>
+<!-- Main Content Area: Interactive Map Canvas -->
+<div class="flex-1 relative bg-[#F1F4F9]">
+<div id="tonpaoMap" aria-label="แผนที่สถานที่ท่องเที่ยวตำบลต้นเปา"></div>
+<!-- Floating Search & Category Controls -->
+<div class="absolute top-md left-md right-md md:right-auto md:w-[600px] z-30 space-y-md">
+<div class="glass-panel rounded-2xl h-14 flex items-center px-5 gap-md map-shadow border-none">
+<span class="material-symbols-outlined text-primary">search</span>
+<input id="poiSearch" class="flex-1 bg-transparent border-none focus:ring-0 text-body-md placeholder:text-on-surface-variant/50" placeholder="ค้นหาสถานที่ หัตถกรรม หรือร้านอาหารในต้นเปา" type="search">
+<div class="h-6 w-[1px] bg-outline-variant/30"></div>
+<button class="p-2 hover:bg-primary/5 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">tune</span>
+</button>
+</div>
+<div class="flex items-center gap-sm overflow-x-auto pb-2 no-scrollbar">
+<button data-map-filter="all" class="map-filter is-active whitespace-nowrap px-5 py-2 glass-panel rounded-full font-label-md map-shadow border-none">ทั้งหมด</button>
+<button data-map-filter="handicraft" class="map-filter whitespace-nowrap px-5 py-2 glass-panel text-on-surface-variant rounded-full font-label-md map-shadow border-none">หัตถกรรม</button>
+<button data-map-filter="temple" class="map-filter whitespace-nowrap px-5 py-2 glass-panel text-on-surface-variant rounded-full font-label-md map-shadow border-none">วัดและวัฒนธรรม</button>
+<button data-map-filter="food" class="map-filter whitespace-nowrap px-5 py-2 glass-panel text-on-surface-variant rounded-full font-label-md map-shadow border-none">อาหารและคาเฟ่</button>
+</div>
+</div>
+<!-- Compact Map Controls (Top Right) -->
+<div class="absolute top-md right-md z-30 flex flex-col gap-sm items-end">
+<div class="glass-panel p-1 rounded-2xl map-shadow flex flex-col border-none">
+<button id="mapLayersToggle" data-map-control class="p-3 bg-primary rounded-xl transition-colors text-on-primary" title="ชั้นข้อมูล" aria-controls="mapLayerPanel" aria-expanded="false">
+<span class="material-symbols-outlined">layers</span>
+</button>
+<div class="h-[1px] w-8 bg-outline-variant/20 mx-auto my-1"></div>
+<button data-map-layer="traffic" class="map-layer-button p-3 text-on-surface-variant hover:bg-white/50 rounded-xl transition-colors" title="จราจร">
+<span class="material-symbols-outlined">traffic</span>
+</button>
+<button data-map-layer="event" class="map-layer-button p-3 text-on-surface-variant hover:bg-white/50 rounded-xl transition-colors" title="กิจกรรม">
+<span class="material-symbols-outlined">celebration</span>
+</button>
+</div>
+</div>
+<!-- Layer options are kept behind the Layers control to avoid covering the map. -->
+<div class="absolute top-20 right-20 z-30 hidden" id="mapLayerPanel">
+<div class="glass-panel w-[230px] rounded-2xl p-md map-shadow border-none">
+<div class="flex items-center justify-between mb-sm"><h4 class="font-bold text-primary">ชั้นข้อมูล</h4><span class="text-[10px] text-on-surface-variant">ข้อมูลตัวอย่าง</span></div>
+<div class="grid grid-cols-2 gap-2 text-label-sm">
+<button data-map-layer="rain" class="map-layer-button flex items-center gap-2 rounded-lg bg-surface p-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">rainy</span>ฝน</button>
+<button data-map-layer="traffic" class="map-layer-button flex items-center gap-2 rounded-lg bg-surface p-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">traffic</span>จราจร</button>
+<button data-map-layer="parking" class="map-layer-button flex items-center gap-2 rounded-lg bg-surface p-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">local_parking</span>ที่จอดรถ</button>
+<button data-map-layer="aqi" class="map-layer-button flex items-center gap-2 rounded-lg bg-surface p-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">air</span>AQI</button>
+<button data-map-layer="event" class="map-layer-button col-span-2 flex items-center gap-2 rounded-lg bg-surface p-2 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">celebration</span>กิจกรรมและประกาศพื้นที่</button>
+</div>
+</div>
+</div>
+<!-- Current conditions and hourly forecast share one responsive panel. -->
+<div class="absolute bottom-md left-md right-[88px] z-30">
+<div class="map-weather-panel glass-panel p-md px-lg rounded-2xl map-shadow border-none flex items-center gap-lg">
+<div class="min-w-[170px] pr-lg border-r border-outline-variant/30">
+<div class="flex items-center justify-between gap-4">
+<div><p class="text-[11px] text-on-surface-variant">เชียงใหม่ · ตอนนี้</p><p class="font-bold text-primary">แจ่มใส</p></div>
+<span class="text-headline-md font-extrabold text-primary">32°C</span>
+</div>
+<p class="text-[10px] text-on-surface-variant/70 mt-2">อัปเดต 10:30 น. · ข้อมูลตัวอย่าง</p>
+</div>
+<div class="weather-hours flex items-center gap-lg overflow-x-auto no-scrollbar flex-1">
+<div class="weather-hour text-center min-w-[50px]"><p class="text-[11px] font-bold text-primary">ตอนนี้</p><span class="material-symbols-outlined text-primary text-xl">wb_sunny</span><p class="font-bold text-primary">32°</p></div>
+<div class="weather-hour text-center min-w-[50px]"><p class="text-[11px] text-on-surface-variant/60">15:00</p><span class="material-symbols-outlined text-on-surface-variant/60 text-xl">wb_sunny</span><p class="font-medium">31°</p></div>
+<div class="weather-hour text-center min-w-[50px]"><p class="text-[11px] text-on-surface-variant/60">16:00</p><span class="material-symbols-outlined text-on-surface-variant/60 text-xl">wb_sunny</span><p class="font-medium">30°</p></div>
+<div class="weather-hour text-center min-w-[50px]"><p class="text-[11px] text-on-surface-variant/60">17:00</p><span class="material-symbols-outlined text-on-surface-variant/60 text-xl">rainy</span><p class="font-medium">28°</p></div>
+<div class="weather-hour text-center min-w-[50px]"><p class="text-[11px] text-on-surface-variant/60">18:00</p><span class="material-symbols-outlined text-on-surface-variant/60 text-xl">partly_cloudy_day</span><p class="font-medium">27°</p></div>
+<div class="weather-hour text-center min-w-[50px]"><p class="text-[11px] text-on-surface-variant/60">19:00</p><span class="material-symbols-outlined text-on-surface-variant/60 text-xl">nights_stay</span><p class="font-medium">26°</p></div>
+</div>
+</div>
+</div>
+<!-- Map Zoom & Tools (Bottom Right) -->
+<div class="absolute bottom-[136px] right-md z-30 flex flex-col gap-sm">
+<div class="glass-panel p-1 rounded-2xl map-shadow flex flex-col border-none">
+<button id="mapZoomIn" data-map-control class="p-3 text-on-surface-variant hover:text-primary transition-colors" aria-label="ขยายแผนที่">
+<span class="material-symbols-outlined">add</span>
+</button>
+<div class="h-[1px] w-6 bg-outline-variant/20 mx-auto"></div>
+<button id="mapZoomOut" data-map-control class="p-3 text-on-surface-variant hover:text-primary transition-colors" aria-label="ย่อแผนที่">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button id="mapLocate" data-map-control class="glass-panel p-3 rounded-2xl map-shadow text-on-surface-variant hover:text-primary transition-all border-none text-primary" aria-label="แสดงตำแหน่งของฉัน">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+</main>
+<script>
+        function toggleSidebar() {
+            const panel = document.getElementById('poiPanel');
+            const icon = panel.querySelector('.material-symbols-outlined');
+            if (panel.style.width !== '0px') {
+                panel.style.width = '0px';
+                panel.style.borderRightWidth = '0px';
+                icon.innerText = 'keyboard_double_arrow_right';
+            } else {
+                panel.style.width = '360px';
+                panel.style.borderRightWidth = '1px';
+                icon.innerText = 'keyboard_double_arrow_left';
+            }
+        }
+    </script>
+
+
+
+
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/map-prototype.js"></script><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html><html class="light" lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ผลลัพธ์แผนเที่ยว — TonPao Map</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "primary-fixed": "#d7e2ff",
+                        "inverse-primary": "#acc7ff",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "outline": "#727784",
+                        "on-secondary-fixed": "#00210c",
+                        "surface": "#f9f9ff",
+                        "on-surface": "#161c28",
+                        "primary-container": "#0059bb",
+                        "primary-fixed-dim": "#acc7ff",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-background": "#161c28",
+                        "primary": "#00428e",
+                        "secondary-container": "#98f3af",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#424752",
+                        "secondary-fixed-dim": "#80d997",
+                        "surface-dim": "#d4daeb",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed": "#001a40",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#dde2f3",
+                        "on-tertiary-container": "#ffcaa0",
+                        "on-primary-container": "#c3d5ff",
+                        "surface-container": "#e8eeff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e3e8f9",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#0b723b",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2a303d",
+                        "surface-variant": "#dde2f3",
+                        "tertiary-container": "#8b4c00",
+                        "on-primary-fixed-variant": "#004492",
+                        "surface-tint": "#075bbd",
+                        "outline-variant": "#c2c6d5",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "secondary": "#006d37",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdcc1",
+                        "secondary-fixed": "#9bf6b2",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#693800"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "xl": "40px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "label-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for timeline panel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dde2f3;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c2c6d5;
+        }
+        #itineraryMap { width: 100%; height: 100%; min-height: 520px; }
+        .itinerary-marker { background: transparent; border: 0; }
+        .itinerary-marker span { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #00428e; color: #fff; border: 3px solid #fff; box-shadow: 0 3px 12px rgba(0,26,64,.36); font: 700 14px/1 'Be Vietnam Pro', sans-serif; }
+        .itinerary-start-marker > span { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #006d37; color: #fff; border: 3px solid #fff; box-shadow: 0 3px 12px rgba(0,60,30,.35); }
+        .leaflet-popup-content { font-family: 'Be Vietnam Pro', sans-serif; line-height: 1.5; }
+        .leaflet-control-attribution { font-family: 'Be Vietnam Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen flex flex-col overflow-hidden antialiased">
+<!-- TopAppBar (From JSON) -->
+<header class="fixed top-0 w-full z-50 border-b border-white/20 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed">TonPao Map</div>
+<nav class="hidden md:flex gap-lg">
+<!-- Inactive Navigation -->
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">สำรวจ</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">กิจกรรม</a>
+<!-- Active Navigation: Intent match for Itinerary Result -->
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200" href="#">แผนเที่ยว</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">เกี่ยวกับเรา</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="font-label-md text-label-md text-primary hover:bg-surface-variant/50 px-4 py-2 rounded-full transition-colors">
+                    Sign In
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Area - Split Layout -->
+<main class="flex-1 flex mt-16 overflow-hidden max-w-[1440px] mx-auto w-full">
+<!-- Left Panel: Itinerary Details (Scrollable) -->
+<aside class="w-[400px] h-full flex flex-col bg-surface shadow-md z-10 shrink-0">
+<!-- Trip Summary Header -->
+<div class="p-lg border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex items-start justify-between gap-sm">
+<div>
+<h1 id="trip-result-title" class="font-headline-md text-headline-md text-on-surface mb-xs">แผนการเดินทางท่องเที่ยวชุมชน</h1>
+<p id="trip-result-context" class="font-body-md text-body-md text-on-surface-variant mb-md">ต้นเปา เชียงใหม่</p>
+</div>
+<button data-edit-itinerary class="shrink-0 rounded-lg border border-primary px-sm py-xs text-primary font-label-md hover:bg-primary-fixed transition-colors" aria-label="กลับไปปรับเงื่อนไขแผนการเดินทาง"><span class="material-symbols-outlined text-[18px] align-middle">tune</span> ปรับเงื่อนไข</button>
+</div>
+<div class="flex flex-wrap gap-sm mb-md">
+<div class="flex items-center gap-xs bg-surface-container py-1 px-3 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span id="trip-result-duration" class="font-label-sm text-label-sm text-on-surface">เต็มวัน</span>
+</div>
+<div class="flex items-center gap-xs bg-surface-container py-1 px-3 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary">route</span>
+<span id="trip-result-distance" class="font-label-sm text-label-sm text-on-surface">15 กม. โดยประมาณ</span>
+</div>
+<div class="flex items-center gap-xs bg-surface-container py-1 px-3 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span id="trip-result-stop-count" class="font-label-sm text-label-sm text-on-surface">4 จุดแวะ</span>
+</div>
+<div class="flex items-center gap-xs bg-surface-container py-1 px-3 rounded-full">
+<span class="material-symbols-outlined text-[16px] text-primary">directions_car</span>
+<span id="trip-result-transport" class="font-label-sm text-label-sm text-on-surface">รถยนต์</span>
+</div>
+</div>
+<div class="mb-md rounded-lg border border-primary-fixed-dim bg-primary-fixed/40 px-sm py-sm">
+<div class="flex items-center gap-xs text-primary font-label-md"><span class="material-symbols-outlined text-[18px]">rule</span>เกณฑ์ที่ระบบใช้จัดแผน</div>
+<p id="recommendation-rule-summary" class="mt-xs text-sm text-on-surface-variant">เรียงสถานที่จากความสนใจ ระยะเวลา วิธีเดินทาง และเงื่อนไขที่เลือก</p>
+</div>
+<div class="grid grid-cols-3 gap-sm">
+<button data-save-itinerary class="flex items-center justify-center gap-xs bg-secondary text-on-secondary py-2 px-3 rounded-lg font-label-md text-label-md hover:bg-secondary/90 transition-colors">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+บันทึก
+</button>
+<button data-share-itinerary class="flex items-center justify-center gap-xs border border-primary text-primary py-2 px-3 rounded-lg font-label-md text-label-md hover:bg-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+แชร์
+</button>
+<button data-export-itinerary class="flex items-center justify-center gap-xs bg-primary text-on-primary py-2 px-3 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+ส่งออก PDF
+</button>
+</div>
+</div>
+<!-- Scrollable Timeline -->
+<div class="flex-1 overflow-y-auto p-lg pb-xl" data-itinerary-list>
+<!-- Timeline Item 1 -->
+<div class="relative pl-8 mb-xl" data-itinerary-stop data-stop-name="ศูนย์หัตถกรรมร่มบ่อสร้าง">
+<!-- Timeline Line & Dot -->
+<div class="absolute left-0 top-2 bottom-[-40px] w-[2px] bg-outline-variant"></div>
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-primary-container"></div>
+<div class="font-label-md text-label-md text-primary mb-1">09:00 - 10:30</div>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow">
+<div class="w-full h-32 rounded-lg bg-surface-variant mb-sm overflow-hidden" data-alt="A bright, airy photograph of a traditional Thai umbrella making workshop in Ton Pao. Artisans are painting colorful paper umbrellas under a wooden pavilion. The lighting is soft morning sunlight filtering through trees, creating a warm and welcoming atmosphere. Modern travel photography style with vibrant colors against natural wood tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdbNwk86_YLT8FGY-vkoIlC6iOcc-p5ltSNlGz90q_f2XLy2-HQuGakR6LanIQ6qxr-HR998ocE7b858h-UfDUiaVK2k2r0FgNlZFosdRpPbSVOiZ5H0j-NDjFQBvNNf0UjZ8bf3GueXobqq1P6oiBnm3V9iPdE7rMgAKcXBK5hEEVJnKbbxR0hng1DvF2vKEIpSI40TDhPcxxtXfVawDKnLNYyRhN8jTVEpEu--eaevmA8837LbIp')"></div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">ศูนย์หัตถกรรมร่มบ่อสร้าง</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">ชมการทำร่มกระดาษสาแบบดั้งเดิม ตั้งแต่การทำโครงไผ่ไปจนถึงการเพ้นท์ลวดลาย</p>
+<p class="mt-sm rounded-lg bg-primary-fixed/60 px-sm py-xs text-sm text-on-primary-fixed-variant"><strong>เหตุผลที่แนะนำ:</strong> สอดคล้องกับความสนใจด้านหัตถกรรมและเป็นจุดเด่นของต้นเปา</p>
+<div class="mt-sm flex justify-end gap-xs" data-stop-actions><button data-move="up" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ขึ้น"><span class="material-symbols-outlined text-[18px]">arrow_upward</span></button><button data-move="down" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ลง"><span class="material-symbols-outlined text-[18px]">arrow_downward</span></button><button data-remove-stop class="p-xs rounded border border-error/40 text-error" aria-label="นำสถานที่ออก"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-8 mb-xl" data-itinerary-stop data-stop-name="วัดพระนอนแม่ปูคา">
+<div class="absolute left-0 top-2 bottom-[-40px] w-[2px] bg-outline-variant"></div>
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-surface-tint ring-4 ring-surface-container"></div>
+<div class="font-label-md text-label-md text-primary mb-1">11:00 - 12:30</div>
+<!-- Weather Alert Badge -->
+<div class="flex items-center gap-xs bg-[#fff4e5] border border-[#ffb779] text-[#8b4c00] px-3 py-2 rounded-lg mb-sm">
+<span class="material-symbols-outlined text-[18px]">sunny</span>
+<span class="font-label-sm text-label-sm">แจ้งเตือน: อากาศร้อนจัด (35°C) ควรพกร่มหรือหมวก</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow">
+<div class="w-full h-32 rounded-lg bg-surface-variant mb-sm overflow-hidden" data-alt="A serene landscape photo of a historic Buddhist temple in Ton Pao, Chiang Mai. The intricate Lanna architecture is striking against a clear blue sky. Sunlight illuminates the golden stupa and terracotta roof tiles. Shot with a wide-angle lens to capture the grandeur, in a modern, clean travel aesthetic with high contrast and vivid colors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBUzdqB4gaHHWZzQuxRSnh9SkryTSGDxvpMbScPYCI6vHxclQ-ilAHN1xbIG4e9yG_ogv3_0EOVDQGvoprV20CPBSKa1Ak8KM7cAyxIsgJ64sa7pk56TVhVjCr16VZOpS6OoP4_7oFHeySomqinDoX7_tf-4mk5RIviuO606mPmQDsZbEUh-YVIsAq60GCgKeB1zIua0htNLVZxOIs3TAFyljRk048ncJ2cWPvYxSp9CCadejYStZJL')"></div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">วัดพระนอนแม่ปูคา</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">สักการะพระนอนองค์ใหญ่ ศิลปะล้านนาที่งดงาม และชมสถาปัตยกรรมเก่าแก่</p>
+<p class="mt-sm rounded-lg bg-primary-fixed/60 px-sm py-xs text-sm text-on-primary-fixed-variant"><strong>เหตุผลที่แนะนำ:</strong> อยู่ในเส้นทางเดียวกันและเหมาะกับความสนใจด้านวัฒนธรรม</p>
+<div class="mt-sm flex justify-end gap-xs" data-stop-actions><button data-move="up" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ขึ้น"><span class="material-symbols-outlined text-[18px]">arrow_upward</span></button><button data-move="down" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ลง"><span class="material-symbols-outlined text-[18px]">arrow_downward</span></button><button data-remove-stop class="p-xs rounded border border-error/40 text-error" aria-label="นำสถานที่ออก"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>
+</div>
+</div>
+<!-- Timeline Item 3 (Lunch) -->
+<div class="relative pl-8 mb-xl" data-itinerary-stop data-stop-name="ข้าวซอยเฮือนจันทร์">
+<div class="absolute left-0 top-2 bottom-[-40px] w-[2px] border-l-2 border-dashed border-outline-variant"></div>
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-secondary ring-4 ring-secondary-container"></div>
+<div class="font-label-md text-label-md text-primary mb-1">12:45 - 14:00</div>
+<div class="bg-surface-container-low rounded-xl p-md shadow-sm border border-secondary-container/50">
+<div class="flex items-center gap-sm mb-xs">
+<span class="material-symbols-outlined text-secondary">restaurant</span>
+<h3 class="font-label-md text-label-md text-on-surface">รับประทานอาหารกลางวัน</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">ร้านอาหารพื้นเมือง ข้าวซอยเฮือนจันทร์ (แนะนำ)</p>
+<p class="mt-sm rounded-lg bg-secondary-container/50 px-sm py-xs text-sm text-on-secondary-fixed-variant"><strong>เหตุผลที่แนะนำ:</strong> เป็นจุดพักรับประทานอาหารระหว่างทางและไม่ต้องย้อนเส้นทาง</p>
+<div class="mt-sm flex justify-end gap-xs" data-stop-actions><button data-move="up" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ขึ้น"><span class="material-symbols-outlined text-[18px]">arrow_upward</span></button><button data-move="down" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ลง"><span class="material-symbols-outlined text-[18px]">arrow_downward</span></button><button data-remove-stop class="p-xs rounded border border-error/40 text-error" aria-label="นำสถานที่ออก"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="relative pl-8 mb-lg" data-itinerary-stop data-stop-name="ชุมชนทำกระดาษสาสันกลาง">
+<div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-surface-tint ring-4 ring-surface-container"></div>
+<div class="font-label-md text-label-md text-primary mb-1">14:30 - 16:30</div>
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 hover:shadow-md transition-shadow">
+<div class="w-full h-32 rounded-lg bg-surface-variant mb-sm overflow-hidden" data-alt="A modern, high-end photograph of a boutique craft paper workshop in Northern Thailand. Clean, minimalist interior with wooden tables displaying textured handmade mulberry paper in various earth tones. Soft, diffused lighting creates a calm, artisanal atmosphere. The aesthetic matches a premium travel or design magazine." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVQNgbZ4aLlwC8q5JurErPAjr6glm479Jyk9quAQv6bLY25yZWrmkhiDGdDX4uZfZ5fSz1O9pEdiY6DAworaC2E1YQRI-bjX2eEMkyqL2pCUvb_qHMCwEBMGG1IEsC0lL9tYtRLWt4rbPKfkgl4A7p9g8xOfO4qK0UEEol7Il_0U30pxEYzPo3L-K11xsyjfY7sOZDTfFC8JDoRRXPOOELXcLpv1E6E0HoOTZA2Owl47_evfROUQLP')"></div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">ชุมชนทำกระดาษสาสันกลาง</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2">เรียนรู้วิธีการทำกระดาษสาด้วยตัวเอง และเลือกซื้อของที่ระลึกจากชุมชน</p>
+<p class="mt-sm rounded-lg bg-primary-fixed/60 px-sm py-xs text-sm text-on-primary-fixed-variant"><strong>เหตุผลที่แนะนำ:</strong> เชื่อมโยงงานหัตถกรรมกับกิจกรรมเรียนรู้ของชุมชน</p>
+<div class="mt-sm flex justify-end gap-xs" data-stop-actions><button data-move="up" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ขึ้น"><span class="material-symbols-outlined text-[18px]">arrow_upward</span></button><button data-move="down" class="p-xs rounded border border-outline-variant" aria-label="เลื่อนสถานที่ลง"><span class="material-symbols-outlined text-[18px]">arrow_downward</span></button><button data-remove-stop class="p-xs rounded border border-error/40 text-error" aria-label="นำสถานที่ออก"><span class="material-symbols-outlined text-[18px]">delete</span></button></div>
+</div>
+</div>
+<button data-add-stop class="w-full min-h-11 rounded-lg border border-dashed border-primary text-primary font-label-md hover:bg-primary-fixed transition-colors flex items-center justify-center gap-xs"><span class="material-symbols-outlined text-[19px]">add_location_alt</span>เพิ่มสถานที่ในแผน</button>
+</div>
+</aside>
+<!-- Right Panel: Leaflet + OpenStreetMap -->
+<section class="flex-1 relative bg-surface-dim" aria-label="แผนที่เส้นทางการเดินทาง">
+<div id="itineraryMap" role="application" aria-label="แผนที่ OpenStreetMap แสดงจุดแวะและเส้นทางตามลำดับ"></div>
+<div class="absolute top-md left-md z-[500] max-w-[360px] rounded-xl border border-white/70 bg-surface/95 px-md py-sm shadow-lg backdrop-blur-md">
+<div class="flex items-center gap-xs font-label-md text-primary"><span class="material-symbols-outlined text-[19px]">map</span>แผนที่เส้นทาง</div>
+<p id="itinerary-map-hint" class="mt-xs text-sm text-on-surface-variant">คลิกหมุดเพื่อดูสถานที่ หรือปรับลำดับจากรายการด้านซ้าย</p>
+</div>
+<div class="absolute top-md right-md z-[500] flex flex-col gap-sm">
+<button data-map-fit class="w-11 h-11 bg-surface/95 backdrop-blur-md rounded-lg shadow-md flex items-center justify-center text-primary hover:bg-primary-fixed transition-colors" aria-label="แสดงเส้นทางทั้งหมด" title="แสดงเส้นทางทั้งหมด"><span class="material-symbols-outlined text-[21px]">fit_screen</span></button>
+<button data-map-locate class="w-11 h-11 bg-surface/95 backdrop-blur-md rounded-lg shadow-md flex items-center justify-center text-primary hover:bg-primary-fixed transition-colors" aria-label="ใช้ตำแหน่งปัจจุบันเป็นจุดเริ่มต้น" title="ตำแหน่งปัจจุบัน"><span class="material-symbols-outlined text-[21px]">my_location</span></button>
+</div>
+</section>
+</main>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/itinerary-map.js"></script><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

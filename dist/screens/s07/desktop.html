@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ที่จอดรถกิจกรรม — TonPao Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#d7e2ff",
+                      "on-tertiary-fixed": "#2e1500",
+                      "inverse-surface": "#2a303d",
+                      "on-tertiary-container": "#ffcaa0",
+                      "surface-container-low": "#f1f3ff",
+                      "inverse-primary": "#acc7ff",
+                      "outline": "#727784",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdcc1",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#00210c",
+                      "background": "#f9f9ff",
+                      "surface-container": "#e8eeff",
+                      "tertiary-container": "#8b4c00",
+                      "primary-container": "#0059bb",
+                      "on-secondary-fixed-variant": "#005228",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#075bbd",
+                      "surface-variant": "#dde2f3",
+                      "on-secondary-container": "#0b723b",
+                      "tertiary-fixed-dim": "#ffb779",
+                      "primary-fixed-dim": "#acc7ff",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary-fixed-variant": "#004492",
+                      "secondary": "#006d37",
+                      "surface": "#f9f9ff",
+                      "secondary-fixed-dim": "#80d997",
+                      "on-primary-fixed": "#001a40",
+                      "secondary-container": "#98f3af",
+                      "surface-container-highest": "#dde2f3",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e3e8f9",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#9bf6b2",
+                      "on-primary": "#ffffff",
+                      "tertiary": "#693800",
+                      "on-primary-container": "#c3d5ff",
+                      "surface-dim": "#d4daeb",
+                      "inverse-on-surface": "#ecf0ff",
+                      "on-tertiary-fixed-variant": "#6c3a00",
+                      "on-surface": "#161c28",
+                      "outline-variant": "#c2c6d5",
+                      "on-background": "#161c28",
+                      "on-surface-variant": "#424752",
+                      "primary": "#00428e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "lg": "24px",
+                      "margin-desktop": "32px",
+                      "md": "16px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for sidebar */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background-color: theme('colors.outline-variant');
+            border-radius: theme('borderRadius.full');
+        }
+        #parkingMapCanvas { position: absolute; inset: 0; z-index: 0; }
+        .leaflet-container { font-family: "Be Vietnam Pro", sans-serif; background: #e8eeff; }
+        .parking-map-marker { background: transparent; border: 0; }
+        .parking-map-marker span { display:grid; place-items:center; width:38px; height:38px; border-radius:999px; background:#00428e; color:#fff; border:3px solid #fff; box-shadow:0 5px 16px rgba(0,45,98,.3); font-weight:700; }
+        .event-map-marker span { background:#8b4c00; }
+        .parking-card-selected { border-color:#0059bb !important; box-shadow:0 0 0 2px rgba(0,89,187,.14),0 8px 20px rgba(0,66,142,.10) !important; }
+        .parking-popup h3 { margin:0 0 5px; color:#00428e; font-size:16px; font-weight:700; }
+        .parking-popup p { margin:0 0 8px; color:#424752; font-size:13px; line-height:1.55; }
+        .parking-popup a { color:#0059bb; font-size:13px; font-weight:700; }
+      </style>
+</head>
+<body class="bg-background text-on-background h-screen overflow-hidden flex flex-col antialiased">
+<!-- Top Navigation (Shell suppressed as this is a task-focused screen, replacing with task header) -->
+<header class="bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] z-50 h-16 flex-shrink-0">
+<div class="h-full px-lg flex items-center justify-between">
+<div class="flex items-center gap-md">
+<button aria-label="กลับไปหน้ากิจกรรม" class="p-2 hover:bg-surface-variant rounded-full transition-colors flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary">ที่จอดรถสำหรับงานเทศกาล</h1>
+</div>
+</div>
+<div class="flex items-center gap-md hidden md:flex">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">TonPao Map</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area: 12-column Grid -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Map Canvas (Left - 8 cols) -->
+<div id="parkingMapHost" class="flex-1 relative bg-surface-container-low hidden md:block">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A highly detailed overhead digital map of a vibrant municipality, designed in a modern corporate-hybrid aesthetic. The map features a light 'Azure Canopy' neutral base palette with frosted glassmorphism overlays and soft blue-tinted shadows. Major roads are subtle white lines, while park areas are soft Terrace Green. The lighting is bright and airy, suggesting a clear day, highlighting clear layout structures without harsh lines. Designed for an effortless discovery interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBYkJS_Ibn1XEsi37sQ9pb9Pf6qtF5uUg1VXf1qFGvqlprspxZsaqMrc8529ZI8N58HGGmQh644ukRaxABTamxeVtWTqqXXqDz1-p4Fuv8AnOw_CSJoVWDHMfNY9y_S5nXV9-qpczW3ht-XOsuPo-pDN8YgPEJPXZKrhoLAOs7xCCP9nZvTu5GsIx3L-bx3D4MCRVnkOoez2TmLRakt78iwBcFujZNt-M1xKLHGlel0ts8l6KHbRYbJ')"></div>
+<!-- Map Controls / Overlays -->
+<div class="absolute top-md right-md flex flex-col gap-sm">
+<button class="w-10 h-10 bg-surface rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="w-10 h-10 bg-surface rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-10 h-10 bg-surface rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<!-- Active Map Markers -->
+<!-- Marker P1 -->
+<div class="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-surface px-3 py-1 rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] mb-2 font-label-md text-label-md text-on-surface flex items-center gap-2 border border-white/20 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary"></span> P1
+                </div>
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg border-2 border-surface relative cursor-pointer hover:scale-105 transition-transform z-10">
+<span class="material-symbols-outlined fill">local_parking</span>
+<div class="absolute -bottom-1 w-3 h-3 bg-primary rotate-45 border-r-2 border-b-2 border-surface"></div>
+</div>
+</div>
+<!-- Marker P2 -->
+<div class="absolute top-1/2 left-2/3 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-surface px-3 py-1 rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] mb-2 font-label-md text-label-md text-on-surface flex items-center gap-2 border border-white/20 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary"></span> P2
+                </div>
+<div class="w-10 h-10 bg-surface text-primary rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative cursor-pointer hover:scale-105 transition-transform z-0">
+<span class="material-symbols-outlined">local_parking</span>
+</div>
+</div>
+<!-- Marker P3 -->
+<div class="absolute bottom-1/4 right-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-surface px-3 py-1 rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] mb-2 font-label-md text-label-md text-on-surface flex items-center gap-2 border border-white/20 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary"></span> P3
+                </div>
+<div class="w-10 h-10 bg-surface text-primary rounded-full flex items-center justify-center shadow-lg border-2 border-primary relative cursor-pointer hover:scale-105 transition-transform z-0">
+<span class="material-symbols-outlined">local_parking</span>
+</div>
+</div>
+<!-- Event Location Marker -->
+<div class="absolute top-[40%] left-[45%] transform -translate-x-1/2 -translate-y-1/2">
+<div class="w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-[0_4px_12px_rgba(0,89,187,0.4)] border-4 border-surface relative animate-bounce z-20">
+<span class="material-symbols-outlined fill text-[28px]">festival</span>
+<div class="absolute -bottom-1.5 w-4 h-4 bg-primary rotate-45 border-r-4 border-b-4 border-surface"></div>
+</div>
+</div>
+<!-- Floating Weather Advisory on Map -->
+<div class="absolute bottom-md left-md right-md md:right-auto md:max-w-md bg-surface/95 backdrop-blur-xl border border-white/20 rounded-xl p-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex items-start gap-md">
+<div class="text-[#f59e0b] p-2 bg-[#f59e0b]/10 rounded-full flex-shrink-0">
+<span class="material-symbols-outlined fill">warning</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-1">แจ้งเตือนสภาพอากาศ</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-tight">ที่จอดรถกลางแจ้งอาจมีดินโคลนเนื่องจากฝนตกหนัก โปรดใช้ความระมัดระวังในการสัญจร</p>
+</div>
+</div>
+</div>
+<!-- Right Sidebar panel (4 cols on desktop, full width mobile) -->
+<div class="w-full md:w-[400px] bg-surface-container flex flex-col border-l border-outline-variant shadow-[-4px_0_12px_rgba(0,89,187,0.04)] z-10">
+<!-- Filters Header -->
+<div class="p-lg border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-20">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-md">ค้นหาที่จอดรถ</h2>
+<!-- Vehicle Filters -->
+<div class="flex flex-wrap gap-sm">
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-full font-label-md text-label-md flex items-center gap-2 transition-colors border border-transparent">
+<span class="material-symbols-outlined text-[18px]">directions_car</span>
+                        รถยนต์
+                    </button>
+<button class="px-4 py-2 bg-surface text-on-surface-variant hover:bg-surface-variant rounded-full font-label-md text-label-md flex items-center gap-2 transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">two_wheeler</span>
+                        รถจักรยานยนต์
+                    </button>
+<button class="px-4 py-2 bg-surface text-on-surface-variant hover:bg-surface-variant rounded-full font-label-md text-label-md flex items-center gap-2 transition-colors border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">directions_bus</span>
+                        รถทัวร์
+                    </button>
+</div>
+</div>
+<!-- Parking List -->
+<div class="flex-1 overflow-y-auto sidebar-scroll p-md flex flex-col gap-md bg-surface-bright">
+<!-- P1 Item -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all cursor-pointer relative overflow-hidden group">
+<!-- Active Indicator Strip -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">P1 (ลานเทศบาล)</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">directions_walk</span> 500 ม. • 5 นาทีถึงงาน
+                            </p>
+</div>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm">จอดฟรี</div>
+</div>
+<div class="mb-4 grid grid-cols-2 gap-2 text-label-sm text-on-surface-variant"><p><span class="material-symbols-outlined text-[17px] text-primary">directions_car</span> รถยนต์ · รถจักรยานยนต์</p><p><span class="material-symbols-outlined text-[17px] text-primary">schedule</span> 08:00–22:00 น.</p><p class="col-span-2"><span class="material-symbols-outlined text-[17px] text-primary">accessible</span> มีจุดรับ–ส่งและทางเดินพื้นราบ</p></div>
+<a href="https://www.google.com/maps/dir/?api=1&amp;destination=18.7688%2C99.1186&amp;travelmode=driving&amp;dir_action=navigate" target="_blank" rel="noopener noreferrer" class="w-full h-11 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined">navigation</span>
+                        นำทางไปจุดจอดด้วย Google Maps
+                    </a>
+</div>
+<!-- P2 Item (Near Full) -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">P2 (ลานวัดพระนอน)</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">directions_walk</span> 800 ม. • 10 นาทีถึงงาน
+                            </p>
+</div>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm">จอดฟรี</div>
+</div>
+<div class="mb-4 grid grid-cols-2 gap-2 text-label-sm text-on-surface-variant"><p><span class="material-symbols-outlined text-[17px] text-primary">directions_car</span> รถยนต์ · รถจักรยานยนต์</p><p><span class="material-symbols-outlined text-[17px] text-primary">schedule</span> 08:00–22:00 น.</p><p class="col-span-2"><span class="material-symbols-outlined text-[17px] text-primary">temple_buddhist</span> กรุณาจอดตามพื้นที่ที่วัดกำหนด</p></div>
+<a href="https://www.google.com/maps/dir/?api=1&amp;destination=18.7668%2C99.1212&amp;travelmode=driving&amp;dir_action=navigate" target="_blank" rel="noopener noreferrer" class="w-full h-11 bg-surface text-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 border border-primary hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">navigation</span>
+                        นำทางไปจุดจอดด้วย Google Maps
+                    </a>
+</div>
+<!-- P3 Item -->
+<div class="bg-surface rounded-xl p-md shadow-sm border border-outline-variant hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h3 class="font-headline-md text-headline-md text-on-surface text-[20px]">P3 (ลานโรงเรียน)</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">directions_walk</span> 1.2 กม. • 15 นาทีถึงงาน
+                            </p>
+</div>
+<div class="bg-[#fff4dc] text-[#865100] px-3 py-1 rounded-full font-label-sm text-label-sm">มีรถรับ–ส่ง</div>
+</div>
+<div class="mb-4 grid grid-cols-2 gap-2 text-label-sm text-on-surface-variant"><p><span class="material-symbols-outlined text-[17px] text-primary">directions_bus</span> รถยนต์ · รถบัส</p><p><span class="material-symbols-outlined text-[17px] text-primary">schedule</span> 08:00–22:30 น.</p><p class="col-span-2"><span class="material-symbols-outlined text-[17px] text-primary">airport_shuttle</span> มีรถรับ–ส่งไปพื้นที่จัดงาน</p></div>
+<a href="https://www.google.com/maps/dir/?api=1&amp;destination=18.7629%2C99.1240&amp;travelmode=driving&amp;dir_action=navigate" target="_blank" rel="noopener noreferrer" class="w-full h-11 bg-surface text-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 border border-primary hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined">navigation</span>นำทางไปจุดจอดด้วย Google Maps</a>
+</div>
+<!-- Bottom spacing for mobile -->
+<div class="h-10 md:hidden"></div>
+</div>
+</div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/parking-prototype.js"></script><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

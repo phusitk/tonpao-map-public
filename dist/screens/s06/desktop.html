@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="th" style="width: 1280px; height: 1073px; overflow: hidden; position: relative;" data-lt-installed="true"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>รายละเอียดกิจกรรม — TonPao Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d7e2ff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "inverse-surface": "#2a303d",
+                        "on-tertiary-container": "#ffcaa0",
+                        "surface-container-low": "#f1f3ff",
+                        "inverse-primary": "#acc7ff",
+                        "outline": "#727784",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#00210c",
+                        "background": "#f9f9ff",
+                        "surface-container": "#e8eeff",
+                        "tertiary-container": "#8b4c00",
+                        "primary-container": "#0059bb",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#075bbd",
+                        "surface-variant": "#dde2f3",
+                        "on-secondary-container": "#0b723b",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "primary-fixed-dim": "#acc7ff",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed-variant": "#004492",
+                        "secondary": "#006d37",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed-dim": "#80d997",
+                        "on-primary-fixed": "#001a40",
+                        "secondary-container": "#98f3af",
+                        "surface-container-highest": "#dde2f3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e3e8f9",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#9bf6b2",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#693800",
+                        "on-primary-container": "#c3d5ff",
+                        "surface-dim": "#d4daeb",
+                        "inverse-on-surface": "#ecf0ff",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "on-surface": "#161c28",
+                        "outline-variant": "#c2c6d5",
+                        "on-background": "#161c28",
+                        "on-surface-variant": "#424752",
+                        "primary": "#00428e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-white/20 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-md">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed">TonPao Map</span>
+<nav class="hidden md:flex gap-lg ml-xl">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="S-05">สำรวจ</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-md text-label-md" href="S-05">กิจกรรม</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">แผนเที่ยว</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">เกี่ยวกับเรา</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+</button>
+<button class="font-label-md text-label-md bg-primary text-on-primary px-lg py-sm rounded-full hover:bg-on-primary-fixed-variant transition-colors min-h-[44px]">เข้าสู่ระบบ</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-[104px] pb-xl px-margin-desktop max-w-[1440px] mx-auto w-full grid grid-cols-12 gap-margin-desktop">
+<!-- Main Content (Left) -->
+<div class="col-span-12 md:col-span-8 flex flex-col gap-lg">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-xs text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary" href="S-05">หน้าแรก</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary" href="#">กิจกรรม</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-background">เทศกาลร่มบ่อสร้าง</span>
+</nav>
+<!-- Hero Image -->
+<div class="rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] relative h-[400px]">
+<img class="w-full h-full object-cover" data-alt="Vibrant wide shot of the Bo Sang Umbrella Festival in Chiang Mai. Hundreds of colorful, intricately painted paper umbrellas are displayed along a lively street, catching the bright sunlight. Local artisans are visible working on new umbrellas in the background. The scene is bustling with visitors enjoying the cultural event. The overall aesthetic is bright, festive, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0r7blWtr2UX6GD92HBcr6y4v9OIPpyr4X1nOjBDc2MB1obIt4v-56rJoHNPTUJnhuGPkvtMjYc7LaTeLQEckyloe604hAjWMs_nttc3gDPDvCEsuNklGQ4YD1rxUsM_ZIBwGW_7k0JpYJ5JUp08ZfIsosBhcclW1t0I01Q_EBh7Kx1vkVSslFovUC3nPuklGDpzAb_lKCWV_gVXtGbKYlSnc5VLUkERA4Nf3jX0GZYY0qG0ToVUSl">
+<div class="absolute top-md left-md bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-sm text-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">radio_button_checked</span>
+                    กำลังเกิดขึ้น
+                </div>
+</div>
+<!-- Title & Basic Info -->
+<div class="flex flex-col gap-sm">
+<h1 class="font-headline-xl text-headline-xl text-primary">เทศกาลร่มบ่อสร้างและหัตถกรรมสันกำแพง 2026</h1>
+<div class="flex items-center gap-md text-on-surface-variant font-body-md text-body-md">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+<span class="">จัดโดย: เทศบาลเมืองต้นเปา</span>
+</div>
+</div>
+</div>
+<!-- Weather Advisory -->
+<div class="bg-tertiary-container/10 border border-tertiary-container/30 rounded-lg p-md flex gap-md items-start">
+<span class="material-symbols-outlined text-tertiary-container text-[24px]">warning</span>
+<div>
+<h3 class="font-label-md text-label-md text-tertiary-container mb-xs">แจ้งเตือนสภาพอากาศ</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">อาจมีฝนตกปรอยๆ ในช่วงบ่าย แนะนำให้พกร่ม (นอกจากร่มบ่อสร้างในงาน) หรือเสื้อกันฝนมาด้วย</p>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-md">
+<h2 class="font-headline-md text-headline-md text-on-background">รายละเอียดงาน</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    สัมผัสความงดงามของศิลปะหัตถกรรมพื้นบ้านล้านนา ในงานเทศกาลร่มบ่อสร้างและหัตถกรรมสันกำแพง ประจำปี 2569 ชมขบวนแห่ร่ม การสาธิตการทำร่มจากกระดาษสาโดยช่างฝีมือท้องถิ่น เลือกซื้อสินค้าหัตถกรรม และร่วมกิจกรรมทางวัฒนธรรมตลอดแนวถนนสายหลักของหมู่บ้านบ่อสร้าง ข้อมูลกิจกรรมนี้ใช้สำหรับการทดสอบต้นแบบ
+                </p>
+</div>
+</div>
+<!-- Right Rail (Sticky) -->
+<div class="col-span-12 md:col-span-4 flex flex-col gap-lg">
+<div class="sticky top-[104px] bg-surface-container rounded-xl p-lg shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex flex-col gap-lg">
+<!-- Date & Time -->
+<div class="flex gap-md items-start">
+<span class="material-symbols-outlined text-primary text-[24px]">calendar_month</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-background">วันที่และเวลา</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">16 - 20 กันยายน 2569<br>09:00 - 21:00 น. <span class="text-[12px]">(ข้อมูลตัวอย่าง)</span></p>
+</div>
+</div>
+<!-- Location -->
+<div class="flex gap-md items-start">
+<span class="material-symbols-outlined text-primary text-[24px]">location_on</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-background">สถานที่</h4>
+<a href="S-04" class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors">หมู่บ้านทำร่มบ่อสร้าง<br>อ.สันกำแพง จ.เชียงใหม่</a>
+</div>
+</div>
+<!-- Mini Map: Leaflet + OpenStreetMap -->
+<div class="h-48 rounded-lg overflow-hidden bg-surface-variant relative shadow-inner">
+<div id="eventDetailMap" class="absolute inset-0" aria-label="แผนที่สถานที่จัดงานเทศกาลร่มบ่อสร้าง"></div>
+<div class="absolute bottom-2 left-2 z-[500] max-w-[75%] rounded-lg bg-white/95 px-3 py-2 shadow-md pointer-events-none">
+<p class="flex items-center gap-1 text-[12px] font-semibold text-primary"><span class="material-symbols-outlined text-[16px]">location_on</span>พื้นที่จัดงานเทศกาล</p>
+<p class="text-[10px] text-on-surface-variant">ตำแหน่งใช้สำหรับต้นแบบ</p>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-sm mt-sm">
+<a class="w-full bg-primary text-on-primary font-label-md text-label-md py-md rounded-lg flex items-center justify-center gap-xs hover:bg-on-primary-fixed-variant transition-colors min-h-[44px] shadow-md" href="https://www.google.com/maps/dir/?api=1&amp;destination=18.7682%2C99.1195&amp;travelmode=driving&amp;dir_action=navigate" target="_blank" rel="noopener noreferrer">
+<span class="material-symbols-outlined text-[20px]">navigation</span>
+                        นำทางไปงานด้วย Google Maps
+                    </a>
+<div class="grid grid-cols-2 gap-sm">
+<a class="bg-surface-container-high text-on-surface hover:bg-surface-variant font-label-md text-label-md py-sm rounded-lg flex items-center justify-center gap-xs transition-colors min-h-[44px]" href="/#/events/umbrella-festival/parking">
+<span class="material-symbols-outlined text-[18px]">local_parking</span>
+                            ดูตำแหน่งและจุดจอดรถ
+                        </a>
+<a class="bg-surface-container-high text-on-surface hover:bg-surface-variant font-label-md text-label-md py-sm rounded-lg flex items-center justify-center gap-xs transition-colors min-h-[44px]" href="/#/events/umbrella-festival/schedule">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                            กำหนดการ
+                        </a>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg border-t border-outline-variant bg-surface-container-highest dark:bg-surface-dim mt-auto">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<span class="font-headline-md text-headline-md text-primary">TonPao Map</span>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+<a class="text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors" href="#">สำนักงานการท่องเที่ยว</a>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2026 Ton Pao Municipality. All rights reserved.</p>
+</div>
+</footer>
+
+
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/event-detail-map.js"></script><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

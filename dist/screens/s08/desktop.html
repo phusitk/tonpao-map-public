@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="th" style="width: 1280px; height: 831px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>กำหนดการกิจกรรม — TonPao Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#d7e2ff",
+                      "on-tertiary-fixed": "#2e1500",
+                      "inverse-surface": "#2a303d",
+                      "on-tertiary-container": "#ffcaa0",
+                      "surface-container-low": "#f1f3ff",
+                      "inverse-primary": "#acc7ff",
+                      "outline": "#727784",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#ffdcc1",
+                      "on-secondary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#00210c",
+                      "background": "#f9f9ff",
+                      "surface-container": "#e8eeff",
+                      "tertiary-container": "#8b4c00",
+                      "primary-container": "#0059bb",
+                      "on-secondary-fixed-variant": "#005228",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#075bbd",
+                      "surface-variant": "#dde2f3",
+                      "on-secondary-container": "#0b723b",
+                      "tertiary-fixed-dim": "#ffb779",
+                      "primary-fixed-dim": "#acc7ff",
+                      "surface-bright": "#f9f9ff",
+                      "on-primary-fixed-variant": "#004492",
+                      "secondary": "#006d37",
+                      "surface": "#f9f9ff",
+                      "secondary-fixed-dim": "#80d997",
+                      "on-primary-fixed": "#001a40",
+                      "secondary-container": "#98f3af",
+                      "surface-container-highest": "#dde2f3",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e3e8f9",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#9bf6b2",
+                      "on-primary": "#ffffff",
+                      "tertiary": "#693800",
+                      "on-primary-container": "#c3d5ff",
+                      "surface-dim": "#d4daeb",
+                      "inverse-on-surface": "#ecf0ff",
+                      "on-tertiary-fixed-variant": "#6c3a00",
+                      "on-surface": "#161c28",
+                      "outline-variant": "#c2c6d5",
+                      "on-background": "#161c28",
+                      "on-surface-variant": "#424752",
+                      "primary": "#00428e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "lg": "24px",
+                      "margin-desktop": "32px",
+                      "md": "16px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "headline-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col font-sans">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] border-b border-white/20">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<!-- Brand -->
+<div class="font-headline-lg text-headline-lg font-bold text-primary flex items-center gap-2"><span class="material-symbols-outlined text-primary" style="font-size: 32px;">map</span> TonPao Map</div>
+<!-- Navigation -->
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">สำรวจ</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">กิจกรรม</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">แผนเที่ยว</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">เกี่ยวกับเรา</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<div class="hidden md:flex items-center gap-sm">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors">
+                    Sign In
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-24 pb-xl px-margin-desktop max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs & Header -->
+<div class="mb-lg">
+<div class="flex items-center gap-sm text-on-surface-variant font-label-sm text-label-sm mb-sm">
+<a class="hover:text-primary transition-colors" href="#">หน้าแรก</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">เทศกาลร่มบ่อสร้าง</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">กำหนดการ</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">กำหนดการกิจกรรม</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">เทศกาลร่มบ่อสร้างและหัตถกรรมสันกำแพง ครั้งที่ 39</p>
+</div>
+<!-- Layout Grid -->
+<div class="grid grid-cols-12 gap-margin-desktop">
+<!-- Left Sidebar: Filters & Weather -->
+<div class="col-span-12 lg:col-span-3 space-y-lg">
+<!-- Weather Advisory -->
+<div class="bg-surface-container rounded-xl p-md shadow-sm border border-outline-variant/30 flex items-start gap-md">
+<div class="bg-[#eaf1fb] text-[#1967d2] p-2 rounded-lg flex-shrink-0">
+<span class="material-symbols-outlined fill-icon text-[32px]">sunny</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">สภาพอากาศวันนี้</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">แดดจัดตลอดวัน อุณหภูมิสูงสุด 32°C เหมาะแก่การเดินชมงาน</p>
+</div>
+</div>
+<!-- Date Tabs (Vertical on Desktop) -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30">
+<h3 class="font-label-md text-label-md text-on-surface mb-md">เลือกวันที่</h3>
+<div class="flex flex-col gap-sm">
+<button class="w-full text-left px-md py-sm rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md flex justify-between items-center">
+<span class="">19 มกราคม 2567</span>
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-variant text-on-surface-variant font-label-md text-label-md transition-colors">
+                            20 มกราคม 2567
+                        </button>
+<button class="w-full text-left px-md py-sm rounded-lg hover:bg-surface-variant text-on-surface-variant font-label-md text-label-md transition-colors">
+                            21 มกราคม 2567
+                        </button>
+</div>
+</div>
+<!-- Legend -->
+<div class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30">
+<h3 class="font-label-md text-label-md text-on-surface mb-md">สถานะ</h3>
+<div class="space-y-sm">
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">กำลังดำเนินการ / อนุมัติแล้ว</span>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-3 h-3 rounded-full bg-surface-dim"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">รอเวลา / รอดำเนินการ</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Schedule Grid (Bento Style) -->
+<div class="col-span-12 lg:col-span-9">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<!-- Stages Header -->
+<div class="grid grid-cols-3 bg-surface-container-low border-b border-outline-variant/30 p-md">
+<div class="font-label-md text-label-md text-on-surface text-center font-bold">เวทีหลัก (Stage A)</div>
+<div class="font-label-md text-label-md text-on-surface text-center font-bold border-l border-outline-variant/30">ลานวัฒนธรรม (Stage B)</div>
+<div class="font-label-md text-label-md text-on-surface text-center font-bold border-l border-outline-variant/30">ลานสาธิต (Workshop)</div>
+</div>
+<!-- Timeline Content -->
+<div class="p-md space-y-lg relative">
+<!-- Time Indicator Line -->
+<div class="absolute left-0 top-0 w-1 h-full bg-surface-variant hidden md:block" style="left: 60px;"></div>
+<!-- 09:00 -->
+<div class="flex gap-md relative">
+<div class="w-16 flex-shrink-0 text-right pr-sm font-label-sm text-label-sm text-on-surface-variant pt-2">09:00</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-sm flex-grow">
+<div class="bg-surface-container rounded-lg p-sm shadow-sm border border-outline-variant/20 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-1">
+<span class="bg-secondary/20 text-secondary px-2 py-0.5 rounded text-[10px] font-bold">กำลังดำเนินการ</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">celebration</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">พิธีเปิดงานเทศกาลร่ม</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">09:00 - 10:30</p>
+</div>
+<div></div>
+<div class="bg-surface-container rounded-lg p-sm shadow-sm border border-outline-variant/20 opacity-70">
+<div class="flex justify-between items-start mb-1">
+<span class="bg-surface-dim text-on-surface px-2 py-0.5 rounded text-[10px] font-bold">รอเวลา</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">brush</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">เตรียมอุปกรณ์เพ้นท์ร่ม</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">09:00 - 10:00</p>
+</div>
+</div>
+</div>
+<!-- 10:30 -->
+<div class="flex gap-md relative">
+<div class="w-16 flex-shrink-0 text-right pr-sm font-label-sm text-label-sm text-on-surface-variant pt-2">10:30</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-sm flex-grow">
+<div></div>
+<div class="bg-surface-container rounded-lg p-sm shadow-sm border border-outline-variant/20">
+<div class="flex justify-between items-start mb-1">
+<span class="bg-surface-dim text-on-surface px-2 py-0.5 rounded text-[10px] font-bold">รอเวลา</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">music_note</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">การแสดงดนตรีพื้นเมือง</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">10:30 - 12:00</p>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-lg p-sm shadow-sm border border-primary/20">
+<div class="flex justify-between items-start mb-1">
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-[10px] font-bold">แนะนำ</span>
+<span class="material-symbols-outlined text-primary text-[16px]">palette</span>
+</div>
+<h4 class="font-label-md text-label-md font-bold">เวิร์คช็อป: เพ้นท์ร่มจิ๋ว</h4>
+<p class="font-label-sm text-label-sm opacity-80 mt-1">10:00 - 12:00</p>
+</div>
+</div>
+</div>
+<!-- 13:00 -->
+<div class="flex gap-md relative">
+<div class="w-16 flex-shrink-0 text-right pr-sm font-label-sm text-label-sm text-on-surface-variant pt-2">13:00</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-sm flex-grow">
+<div class="bg-surface-container rounded-lg p-sm shadow-sm border border-outline-variant/20">
+<div class="flex justify-between items-start mb-1">
+<span class="bg-surface-dim text-on-surface px-2 py-0.5 rounded text-[10px] font-bold">รอเวลา</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">directions_walk</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface">ขบวนพาเหรดร่มบ่อสร้าง</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">13:00 - 14:30</p>
+</div>
+<div></div>
+<div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant mt-auto">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-headline-md text-headline-md text-primary">TonPao Map</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">สำนักงานการท่องเที่ยว</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-center md:text-right">
+                © 2024 Ton Pao Municipality. All rights reserved.
+            </div>
+</div>
+</footer>
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

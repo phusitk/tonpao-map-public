@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ศูนย์ช่วยเหลือ &amp; คำถามที่พบบ่อย - TonPao Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0059bb",
+                        "primary-fixed": "#d7e2ff",
+                        "secondary-container": "#98f3af",
+                        "surface-tint": "#075bbd",
+                        "on-primary-fixed": "#001a40",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "outline": "#727784",
+                        "on-secondary-fixed-variant": "#005228",
+                        "secondary-fixed-dim": "#80d997",
+                        "surface-variant": "#dde2f3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#161c28",
+                        "secondary": "#006d37",
+                        "inverse-surface": "#2a303d",
+                        "secondary-fixed": "#9bf6b2",
+                        "primary": "#00428e",
+                        "surface-container-high": "#e3e8f9",
+                        "tertiary-container": "#8b4c00",
+                        "on-secondary-container": "#0b723b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffcaa0",
+                        "on-secondary-fixed": "#00210c",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c2c6d5",
+                        "on-surface-variant": "#424752",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "primary-fixed-dim": "#acc7ff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#004492",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#acc7ff",
+                        "on-primary-container": "#c3d5ff",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#693800",
+                        "on-background": "#161c28",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d4daeb",
+                        "inverse-on-surface": "#ecf0ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-highest": "#dde2f3",
+                        "surface-container": "#e8eeff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline-lg, .font-headline-md, .font-headline-xl { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-white/20 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-4">
+<a class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed" href="#">TonPao Map</a>
+<!-- Optional Search inside header if needed by JSON logic, but JSON says "search_bar": "on_left" -->
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-4 py-2 ml-4">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md w-64 outline-none" placeholder="ค้นหา..." type="text">
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">สำรวจ</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">กิจกรรม</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">แผนเที่ยว</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200" href="#">เกี่ยวกับเรา</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="hidden md:block font-label-md text-label-md bg-primary text-on-primary px-6 py-2 rounded-full hover:bg-primary/90 transition-colors">
+                    Sign In
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Hero Search Section for Help -->
+<section class="mb-xl text-center flex flex-col items-center justify-center py-12 bg-surface-container-low rounded-3xl relative overflow-hidden">
+<div class="relative z-10 w-full max-w-2xl px-6">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-4">เราจะช่วยอะไรคุณได้บ้าง?</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">ค้นหาคำแนะนำ บทความ และวิธีการใช้งานแพลตฟอร์ม TonPao Map</p>
+<div class="relative flex items-center bg-surface rounded-full shadow-[0_4px_12px_rgba(0,89,187,0.08)] p-2">
+<span class="material-symbols-outlined text-primary ml-4">search</span>
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-body-lg font-body-lg py-3 px-4 outline-none text-on-surface" placeholder="ค้นหาคำถามที่พบบ่อย (เช่น การเพิ่ม POI, การใช้แผนที่)..." type="text">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full hover:bg-primary/90 transition-colors">
+                        ค้นหา
+                    </button>
+</div>
+</div>
+</section>
+<!-- Main Layout: Sidebar + Accordions -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Sidebar Categories -->
+<aside class="md:col-span-3 space-y-2">
+<div class="sticky top-24">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 px-4">หมวดหมู่</h3>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container font-label-md text-label-md p-4 rounded-xl shadow-sm transition-colors" href="#">
+<span class="material-symbols-outlined">rocket_launch</span>
+                            Getting Started
+                        </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md p-4 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+                            Using the Map
+                        </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md p-4 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">edit_document</span>
+                            Contributor Guide
+                        </a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high font-label-md text-label-md p-4 rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined">build</span>
+                            Technical Support
+                        </a>
+</nav>
+</div>
+</aside>
+<!-- FAQ Accordions Area -->
+<section class="md:col-span-9">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-8">Getting Started (เริ่มต้นการใช้งาน)</h2>
+<div class="space-y-4">
+<!-- Accordion Item 1 -->
+<div class="bg-surface rounded-2xl shadow-[0_4px_12px_rgba(0,89,187,0.08)] overflow-hidden border border-surface-container-highest">
+<button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none hover:bg-surface-container-low transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.material-symbols-outlined').textContent = this.nextElementSibling.classList.contains('hidden') ? 'expand_more' : 'expand_less';">
+<span class="font-headline-md text-headline-md text-on-surface">การลงทะเบียนจำเป็นหรือไม่? (Is registration required?)</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden px-6 pb-6 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                            สำหรับการดูแผนที่และข้อมูลสถานที่ทั่วไป ไม่จำเป็นต้องลงทะเบียนเข้าใช้งาน แต่หากคุณต้องการบันทึกสถานที่โปรด สร้างแผนการเดินทาง (Itineraries) หรือต้องการเพิ่มข้อมูลสถานที่ใหม่ (Add POI) คุณจำเป็นต้องสร้างบัญชีและเข้าสู่ระบบเพื่อความปลอดภัยและการจัดการข้อมูลส่วนบุคคล
+                        </div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="bg-surface rounded-2xl shadow-[0_4px_12px_rgba(0,89,187,0.08)] overflow-hidden border border-surface-container-highest">
+<button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none hover:bg-surface-container-low transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.material-symbols-outlined').textContent = this.nextElementSibling.classList.contains('hidden') ? 'expand_more' : 'expand_less';">
+<span class="font-headline-md text-headline-md text-on-surface">วิธีเพิ่มจุดสนใจใหม่ (How to add a new POI?)</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden px-6 pb-6 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                            หากคุณเป็นผู้มีสิทธิ์ใช้งานระดับ Contributor คุณสามารถกดปุ่มเครื่องหมายบวก (Add POI) ที่มุมขวาล่างของหน้าแผนที่ จากนั้นกรอกรายละเอียดของสถานที่ เช่น ชื่อ หมวดหมู่ รูปภาพ และตำแหน่งที่ตั้ง ระบบจะส่งข้อมูลไปให้ผู้ดูแลระบบ (Admin) ตรวจสอบก่อนแสดงผลจริงบนแผนที่สาธารณะ
+                        </div>
+</div>
+<!-- Accordion Item 3 -->
+<div class="bg-surface rounded-2xl shadow-[0_4px_12px_rgba(0,89,187,0.08)] overflow-hidden border border-surface-container-highest">
+<button class="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none hover:bg-surface-container-low transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.material-symbols-outlined').textContent = this.nextElementSibling.classList.contains('hidden') ? 'expand_more' : 'expand_less';">
+<span class="font-headline-md text-headline-md text-on-surface">วิธีใช้ชั้นข้อมูลสภาพอากาศ (How to use the weather layer?)</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden px-6 pb-6 text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                            ในหน้าแผนที่หลัก ให้คลิกที่ไอคอน "ชั้นข้อมูล" (Layer) บริเวณเมนูเครื่องมือแผนที่ จากนั้นเลือก "สภาพอากาศ" (Weather) ระบบจะแสดงข้อมูลอุณหภูมิและสภาพอากาศซ้อนทับบนแผนที่ โดยใช้สีตามระดับความรุนแรง (เช่น สีฟ้า=ปกติ, สีเหลือง=เฝ้าระวัง)
+                        </div>
+</div>
+</div>
+<!-- Contact Support CTA Area -->
+<div class="mt-xl bg-surface-container rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between shadow-md">
+<div class="mb-6 md:mb-0">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">ไม่พบคำตอบที่คุณตามหาใช่ไหม?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">ทีมงานสนับสนุนของเราพร้อมให้ความช่วยเหลือเสมอ</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded-xl hover:bg-primary/90 transition-colors shadow-lg whitespace-nowrap flex items-center gap-2">
+<span class="material-symbols-outlined">support_agent</span>
+                        ติดต่อฝ่ายสนับสนุน (Contact Support)
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg border-t border-outline-variant bg-surface-container-highest dark:bg-surface-dim mt-auto">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-headline-md text-headline-md text-primary">TonPao Map</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">สำนักงานการท่องเที่ยว</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-center md:text-right">
+                © 2024 Ton Pao Municipality. All rights reserved.
+            </div>
+</div>
+</footer>
+
+
+<script src="../../prototype-nav.js"></script></body></html>

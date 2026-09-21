@@ -1,0 +1,244 @@
+<!DOCTYPE html><html class="light" lang="th" data-lt-installed="true" style="width: 390px; height: 1552px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>S-01 — Landing Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Include Tailwind Config from Design System -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#424752",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#075bbd",
+                    "on-secondary-container": "#0b723b",
+                    "outline": "#727784",
+                    "on-primary-fixed-variant": "#004492",
+                    "inverse-primary": "#acc7ff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb779",
+                    "outline-variant": "#c2c6d5",
+                    "on-secondary-fixed": "#00210c",
+                    "surface-variant": "#dde2f3",
+                    "surface-dim": "#d4daeb",
+                    "surface": "#f9f9ff",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#9bf6b2",
+                    "primary-fixed-dim": "#acc7ff",
+                    "surface-container-high": "#e3e8f9",
+                    "primary-container": "#0059bb",
+                    "on-surface": "#161c28",
+                    "secondary": "#006d37",
+                    "on-primary-container": "#c3d5ff",
+                    "secondary-fixed-dim": "#80d997",
+                    "tertiary-container": "#8b4c00",
+                    "surface-container-highest": "#dde2f3",
+                    "primary-fixed": "#d7e2ff",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#ecf0ff",
+                    "on-background": "#161c28",
+                    "on-secondary-fixed-variant": "#005228",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001a40",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#693800",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-container": "#98f3af",
+                    "primary": "#00428e",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#2e1500",
+                    "on-tertiary-fixed-variant": "#6c3a00",
+                    "background": "#f9f9ff",
+                    "tertiary-fixed": "#ffdcc1",
+                    "surface-container-low": "#f1f3ff",
+                    "inverse-surface": "#2a303d",
+                    "on-tertiary-container": "#ffcaa0",
+                    "surface-container": "#e8eeff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "margin-desktop": "32px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "xl": "40px",
+                    "gutter": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "label-md": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .tap-highlight-transparent {
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-white/20 shadow-[0_4px_12px_rgba(0,89,187,0.08)]">
+<div class="flex justify-between items-center px-md h-16 w-full">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">TonPao Map</h1>
+<div class="flex items-center gap-sm">
+<button class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative px-md py-xl overflow-hidden" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAf_XnzZF3y0eeCSWIkmBgdJItfebxihjS9fBzBQpEC9OT9nSdPKoetkrWTjAnvxayu8JEkrmFKYi2c7M-lUy6IhhjN7gzcSHX62F29BF6_-4_3TTJXwXxFZepL3WIjUN8pMOvDvf6szXtsz1NU2EQCPfGqLjqMC6u_6ux4TMnuVNhyEwUOK3UND_P0BcaVoMWSI08xqCnTi1nrb1aaU6vTiq0OuPK4hn4wmNSD5jWH6GrCSEynzzaB&quot;); background-size: cover; background-repeat: no-repeat; background-position: center center; filter: brightness(0.8) saturate(0.75) contrast(0.9);">
+<div class="relative z-10 text-center space-y-md bg-gradient-to-b from-primary-container/65 to-primary-container/40 p-md rounded-2xl">
+<h2 class="font-headline-xl text-headline-xl text-white leading-tight shadow-sm">สำรวจเสน่ห์ต้นเปา แหล่งกำเนิดหัตถกรรมและวัฒนธรรมล้านนา</h2>
+<p class="font-body-lg text-body-lg text-white/90 max-w-[320px] mx-auto shadow-sm">
+                    ค้นหาแหล่งท่องเที่ยวชุมชน หัตถกรรมร่มบ่อสร้าง วัดที่งดงาม และกิจกรรมที่คุณไม่ควรพลาด
+                </p>
+<div class="flex flex-col gap-sm pt-md">
+<button class="h-[44px] px-lg bg-primary-container text-white rounded-full font-label-md text-label-md shadow-md active:scale-95 transition-transform">
+                        เริ่มสำรวจแผนที่
+                    </button>
+<button class="h-[44px] px-lg bg-white text-primary-container border border-primary-container rounded-full font-label-md text-label-md active:scale-95 transition-transform">
+                        สร้างแผนเที่ยว
+                    </button>
+</div>
+</div>
+</section>
+<!-- Category Discovery -->
+<section class="py-lg">
+<div class="px-md mb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">หมวดหมู่แนะนำ</h3>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-sm px-md pb-md">
+<div class="flex-shrink-0 flex flex-col items-center gap-xs"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+</div>
+</section>
+<!-- Featured Places -->
+<section class="px-md py-md bg-surface-container-low rounded-t-[32px]">
+<div class="flex justify-between items-center mb-md pt-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">สถานที่ยอดนิยม</h3>
+<button class="text-primary font-label-md text-label-md">ดูทั้งหมด</button>
+</div>
+<div class="space-y-lg">
+<!-- Card 1 -->
+<a href="S-04.html" class="block bg-surface rounded-3xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] border border-white/20">$0</a>
+<!-- Card 2 -->
+<a href="S-04.html" class="block bg-surface rounded-3xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] border border-white/20">$0</a>
+</div>
+</section>
+<!-- Upcoming Events -->
+<section class="py-lg px-md">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">เทศกาลเร็วๆ นี้</h3>
+<div class="flex overflow-x-auto no-scrollbar gap-md pb-sm">
+<!-- Event Card 1 -->
+<div class="flex-shrink-0 w-64 bg-surface-container-high rounded-2xl p-md flex gap-md shadow-sm"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+<!-- Event Card 2 -->
+<div class="flex-shrink-0 w-64 bg-surface-container-high rounded-2xl p-md flex gap-md shadow-sm"><a href="S-19.html" class="flex flex-col items-center gap-xs">$0</a></div>
+</div>
+</section>
+<!-- Itinerary Preview -->
+<section class="px-md py-lg mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">เส้นทางแนะนำ</h3>
+<div class="grid grid-cols-1 gap-md">
+<div class="relative rounded-2xl overflow-hidden h-32 flex items-end p-md">
+<div class="absolute inset-0 bg-cover bg-center -z-10 brightness-75" data-alt="A lush green Lanna-style temple complex with golden spires visible against a soft morning mist. The image has a calm, aerial perspective showing winding paths through the village of Ton Pao. Soft blue and green color palette, high-key lighting, modern travel app aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2JRFw6malSbt18ZHlhD9HdT9wffPJJUxnJFy2M2Ojd7pwjK2RYbJwedctwmBe13g8adTv2-DkixuPreaSCt-vF1ZwSDBw62SUqwJt7qJm7XPOJYhgIqAuNgj_NyHMdGARMhQLvcClXl-2_T26156qA0QSUxuBn-M9KmImpWHhXOKXX9nOBF_No0gl8-u1AMBWGpTcs9jHsAYG7sY-zg7Uv_BIYQlI7GbVPFKw8erCduXDccAC36OH')"></div>
+<div class="w-full">
+<h4 class="text-white font-headline-md text-headline-md">1 วัน มหัศจรรย์หัตถกรรม</h4>
+<p class="text-white/80 font-label-sm text-label-sm">4 สถานที่ • 5 ชม.</p>
+</div>
+</div>
+<div class="relative rounded-2xl overflow-hidden h-32 flex items-end p-md">
+<div class="absolute inset-0 bg-cover bg-center -z-10 brightness-75" data-alt="A cozy, minimalist Northern Thai coffee shop with warm wood accents and outdoor seating area surrounded by bamboo trees. A soft sunlight creates inviting shadows. The scene is modern, clean, and representative of the cafe culture in Ton Pao. Soft Azure and warm wood tones dominate the palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjcm0KulX2M-X_xS-LWwlgN0n8P9Y5l6EaHneegNsMVHlk1YK1JypKBxoOIZE_QGhIZ8sEPw1zhe3AD7nVE5wHfm2673bJZ1FLMLTFCMZ0R7eZ3sZwOscggmghcearcisMqNUElFA9d_qVfhQVt9yZ7fuwEca9aoQI__xyoENfg9mwXtBJif0JLxOFYg2o6XGBlUTdm6DkDaJ0bdN1qOwTr8sB8hy8QhYqI_Uy47Nd86o6ZFI8YeP2')"></div>
+<div class="w-full">
+<h4 class="text-white font-headline-md text-headline-md">สายคาเฟ่ ห้ามพลาดต้นเปา</h4>
+<p class="text-white/80 font-label-sm text-label-sm">5 สถานที่ • 4 ชม.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-safe h-16 bg-surface/95 backdrop-blur-xl border-t border-white/20 shadow-[0_-4px_12px_rgba(0,89,187,0.08)] z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 tap-highlight-transparent transition-transform active:scale-90" href="S-01.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent transition-transform active:scale-90" href="S-02.html">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent transition-transform active:scale-90" href="S-05.html">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-sm text-label-sm">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent transition-transform active:scale-90" href="S-09.html">
+<span class="material-symbols-outlined">route</span>
+<span class="font-label-sm text-label-sm">Plan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant tap-highlight-transparent transition-transform active:scale-90" href="S-20.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Me</span>
+</a>
+</nav>
+
+
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div><script src="/prototype-nav.js"></script></body></html>

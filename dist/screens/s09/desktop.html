@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>แผนเที่ยวแนะนำ — TonPao Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-low": "#f1f3ff",
+                      "on-tertiary-fixed": "#2e1500",
+                      "primary-fixed": "#d7e2ff",
+                      "inverse-primary": "#acc7ff",
+                      "tertiary-fixed-dim": "#ffb779",
+                      "outline": "#727784",
+                      "on-secondary-fixed": "#00210c",
+                      "surface": "#f9f9ff",
+                      "on-surface": "#161c28",
+                      "primary-container": "#0059bb",
+                      "primary-fixed-dim": "#acc7ff",
+                      "on-secondary-fixed-variant": "#005228",
+                      "on-background": "#161c28",
+                      "primary": "#00428e",
+                      "secondary-container": "#98f3af",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#424752",
+                      "secondary-fixed-dim": "#80d997",
+                      "surface-dim": "#d4daeb",
+                      "background": "#f9f9ff",
+                      "on-primary-fixed": "#001a40",
+                      "on-tertiary-fixed-variant": "#6c3a00",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#dde2f3",
+                      "on-tertiary-container": "#ffcaa0",
+                      "on-primary-container": "#c3d5ff",
+                      "surface-container": "#e8eeff",
+                      "error": "#ba1a1a",
+                      "surface-container-high": "#e3e8f9",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#0b723b",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2a303d",
+                      "surface-variant": "#dde2f3",
+                      "tertiary-container": "#8b4c00",
+                      "on-primary-fixed-variant": "#004492",
+                      "surface-tint": "#075bbd",
+                      "outline-variant": "#c2c6d5",
+                      "surface-bright": "#f9f9ff",
+                      "inverse-on-surface": "#ecf0ff",
+                      "secondary": "#006d37",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#ffdcc1",
+                      "secondary-fixed": "#9bf6b2",
+                      "on-primary": "#ffffff",
+                      "tertiary": "#693800"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "margin-mobile": "16px",
+                      "sm": "8px",
+                      "margin-desktop": "32px",
+                      "md": "16px",
+                      "gutter": "16px",
+                      "base": "4px",
+                      "xl": "40px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-xl": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 89, 187, 0.12);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md overflow-x-hidden">
+<!-- TopAppBar (Web) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md dark:bg-surface-container/90 border-b border-white/20 shadow-[0_4px_12px_rgba(0,89,187,0.08)] hidden md:block">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto transition-all duration-300 ease-in-out">
+<!-- Brand -->
+<div class="flex items-center gap-sm">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed">TonPao Map</span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex gap-lg">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">สำรวจ</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">กิจกรรม</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary pb-1" href="#">แผนเที่ยว</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">เกี่ยวกับเรา</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="bg-primary text-on-primary px-md py-sm rounded-full font-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors duration-200">เข้าสู่ระบบ</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-[80px] md:pt-[100px] px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full pb-xl">
+<!-- Header Section -->
+<section class="mb-xl text-center md:text-left mt-lg">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-sm">แผนการเดินทางแนะนำ</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">ค้นพบเส้นทางท่องเที่ยวที่คัดสรรมาเพื่อคุณ ไม่ว่าจะเป็นทริปสั้นๆ ครึ่งวัน หรือการผจญภัยเต็มวันที่น่าจดจำในต้นเปา</p>
+</section>
+<!-- Create Your Own Trip CTA -->
+<section class="mb-lg rounded-xl border border-primary-fixed-dim bg-gradient-to-r from-primary-fixed/70 via-surface-container-lowest to-secondary-container/40 px-lg py-md shadow-[0_4px_16px_rgba(0,66,142,0.10)]" aria-labelledby="create-trip-title">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-md">
+<div class="flex items-start gap-md">
+<div class="shrink-0 w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center" aria-hidden="true">
+<span class="material-symbols-outlined text-[26px]">route</span>
+</div>
+<div>
+<h2 id="create-trip-title" class="font-headline-md text-headline-md text-on-surface mb-xs">วางแผนเที่ยวในแบบของคุณ</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">เลือกความสนใจ วันที่เดินทาง และรูปแบบทริป แล้วให้ระบบช่วยแนะนำสถานที่ที่เหมาะกับคุณ</p>
+</div>
+</div>
+<a data-create-itinerary class="shrink-0 inline-flex min-h-12 items-center justify-center gap-sm rounded-full bg-primary px-lg py-sm font-label-md text-on-primary shadow-sm transition-colors hover:bg-primary-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" href="/#/plan/build">
+<span class="material-symbols-outlined text-[20px]" aria-hidden="true">add_road</span>
+สร้างแผนเที่ยวของฉัน
+<span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
+</a>
+</div>
+</section>
+<!-- Filters / Tabs -->
+<section class="mb-lg overflow-x-auto pb-sm no-scrollbar">
+<div class="flex gap-sm min-w-max">
+<button class="px-lg py-sm rounded-full bg-primary text-on-primary font-label-md shadow-sm">ทั้งหมด</button>
+<button class="px-lg py-sm rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-surface-variant transition-colors border border-outline-variant/30">ครึ่งวัน (Half-day)</button>
+<button class="px-lg py-sm rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-surface-variant transition-colors border border-outline-variant/30">เต็มวัน (Full-day)</button>
+<button class="px-lg py-sm rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-surface-variant transition-colors border border-outline-variant/30">วัฒนธรรม (Culture)</button>
+<button class="px-lg py-sm rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-surface-variant transition-colors border border-outline-variant/30">อาหาร (Food)</button>
+<button class="px-lg py-sm rounded-full bg-surface-container-high text-on-surface-variant font-label-md hover:bg-surface-variant transition-colors border border-outline-variant/30">ธรรมชาติ (Nature)</button>
+</div>
+</section>
+<!-- Bento Grid / Cards -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] border border-surface-variant card-hover transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A beautiful wide shot of a traditional Thai temple in Chiang Mai during golden hour, with intricate golden details glowing in the warm sunlight. Lush green trees frame the shot, creating a serene, cultural atmosphere. The sky is a clear, vibrant azure. High-end travel photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZo8GLxOYIRPSphW-9kMmWq2HFcAFgBotONeVqBBMsUIROcRTW2O2_Q1aprg4TBN8pK3LnG3Pbrsk1iNga7SSVQMddjj88Hr8Cx6Y3MP7xao9rBLuWZ_J8SQ6CSJlm0kZnCflg3zw3Pd-y14hglF6McZfGRGlj2I4X6SVFpZaGzl0k2Mv8Mit23qEdQLpR22b6hWndLAB2Mt1ZSlpQtH4EBstTEhGuGfJtmHpl13N7JQG5FI8wZGfm">
+<div class="absolute top-sm right-sm bg-surface/90 backdrop-blur-sm px-sm py-xs rounded text-primary font-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span> ครึ่งวัน
+                    </div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-secondary mb-xs">
+<span class="material-symbols-outlined text-[16px]">temple_buddhist</span>
+<span class="font-label-sm">วัฒนธรรม</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs line-clamp-2">ไหว้พระ 9 วัด เสริมสิริมงคล</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-md flex-grow">สัมผัสความสงบและสถาปัตยกรรมล้านนาอันงดงามรอบเมือง</p>
+<div class="flex items-center mt-auto pt-sm border-t border-surface-variant">
+<span class="font-label-sm text-outline flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">location_on</span> 5 สถานที่</span>
+</div>
+<div class="grid grid-cols-1 gap-sm mt-sm">
+<button class="min-h-11 rounded-lg border border-primary px-md py-sm text-primary font-label-md hover:bg-primary-fixed transition-colors flex items-center justify-center gap-xs" data-itinerary-action="view">
+ดูแผนทริป <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="min-h-11 rounded-lg bg-primary px-md py-sm text-on-primary font-label-md hover:bg-primary-container transition-colors flex items-center justify-center gap-xs" data-itinerary-action="use-template">
+ใช้ทริปนี้เป็นต้นแบบ <span class="material-symbols-outlined text-[18px]">edit_road</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] border border-surface-variant card-hover transition-all duration-300 flex flex-col group">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A mouth-watering close-up of Khao Soi, a traditional Northern Thai noodle soup, served in a ceramic bowl on a rustic wooden table. The lighting is bright and inviting, highlighting the rich yellow curry and crispy noodles. A vibrant, modern food photography aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQAThI9yb5j1CAEYHokd1zjnymp7SKgmTTmFvQ-xsIeQfR0rK6fgRsQqflMSwMT2DAK_3xOWzAabBuAOyYJFq5OoCV7K51dJj-Met-HRUpzMghBqsjKw_-X7U2cZWjZodMYgNFAllffD-7GHB5ZJXxEI1GMBpOm8JUWCPdJynMjf0mL0ffPy4HVqbgdCzr48IXJ2s0theIcXUNHyLZZ62wTRj1ZBT51Nd9dtGvmC_7WfAVtN1QQYfy">
+<div class="absolute top-sm right-sm bg-surface/90 backdrop-blur-sm px-sm py-xs rounded text-primary font-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span> เต็มวัน
+                    </div>
+</div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-xs text-tertiary mb-xs">
+<span class="material-symbols-outlined text-[16px]">restaurant</span>
+<span class="font-label-sm">อาหาร</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs line-clamp-2">ตะลุยชิมของอร่อยต้นเปา</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-md flex-grow">รวมร้านเด็ด ร้านดัง และคาเฟ่ลับที่สายกินห้ามพลาด</p>
+<div class="flex items-center mt-auto pt-sm border-t border-surface-variant">
+<span class="font-label-sm text-outline flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">location_on</span> 8 สถานที่</span>
+</div>
+<div class="grid grid-cols-1 gap-sm mt-sm">
+<button class="min-h-11 rounded-lg border border-primary px-md py-sm text-primary font-label-md hover:bg-primary-fixed transition-colors flex items-center justify-center gap-xs" data-itinerary-action="view">
+ดูแผนทริป <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="min-h-11 rounded-lg bg-primary px-md py-sm text-on-primary font-label-md hover:bg-primary-container transition-colors flex items-center justify-center gap-xs" data-itinerary-action="use-template">
+ใช้ทริปนี้เป็นต้นแบบ <span class="material-symbols-outlined text-[18px]">edit_road</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] border border-surface-variant card-hover transition-all duration-300 flex flex-col group lg:col-span-2 xl:col-span-2">
+<div class="relative h-48 md:h-full w-full overflow-hidden md:flex">
+<div class="md:w-1/2 relative h-48 md:h-full">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A lush, green mountain landscape in Northern Thailand with a winding hiking trail. The sky is bright blue with fluffy white clouds. Sunbeams peek through the dense forest canopy, creating a fresh, airy, and exploratory atmosphere. Modern, high-resolution nature photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA01HJXyc_nnYlT_qhF6GnOfrUHbVvVzjOaKttjergvI_4xKTQdJOsvXvLww0Mck2DcOFlc87Yk0IzhWo6MaSqEUs4eHncJ2Nuwx35CtofdLe1jiDAov-b6Px4qkmcqkDYW7WVqlZ8VD2Te3itNUFYKM7bVAC8fPaJ1fTCPbXZ7PkwmnLZTHMxHXs290_07YVdwBc9PAmK3QqL6e4GWbytvN1Suz4BGUE4bS5eZq6CjeaIs0D1efT8">
+<div class="absolute top-sm left-sm bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-sm flex items-center gap-xs font-bold">
+<span class="material-symbols-outlined text-[16px] font-[FILL]">star</span> แนะนำ
+                        </div>
+</div>
+<div class="md:w-1/2 p-md flex flex-col flex-grow bg-surface-container-low">
+<div class="flex items-center gap-xs text-secondary mb-xs">
+<span class="material-symbols-outlined text-[16px]">landscape</span>
+<span class="font-label-sm">ธรรมชาติ</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">สัมผัสธรรมชาติ ดื่มด่ำอากาศบริสุทธิ์</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-md flex-grow">หลีกหนีความวุ่นวาย ไปพักผ่อนหย่อนใจกับเส้นทางธรรมชาติ น้ำตก และจุดชมวิวที่สวยงามที่สุดในพื้นที่</p>
+<div class="flex items-center mt-auto pt-sm border-t border-surface-variant">
+<div class="flex items-center gap-sm">
+<span class="font-label-sm text-outline flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> เต็มวัน</span>
+<span class="font-label-sm text-outline flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">location_on</span> 4 สถานที่</span>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-sm mt-sm">
+<button class="min-h-11 rounded-lg border border-primary px-md py-sm text-primary font-label-md hover:bg-primary-fixed transition-colors flex items-center justify-center gap-xs" data-itinerary-action="view">
+ดูแผนทริป <span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+<button class="min-h-11 rounded-lg bg-primary px-md py-sm text-on-primary font-label-md hover:bg-primary-container transition-colors flex items-center justify-center gap-xs" data-itinerary-action="use-template">
+ใช้ทริปนี้เป็นต้นแบบ <span class="material-symbols-outlined text-[18px]">edit_road</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant mt-auto">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="font-headline-md text-headline-md text-primary">TonPao Map</div>
+<div class="text-on-surface-variant font-body-md text-body-md text-center md:text-left">
+                © 2024 Ton Pao Municipality. All rights reserved.
+            </div>
+<div class="flex gap-md font-body-md text-body-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+<a class="hover:text-primary transition-colors" href="#">สำนักงานการท่องเที่ยว</a>
+</div>
+</div>
+</footer>
+
+
+
+
+<script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

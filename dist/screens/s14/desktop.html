@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>นโยบายความเป็นส่วนตัว — TonPao Map</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0059bb",
+                        "primary-fixed": "#d7e2ff",
+                        "secondary-container": "#98f3af",
+                        "surface-tint": "#075bbd",
+                        "on-primary-fixed": "#001a40",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "outline": "#727784",
+                        "on-secondary-fixed-variant": "#005228",
+                        "secondary-fixed-dim": "#80d997",
+                        "surface-variant": "#dde2f3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#161c28",
+                        "secondary": "#006d37",
+                        "inverse-surface": "#2a303d",
+                        "secondary-fixed": "#9bf6b2",
+                        "primary": "#00428e",
+                        "surface-container-high": "#e3e8f9",
+                        "tertiary-container": "#8b4c00",
+                        "on-secondary-container": "#0b723b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffcaa0",
+                        "on-secondary-fixed": "#00210c",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c2c6d5",
+                        "on-surface-variant": "#424752",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "primary-fixed-dim": "#acc7ff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#004492",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#acc7ff",
+                        "on-primary-container": "#c3d5ff",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#693800",
+                        "on-background": "#161c28",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d4daeb",
+                        "inverse-on-surface": "#ecf0ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-highest": "#dde2f3",
+                        "surface-container": "#e8eeff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TopAppBar (Hidden Navigation Shell due to intent: Policy Document) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] border-b border-white/20 transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<!-- Brand -->
+<div class="flex items-center gap-2">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed hidden md:block">TonPao Map</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary md:hidden">TonPao Map</span>
+</div>
+<!-- Navigation Links (Hidden due to Privacy Policy context, but keeping structure per JSON for shell) -->
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">สำรวจ</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">กิจกรรม</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">แผนเที่ยว</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">เกี่ยวกับเรา</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-lg shadow-sm hover:bg-primary-container transition-colors">เข้าสู่ระบบ</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[104px] pb-xl px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
+<!-- Hero Title -->
+<div class="mb-xl border-b border-outline-variant pb-md">
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">นโยบายความเป็นส่วนตัว</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">ปรับปรุงล่าสุด: 15 ตุลาคม 2567</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg relative">
+<!-- Sticky Table of Contents (Desktop) -->
+<aside class="hidden md:block md:col-span-3 lg:col-span-3 relative">
+<div class="sticky top-[104px] p-md bg-surface-container-low rounded-xl shadow-[0_4px_12px_rgba(0,89,187,0.08)]">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md pb-sm border-b border-outline-variant">สารบัญ</h3>
+<ul class="space-y-sm font-label-md text-label-md">
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors block py-1" href="#section-1">1. บทนำ</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors block py-1" href="#section-2">2. ข้อมูลที่เรารวบรวม</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors block py-1" href="#section-3">3. การใช้ข้อมูลของคุณ</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors block py-1" href="#section-4">4. สิทธิของผู้ใช้</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors block py-1" href="#section-5">5. การรักษาความปลอดภัย</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary transition-colors block py-1" href="#section-6">6. ติดต่อเรา</a></li>
+</ul>
+</div>
+</aside>
+<!-- Policy Content -->
+<article class="col-span-1 md:col-span-9 lg:col-span-8 max-w-3xl font-body-md text-body-md text-on-surface space-y-lg">
+<section class="scroll-mt-[104px]" id="section-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">1. บทนำ</h2>
+<p class="mb-sm">เทศบาลตำบลต้นเปา ("เรา", "พวกเรา", หรือ "ของเรา") มุ่งมั่นที่จะปกป้องความเป็นส่วนตัวของคุณ นโยบายความเป็นส่วนตัวนี้อธิบายถึงวิธีการที่เรารวบรวม ใช้ เปิดเผย และปกป้องข้อมูลส่วนบุคคลของคุณเมื่อคุณใช้แพลตฟอร์มการทำแผนที่ดิจิทัลต้นเปา (TonPao Map) ของเรา</p>
+<p class="">การใช้บริการของเราแสดงว่าคุณยินยอมให้มีการเก็บรวบรวมและใช้ข้อมูลตามนโยบายนี้ หากคุณไม่เห็นด้วยกับนโยบายนี้ โปรดอย่าใช้บริการของเรา</p>
+</section>
+<section class="scroll-mt-[104px]" id="section-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">2. ข้อมูลที่เรารวบรวม</h2>
+<p class="mb-sm">เราอาจรวบรวมข้อมูลประเภทต่างๆ เพื่อวัตถุประสงค์ในการให้บริการและปรับปรุงบริการของเราให้ดียิ่งขึ้น ข้อมูลที่เราอาจรวบรวมประกอบด้วย:</p>
+<ul class="list-disc pl-lg space-y-xs mt-sm bg-surface-container p-md rounded-lg">
+<li class=""><strong>ข้อมูลส่วนบุคคล:</strong> เช่น ชื่อ, ที่อยู่อีเมล, หมายเลขโทรศัพท์ เมื่อคุณลงทะเบียนบัญชีหรือติดต่อเรา</li>
+<li class=""><strong>ข้อมูลการใช้งาน:</strong> ข้อมูลเกี่ยวกับวิธีที่คุณเข้าถึงและใช้งานแพลตฟอร์ม เช่น หน้าที่คุณเข้าชม, เวลาและวันที่ที่คุณเข้าชม, เวลาที่ใช้ในหน้าเหล่านั้น</li>
+<li class=""><strong>ข้อมูลตำแหน่งที่ตั้ง:</strong> หากคุณอนุญาต เราอาจรวบรวมข้อมูลเกี่ยวกับตำแหน่งที่ตั้งจริงของคุณเพื่อแสดงข้อมูลบนแผนที่ที่เกี่ยวข้องกับคุณ</li>
+<li class=""><strong>ข้อมูลอุปกรณ์:</strong> ข้อมูลเกี่ยวกับอุปกรณ์ที่คุณใช้เข้าถึงบริการ เช่น ที่อยู่ IP, ประเภทเบราว์เซอร์, ระบบปฏิบัติการ</li>
+</ul>
+</section>
+<section class="scroll-mt-[104px]" id="section-3">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">3. การใช้ข้อมูลของคุณ</h2>
+<p class="mb-sm">เราใช้ข้อมูลที่รวบรวมเพื่อวัตถุประสงค์ดังต่อไปนี้:</p>
+<ol class="list-decimal pl-lg space-y-xs mt-sm text-on-surface-variant">
+<li class="">เพื่อให้บริการและบำรุงรักษาแพลตฟอร์มของเรา</li>
+<li class="">เพื่อปรับปรุง ปรับแต่ง และขยายบริการของเรา</li>
+<li class="">เพื่อทำความเข้าใจและวิเคราะห์วิธีการที่คุณใช้บริการของเรา</li>
+<li class="">เพื่อพัฒนาผลิตภัณฑ์ บริการ คุณสมบัติ และการทำงานใหม่ๆ</li>
+<li class="">เพื่อสื่อสารกับคุณเกี่ยวกับการอัปเดตและข้อมูลอื่นๆ ที่เกี่ยวข้องกับบริการ</li>
+<li class="">เพื่อป้องกันและตรวจสอบการฉ้อโกงหรือการใช้งานที่ไม่ได้รับอนุญาต</li>
+</ol>
+</section>
+<section class="scroll-mt-[104px]" id="section-4">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-md">4. สิทธิของผู้ใช้</h2>
+<p class="mb-sm">ภายใต้กฎหมายคุ้มครองข้อมูลส่วนบุคคล คุณมีสิทธิดังต่อไปนี้:</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md mt-md">
+<div class="p-md border border-outline-variant rounded-xl bg-surface-bright shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-xs">สิทธิในการเข้าถึง</h4>
+<p class="text-sm">คุณสามารถขอสำเนาข้อมูลส่วนบุคคลของคุณที่เราเก็บไว้ได้</p>
+</div>
+<div class="p-md border border-outline-variant rounded-xl bg-surface-bright shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-xs">สิทธิในการแก้ไข</h4>
+<p class="text-sm">คุณสามารถขอให้เราแก้ไขข้อมูลที่ไม่ถูกต้องหรือไม่สมบูรณ์</p>
+</div>
+<div class="p-md border border-outline-variant rounded-xl bg-surface-bright shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-xs">สิทธิในการลบ</h4>
+<p class="text-sm">คุณสามารถขอให้เราลบข้อมูลส่วนบุคคลของคุณภายใต้เงื่อนไขบางประการ</p>
+</div>
+<div class="p-md border border-outline-variant rounded-xl bg-surface-bright shadow-sm">
+<h4 class="font-label-md text-label-md text-primary mb-xs">สิทธิในการคัดค้าน</h4>
+<p class="text-sm">คุณสามารถคัดค้านการประมวลผลข้อมูลส่วนบุคคลของคุณได้</p>
+</div>
+</div>
+</section>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant mt-auto">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<!-- Brand/Copyright -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-sm">
+<span class="font-headline-md text-headline-md text-primary font-bold">TonPao Map</span>
+<span class="font-body-md text-body-md text-on-surface-variant">© 2024 Ton Pao Municipality. All rights reserved.</span>
+</div>
+<!-- Links -->
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+<!-- Highlighted Privacy Policy Link to signify current active context loosely in footer -->
+<a class="font-body-md text-body-md text-primary font-bold hover:text-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">สำนักงานการท่องเที่ยว</a>
+</nav>
+</div>
+</footer>
+
+
+<script src="../../prototype-nav.js"></script></body></html>

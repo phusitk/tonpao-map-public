@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>S-07 — Event Parking</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#acc7ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#ffcaa0",
+                        "primary": "#00428e",
+                        "surface": "#f9f9ff",
+                        "inverse-primary": "#acc7ff",
+                        "on-primary-container": "#c3d5ff",
+                        "surface-container-high": "#e3e8f9",
+                        "tertiary-container": "#8b4c00",
+                        "on-tertiary-fixed": "#2e1500",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary": "#ffffff",
+                        "outline": "#727784",
+                        "on-secondary-container": "#0b723b",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-secondary-fixed-variant": "#005228",
+                        "background": "#f9f9ff",
+                        "secondary-container": "#98f3af",
+                        "tertiary": "#693800",
+                        "on-primary-fixed": "#001a40",
+                        "on-surface": "#161c28",
+                        "on-surface-variant": "#424752",
+                        "surface-variant": "#dde2f3",
+                        "surface-tint": "#075bbd",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#dde2f3",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#004492",
+                        "secondary": "#006d37",
+                        "surface-container": "#e8eeff",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "inverse-surface": "#2a303d",
+                        "primary-container": "#0059bb",
+                        "surface-dim": "#d4daeb",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c2c6d5",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "secondary-fixed": "#9bf6b2",
+                        "surface-container-low": "#f1f3ff",
+                        "secondary-fixed-dim": "#80d997",
+                        "on-background": "#161c28",
+                        "on-secondary-fixed": "#00210c",
+                        "primary-fixed": "#d7e2ff",
+                        "inverse-on-surface": "#ecf0ff",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "md": "16px",
+                        "margin-desktop": "32px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased font-body-md h-screen flex flex-col overflow-hidden relative">
+<!-- BackHeader -->
+<header class="bg-surface/90 backdrop-blur-md fixed top-0 w-full z-50 shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex justify-between items-center px-lg h-16 max-w-[1440px] mx-auto border-b border-white/20">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200" onclick="location.href='#'">
+<span class="material-symbols-outlined text-2xl" data-icon="arrow_back" data-weight="fill">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary absolute left-1/2 -translate-x-1/2">ที่จอดรถและวิธีเดินทาง</h1>
+<div class="w-6"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-16 overflow-y-auto pb-safe flex flex-col relative z-0">
+<!-- ParkingLayerMap (Hero Map) -->
+<div class="w-full h-[30vh] relative shrink-0">
+<div class="bg-cover bg-center w-full h-full absolute inset-0" data-alt="A clean, light-themed map visualization showing parking zones and routes around an event venue in Ton Pao. The map features an Azure canopy aesthetic with soft pastel tones, clear road lines, and vibrant markers indicating different parking types. The scene is illuminated by bright, clear daylight, evoking a sense of effortless discovery and modern urban planning." data-location="Ton Pao" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAAX6v6DiSimbEjBOfblzER2cbIXcVweaM2Xy1mE_3eGjuDrAhKTGFNJnPdoQNEfx-HCWAzSNPss1ytdL0mpSMfg_58YYR5qXYUr5SPpjQj2ZnTqYHyhC119hXuwNKf97NdnkZqBXZW9n2nOxLCNXyBKdnTzlJh1_r6KoLXIMM0hlOgu_Ll2eR0m_nwRvqhJvhHP7J1rS_BjiNam450AaDS-rA9c_fwDKSBVIuWdkAN79f4Xbct3bn')"></div>
+<!-- Map Overlay Controls -->
+<button class="absolute top-md right-md bg-surface p-2 rounded-full shadow-lg text-primary hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="my_location" data-weight="fill">my_location</span>
+</button>
+<!-- EventContextSummary Floating -->
+<div class="absolute bottom-md left-md right-md bg-surface/95 backdrop-blur-xl p-md rounded-xl shadow-lg border border-white/20 flex items-center gap-md">
+<div class="bg-primary-container text-on-primary-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-3xl" data-icon="event" data-weight="fill">event</span>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface">เทศกาลร่มบ่อสร้างและหัตถกรรมสันกำแพง</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">19 - 21 มกราคม 2567</p>
+</div>
+</div>
+</div>
+<!-- Content Area below map -->
+<div class="flex-1 bg-surface-container-lowest z-10 rounded-t-2xl -mt-4 p-margin-mobile flex flex-col gap-lg shadow-[0_-4px_12px_rgba(0,89,187,0.08)]">
+<!-- WeatherImpactNotice -->
+<div class="bg-surface-variant/50 border border-outline-variant/30 rounded-lg p-md flex items-start gap-sm shadow-sm">
+<span class="material-symbols-outlined text-tertiary-container mt-0.5" data-icon="warning" data-weight="fill">warning</span>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">ประกาศสภาพอากาศ</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">ที่จอดรถกลางแจ้งลาน P3 อาจมีดินโคลนเนื่องจากฝนตกหนักเมื่อคืน โปรดขับขี่ด้วยความระมัดระวัง</p>
+</div>
+</div>
+<!-- ParkingTypeSelector -->
+<div class="flex gap-sm overflow-x-auto hide-scrollbar pb-2 pt-1 -mx-margin-mobile px-margin-mobile">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full whitespace-nowrap shadow-sm active:scale-95 transition-transform flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="directions_car">directions_car</span> รถยนต์
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-full whitespace-nowrap shadow-sm hover:bg-surface-variant active:scale-95 transition-transform flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="two_wheeler">two_wheeler</span> มอเตอร์ไซค์
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-full whitespace-nowrap shadow-sm hover:bg-surface-variant active:scale-95 transition-transform flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="directions_bus">directions_bus</span> รถทัวร์
+                </button>
+<button class="bg-surface-container-high text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-full whitespace-nowrap shadow-sm hover:bg-surface-variant active:scale-95 transition-transform flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="accessible">accessible</span> ที่จอดผู้พิการ
+                </button>
+</div>
+<!-- ParkingStatusList -->
+<div class="flex flex-col gap-md">
+<!-- Card 1: Available (Green) -->
+<div class="bg-surface-container p-md rounded-xl shadow-sm border border-outline-variant/20">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">P1 ลานจอดเทศบาล (รถยนต์)</h3>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="directions_walk">directions_walk</span>
+<span class="font-label-sm text-label-sm">500 ม. (เดิน 5 นาที)</span>
+</div>
+</div>
+<div class="bg-secondary/10 text-secondary px-2 py-1 rounded-md flex items-center gap-1 border border-secondary/20">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" data-weight="fill">check_circle</span>
+<span class="font-label-sm text-label-sm font-bold">ว่าง</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+<p class="">ความจุ: 120 / 200 คัน</p>
+<p class="text-[10px] opacity-70 mt-0.5">อัปเดตเมื่อ: 2 นาทีที่แล้ว</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary-fixed-variant active:scale-95 transition-all flex items-center gap-2 h-11" onclick="window.open('https://www.google.com/maps/search/?api=1&amp;query=P1+Parking+Ton+Pao', '_blank')">
+<span class="material-symbols-outlined text-[20px]" data-icon="navigation" data-weight="fill">navigation</span> นำทางไปที่จอด
+                        </button>
+</div>
+</div>
+<!-- Card 2: Near Full (Orange) -->
+<div class="bg-surface-container p-md rounded-xl shadow-sm border border-outline-variant/20">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">P2 ลานวัดพระนอน (รถยนต์)</h3>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="directions_walk">directions_walk</span>
+<span class="font-label-sm text-label-sm">1.2 กม. (มีรถรับ-ส่ง)</span>
+</div>
+</div>
+<div class="bg-tertiary-container/10 text-tertiary-container px-2 py-1 rounded-md flex items-center gap-1 border border-tertiary-container/20">
+<span class="material-symbols-outlined text-sm" data-icon="warning" data-weight="fill">warning</span>
+<span class="font-label-sm text-label-sm font-bold">ใกล้เต็ม</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+<p class="">ความจุ: 185 / 200 คัน</p>
+<p class="text-[10px] opacity-70 mt-0.5">อัปเดตเมื่อ: 5 นาทีที่แล้ว</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary-fixed-variant active:scale-95 transition-all flex items-center gap-2 h-11" onclick="window.open('https://www.google.com/maps/search/?api=1&amp;query=P2+Parking+Wat+Phra+Non', '_blank')">
+<span class="material-symbols-outlined text-[20px]" data-icon="navigation" data-weight="fill">navigation</span> นำทางไปที่จอด
+                        </button>
+</div>
+</div>
+<!-- Card 3: Full (Red) -->
+<div class="bg-surface-container opacity-60 p-md rounded-xl shadow-sm border border-outline-variant/20">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface">P3 ลานโรงเรียนทาเหนือ (รถยนต์)</h3>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="directions_walk">directions_walk</span>
+<span class="font-label-sm text-label-sm">800 ม.</span>
+</div>
+</div>
+<div class="bg-error/10 text-error px-2 py-1 rounded-md flex items-center gap-1 border border-error/20">
+<span class="material-symbols-outlined text-sm" data-icon="cancel" data-weight="fill">cancel</span>
+<span class="font-label-sm text-label-sm font-bold">เต็ม</span>
+</div>
+</div>
+<div class="flex justify-between items-end mt-4">
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+<p class="">ความจุ: 150 / 150 คัน</p>
+<p class="text-[10px] opacity-70 mt-0.5">อัปเดตเมื่อ: 1 นาทีที่แล้ว</p>
+</div>
+<button class="bg-surface-variant text-on-surface-variant font-label-md text-label-md px-4 py-2 rounded-lg flex items-center gap-2 h-11 cursor-not-allowed" disabled="">
+                             นำทางไปที่จอด
+                        </button>
+</div>
+</div>
+</div>
+<!-- ShuttleInfoCard -->
+<div class="bg-surface-dim p-md rounded-xl shadow-sm border border-outline-variant/30 mt-sm">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="airport_shuttle" data-weight="fill">airport_shuttle</span>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">บริการรถรับ-ส่ง ฟรี (Shuttle Bus)</h3>
+</div>
+<div class="space-y-2 font-body-md text-body-md text-on-surface-variant text-sm">
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-sm mt-0.5" data-icon="route">route</span>
+<p class=""><strong>เส้นทาง:</strong> ลานจอด P2 (วัดพระนอน) ↔ หน้าทางเข้างาน (ซุ้มประตูบ่อสร้าง)</p>
+</div>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-sm mt-0.5" data-icon="schedule">schedule</span>
+<p class=""><strong>ความถี่:</strong> รถออกทุกๆ 15 นาที (เวลา 16:00 - 22:00 น.)</p>
+</div>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-sm mt-0.5" data-icon="location_on">location_on</span>
+<p class=""><strong>จุดขึ้นรถ:</strong> ป้ายหน้าลานจอด P2 / จุด Drop-off หน้างาน</p>
+</div>
+</div>
+</div>
+<!-- Extra padding for bottom nav if needed, though hidden per rules -->
+<div class="h-8"></div>
+</div>
+</main>
+<script src="/prototype-nav.js"></script></body></html>

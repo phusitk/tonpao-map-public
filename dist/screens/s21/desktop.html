@@ -1,0 +1,399 @@
+<!DOCTYPE html><html class="light" lang="th"><head><title>อาหารและคาเฟ่ — TonPao Map</title></head><body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-highest": "#dde2f3",
+            "on-primary-fixed-variant": "#004492",
+            "tertiary-fixed-dim": "#ffb779",
+            "outline": "#727784",
+            "on-tertiary-fixed": "#2e1500",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#acc7ff",
+            "on-surface": "#161c28",
+            "surface-bright": "#f9f9ff",
+            "on-tertiary-fixed-variant": "#6c3a00",
+            "surface-container": "#e8eeff",
+            "secondary-fixed-dim": "#80d997",
+            "on-secondary": "#ffffff",
+            "surface-dim": "#d4daeb",
+            "on-primary-fixed": "#001a40",
+            "on-background": "#161c28",
+            "surface-container-high": "#e3e8f9",
+            "on-tertiary-container": "#ffcaa0",
+            "on-surface-variant": "#424752",
+            "error-container": "#ffdad6",
+            "error": "#ba1a1a",
+            "tertiary-fixed": "#ffdcc1",
+            "secondary-fixed": "#9bf6b2",
+            "on-primary-container": "#c3d5ff",
+            "inverse-on-surface": "#ecf0ff",
+            "on-secondary-container": "#0b723b",
+            "on-primary": "#ffffff",
+            "primary-container": "#0059bb",
+            "primary-fixed": "#d7e2ff",
+            "inverse-surface": "#2a303d",
+            "inverse-primary": "#acc7ff",
+            "secondary": "#006d37",
+            "on-secondary-fixed": "#00210c",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "surface-container-low": "#f1f3ff",
+            "on-secondary-fixed-variant": "#005228",
+            "primary": "#00428e",
+            "background": "#f9f9ff",
+            "outline-variant": "#c2c6d5",
+            "tertiary-container": "#8b4c00",
+            "secondary-container": "#98f3af",
+            "on-error-container": "#93000a",
+            "surface-tint": "#075bbd",
+            "tertiary": "#693800",
+            "surface": "#f9f9ff",
+            "surface-variant": "#dde2f3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "xl": "40px",
+            "base": "4px",
+            "margin-desktop": "32px",
+            "lg": "24px",
+            "margin-mobile": "16px",
+            "gutter": "16px",
+            "md": "16px",
+            "sm": "8px",
+            "xs": "4px"
+          },
+          "fontFamily": {
+            "headline-xl": ["Plus Jakarta Sans"],
+            "body-md": ["Be Vietnam Pro"],
+            "label-sm": ["Be Vietnam Pro"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Be Vietnam Pro"],
+            "label-md": ["Be Vietnam Pro"],
+            "headline-lg": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  }catch(_e){}</script><meta charset="utf-8">
+<!-- TopAppBar (Public) -->
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-white/20 shadow-[0_4px_12px_rgba(0,89,187,0.08)]">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-md">
+<a class="font-headline-lg text-headline-lg font-bold text-primary" href="#">TonPao Map</a>
+<nav class="hidden md:flex items-center gap-lg ml-xl">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md" href="#">สำรวจ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">กิจกรรม</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">แผนที่</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">เกี่ยวกับเรา</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md hover:opacity-90 transition-all">เข้าสู่ระบบ</button>
+</div>
+</div>
+</header>
+<main class="pt-16 min-h-screen transition-opacity duration-[250ms]">
+<!-- Breadcrumb -->
+<section class="max-w-[1440px] mx-auto px-lg py-md">
+<nav class="flex items-center gap-xs text-on-surface-variant font-label-md">
+<a class="hover:text-primary transition-colors" href="#">หน้าแรก</a>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+<span class="text-primary font-bold">อาหารและคาเฟ่</span>
+</nav>
+</section>
+<!-- Category Hero -->
+<section class="max-w-[1440px] mx-auto px-lg mb-xl">
+<div class="relative w-full h-[320px] rounded-xl overflow-hidden shadow-lg group">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="คาเฟ่บรรยากาศสบายที่ผสมผสานงานหัตถกรรมท้องถิ่น" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZPi02Os_JFM8fQWQHVBP5by3lcRaNq3DfpfLxcnOp8UawJL_3MWIv-rkqFCXuym69pTqFL6IRBgymzYromzQFupMrvkcTzIkqJGAgQO3nLoX_F64XzvamGFqjk1hxAgDWbRDdpQT6bJSMQm0l90y56Ri9WUs2NdPLzTeiqU4i2yk7X0dhlNIpdKuqYhcOXhSs-D3P8jSyKs1-IlaXzVaSv3F1Obw00aOxjc2VcES0npZEVz87WEF')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-xl">
+<h1 class="text-white font-headline-xl text-headline-xl mb-sm">อาหารและคาเฟ่</h1>
+<p class="text-white/90 font-body-lg text-body-lg max-w-2xl">ค้นหาร้านอาหารพื้นถิ่น คาเฟ่บรรยากาศดี ของหวาน และเครื่องดื่มระหว่างการเดินทางในต้นเปา</p>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="max-w-[1440px] mx-auto px-lg grid grid-cols-1 md:grid-cols-[240px_1fr_350px] gap-xl pb-xl">
+<!-- Left Sidebar: Filters -->
+<aside class="flex flex-col gap-xl">
+<!-- Subcategory Filter -->
+<div class="flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">category</span>
+            หมวดหมู่ย่อย
+          </h3>
+<div class="flex flex-col gap-sm">
+<button class="flex items-center justify-between px-md py-sm bg-primary-container text-on-primary-container rounded-lg font-bold transition-all shadow-sm">
+<span class="">ทั้งหมด</span>
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+</button>
+<button class="flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="">ร้านอาหาร</span>
+</button>
+<button class="flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="">คาเฟ่</span>
+</button>
+<button class="flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="">อาหารท้องถิ่น</span>
+</button>
+<button class="flex items-center justify-between px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="">ของหวานและเครื่องดื่ม</span>
+</button>
+</div>
+</div>
+<!-- Distance Filter -->
+<div class="flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">near_me</span>
+            ระยะทาง
+          </h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-md p-sm hover:bg-surface-container rounded-lg cursor-pointer transition-colors">
+<input class="w-5 h-5 text-primary border-outline focus:ring-primary" name="distance" type="radio">
+<span class="font-label-md text-on-surface">ใกล้ฉัน</span>
+</label>
+<label class="flex items-center gap-md p-sm hover:bg-surface-container rounded-lg cursor-pointer transition-colors">
+<input class="w-5 h-5 text-primary border-outline focus:ring-primary" name="distance" type="radio">
+<span class="font-label-md text-on-surface">2 กม.</span>
+</label>
+<label class="flex items-center gap-md p-sm hover:bg-surface-container rounded-lg cursor-pointer transition-colors">
+<input checked="" class="w-5 h-5 text-primary border-outline focus:ring-primary" name="distance" type="radio">
+<span class="font-label-md text-on-surface">5 กม.</span>
+</label>
+</div>
+</div>
+<!-- Sort Control -->
+<div class="flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">sort</span>
+            จัดเรียงตาม
+          </h3>
+<select class="w-full bg-surface-container-low border-outline-variant rounded-lg px-md py-sm font-label-md focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>แนะนำ</option>
+<option>ใกล้ที่สุด</option>
+<option>คะแนนสูงสุด</option>
+</select>
+</div>
+</aside>
+<!-- Main Grid: POI Cards -->
+<div class="flex flex-col gap-lg">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- POI Card 1 -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="คาเฟ่ร่วมสมัยในต้นเปาพร้อมเครื่องดื่มและขนม" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZPi02Os_JFM8fQWQHVBP5by3lcRaNq3DfpfLxcnOp8UawJL_3MWIv-rkqFCXuym69pTqFL6IRBgymzYromzQFupMrvkcTzIkqJGAgQO3nLoX_F64XzvamGFqjk1hxAgDWbRDdpQT6bJSMQm0l90y56Ri9WUs2NdPLzTeiqU4i2yk7X0dhlNIpdKuqYhcOXhSs-D3P8jSyKs1-IlaXzVaSv3F1Obw00aOxjc2VcES0npZEVz87WEF')"></div>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">เปิดอยู่</div>
+<button class="absolute top-3 left-3 bg-surface/80 backdrop-blur-sm p-2 rounded-full text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-1">เสน่ห์คาเฟ่ ต้นเปา</h3>
+<div class="flex items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" data-weight="fill">star</span>
+<span class="">4.8</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">คาเฟ่บรรยากาศโปร่งสบาย ผสมผสานงานหัตถกรรมท้องถิ่นกับการออกแบบร่วมสมัย</p>
+<div class="flex items-center gap-sm text-outline font-label-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">800 ม. จากตำแหน่งของคุณ</span>
+</div>
+<a class="mt-md w-full py-sm bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-sm hover:bg-primary-container transition-colors" href="#">
+                ดูบนแผนที่
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- POI Card 2 -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="ข้าวซอยอาหารพื้นเมืองภาคเหนือ" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQAThI9yb5j1CAEYHokd1zjnymp7SKgmTTmFvQ-xsIeQfR0rK6fgRsQqflMSwMT2DAK_3xOWzAabBuAOyYJFq5OoCV7K51dJj-Met-HRUpzMghBqsjKw_-X7U2cZWjZodMYgNFAllffD-7GHB5ZJXxEI1GMBpOm8JUWCPdJynMjf0mL0ffPy4HVqbgdCzr48IXJ2s0theIcXUNHyLZZ62wTRj1ZBT51Nd9dtGvmC_7WfAVtN1QQYfy')"></div>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">เปิดอยู่</div>
+<button class="absolute top-3 left-3 bg-surface/80 backdrop-blur-sm p-2 rounded-full text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-1">ครัวเมืองต้นเปา</h3>
+<div class="flex items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" data-weight="fill">star</span>
+<span class="">4.6</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">อาหารเหนือรสพื้นบ้าน พร้อมเมนูยอดนิยม เช่น ข้าวซอย น้ำพริกหนุ่ม และแกงฮังเล</p>
+<div class="flex items-center gap-sm text-outline font-label-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">1.2 กม. จากตำแหน่งของคุณ</span>
+</div>
+<a class="mt-md w-full py-sm bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-sm hover:bg-primary-container transition-colors" href="#">
+                ดูบนแผนที่
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- POI Card 3 -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="ตลาดอาหารและของกินในชุมชนช่วงเย็น" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyf5BUQPvxNSoVSRO3G0PMy6ipf1lJEMFK2lfhmXMzBzDmEu8C6OvKO4JRo6E-chg1m5hwDcO563NUrC89jdp2qqZem5fDXO-Uo-jp9qOLzb_zmYVuUU0JU18XXkiIYTmNaHOWZnUyMPHLhgnZuvAZLsJzh3k1d7mFZ8sGxLJHqOgFwfu3dU4T0_C493NiwIiLNmZghCDVWObNaI7p7ovM2cNKTlFlWBTafDLg1cw9UH0gERAX0bh4')"></div>
+<div class="absolute top-3 right-3 bg-secondary text-on-secondary text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">เปิดอยู่</div>
+<button class="absolute top-3 left-3 bg-surface/80 backdrop-blur-sm p-2 rounded-full text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-1">ตลาดของกินชุมชนต้นเปา</h3>
+<div class="flex items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" data-weight="fill">star</span>
+<span class="">4.9</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">รวมอาหารปรุงสด ขนมพื้นเมือง และผลิตภัณฑ์จากผู้ประกอบการในชุมชน</p>
+<div class="flex items-center gap-sm text-outline font-label-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">2.5 กม. จากตำแหน่งของคุณ</span>
+</div>
+<a class="mt-md w-full py-sm bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-sm hover:bg-primary-container transition-colors" href="#">
+                ดูบนแผนที่
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- POI Card 4 -->
+<article class="group bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] hover:shadow-lg transition-all duration-300">
+<div class="relative h-48 overflow-hidden">
+<div class="bg-cover bg-center w-full h-full transition-transform duration-500 group-hover:scale-110" data-alt="เครื่องดื่มและขนมในคาเฟ่บรรยากาศสวน" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZPi02Os_JFM8fQWQHVBP5by3lcRaNq3DfpfLxcnOp8UawJL_3MWIv-rkqFCXuym69pTqFL6IRBgymzYromzQFupMrvkcTzIkqJGAgQO3nLoX_F64XzvamGFqjk1hxAgDWbRDdpQT6bJSMQm0l90y56Ri9WUs2NdPLzTeiqU4i2yk7X0dhlNIpdKuqYhcOXhSs-D3P8jSyKs1-IlaXzVaSv3F1Obw00aOxjc2VcES0npZEVz87WEF')"></div>
+<div class="absolute top-3 right-3 bg-tertiary text-on-tertiary text-label-sm font-bold px-3 py-1 rounded-full shadow-sm">ใกล้ปิด</div>
+<button class="absolute top-3 left-3 bg-surface/80 backdrop-blur-sm p-2 rounded-full text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-on-surface line-clamp-1">บ้านขนมและกาแฟต้นเปา</h3>
+<div class="flex items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" data-weight="fill">star</span>
+<span class="">4.7</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md line-clamp-2">กาแฟ เครื่องดื่มสมุนไพร และขนมทำสด เหมาะสำหรับแวะพักระหว่างเที่ยวชุมชน</p>
+<div class="flex items-center gap-sm text-outline font-label-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="">3.0 กม. จากตำแหน่งของคุณ</span>
+</div>
+<a class="mt-md w-full py-sm bg-primary text-on-primary rounded-lg font-bold flex items-center justify-center gap-sm hover:bg-primary-container transition-colors" href="#">
+                ดูบนแผนที่
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="flex flex-col items-center gap-md mt-lg">
+<span class="text-on-surface-variant font-label-md">แสดง 4 จาก 18 รายการ</span>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-outline-variant cursor-not-allowed">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold">1</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-colors flex items-center justify-center font-bold">2</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Rail: Mini Map -->
+<aside class="hidden md:block">
+<div class="sticky top-[88px] flex flex-col gap-lg bg-surface-container-low rounded-xl p-md border border-white/40 shadow-sm">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">ตำแหน่งบนแผนที่</h3>
+<span class="material-symbols-outlined text-primary">map</span>
+</div>
+<div class="relative w-full h-[300px] rounded-lg overflow-hidden bg-surface-container-highest">
+<div class="w-full h-full" data-location="Ton Pao, Chiang Mai">
+<!-- Placeholder for dynamic map -->
+<div class="bg-cover bg-center w-full h-full" data-alt="แผนที่แสดงตำแหน่งร้านอาหารและคาเฟ่ในต้นเปา" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpwwh-tWQVLfbclGARXugFTpI48-N_H0LG_VagDiJAEYN2KaUtzDFkwi5mTId2msBL4Mmv76t0OOBj0ZL6N4AqxhUVZ5AFgPdQtWWIA98OG91jHLvtIeSYCJ_gz18d3Trej38jwepOm-6s8WDvAe9AO_Uo9anrd84xwvwkCowWsR03bh3WGs710IhdoeFcqfLBEEqu8FtXJy6fQWft_wbuWWsUOB4AgjfLSGslTS2z9WFyMJoSbyng')"></div>
+</div>
+<!-- Map Overlay Controls -->
+<div class="absolute bottom-3 left-3 right-3">
+<a class="w-full py-sm glass-effect bg-primary/90 text-on-primary rounded-lg font-bold flex items-center justify-center gap-sm hover:bg-primary transition-all shadow-lg border border-white/20" href="#">
+<span class="material-symbols-outlined text-[20px]">open_in_new</span>
+                ดูบนแผนที่ใหญ่
+              </a>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<div class="flex items-start gap-sm p-sm bg-surface-container-lowest rounded-lg border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<p class="text-label-sm text-on-surface-variant">พบร้านอาหารและคาเฟ่ 18 แห่งในพื้นที่นี้ คุณสามารถปรับตัวกรองเพื่อค้นหาร้านที่เหมาะกับการเดินทางได้</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant w-full py-lg">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col gap-xs items-center md:items-start">
+<span class="font-headline-md text-headline-md text-primary">TonPao Map</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Ton Pao Municipality. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">ติดต่อเรา</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">สำนักงานการท่องเที่ยว</a>
+</div>
+</div>
+</footer>
+<script>
+    // Micro-interactions for buttons
+    document.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+      btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+      btn.addEventListener('mouseleave', () => btn.classList.remove('scale-95'));
+    });
+
+    // Handle Active States for Category filters
+    const filterButtons = document.querySelectorAll('aside button');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle behavior logic would go here
+      });
+    });
+  </script>
+
+
+
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script><script src="/category-mini-map.js"></script><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

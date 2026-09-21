@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>เกี่ยวกับเรา - TonPao Map</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<!-- Tailwind CSS & Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#0059bb",
+                        "primary-fixed": "#d7e2ff",
+                        "secondary-container": "#98f3af",
+                        "surface-tint": "#075bbd",
+                        "on-primary-fixed": "#001a40",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "outline": "#727784",
+                        "on-secondary-fixed-variant": "#005228",
+                        "secondary-fixed-dim": "#80d997",
+                        "surface-variant": "#dde2f3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#161c28",
+                        "secondary": "#006d37",
+                        "inverse-surface": "#2a303d",
+                        "secondary-fixed": "#9bf6b2",
+                        "primary": "#00428e",
+                        "surface-container-high": "#e3e8f9",
+                        "tertiary-container": "#8b4c00",
+                        "on-secondary-container": "#0b723b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffcaa0",
+                        "on-secondary-fixed": "#00210c",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c2c6d5",
+                        "on-surface-variant": "#424752",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "primary-fixed-dim": "#acc7ff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#004492",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#acc7ff",
+                        "on-primary-container": "#c3d5ff",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#693800",
+                        "on-background": "#161c28",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d4daeb",
+                        "inverse-on-surface": "#ecf0ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-highest": "#dde2f3",
+                        "surface-container": "#e8eeff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "margin-desktop": "32px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Be Vietnam Pro", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-lg": ["Be Vietnam Pro", "sans-serif"],
+                        "body-md": ["Be Vietnam Pro", "sans-serif"],
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-sm": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    fontSize: {
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "600" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "700" }],
+                        "headline-xl": ["40px", { lineHeight: "48px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col">
+<!-- Header (Shared Component: TopAppBar) -->
+<!-- Applying: style_component_shape, style_separation_logic, style_shadows_and_elevation, style_interactions -->
+<header class="fixed top-0 w-full z-50 border-b border-white/20 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 ease-in-out">
+<!-- Applying: style_shell_layout -->
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<!-- Applying: style_brand_logo -->
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed cursor-pointer flex-shrink-0">TonPao Map</div>
+<!-- Search Bar (on_left configuration inferred spacing) -->
+<div class="hidden md:flex flex-1 ml-xl mr-xl max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full h-10 pl-xl pr-md rounded-full bg-surface-container-high border-none text-on-surface focus:ring-2 focus:ring-primary focus:bg-surface transition-colors font-body-md text-body-md placeholder:text-outline shadow-sm" placeholder="ค้นหาสถานที่ท่องเที่ยว..." type="text">
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-lg">
+<!-- Inactive Nav Links -->
+<a class="font-headline-md text-headline-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">
+                    สำรวจ
+                </a>
+<a class="font-headline-md text-headline-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">
+                    กิจกรรม
+                </a>
+<a class="font-headline-md text-headline-md text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors duration-200" href="#">
+                    แผนเที่ยว
+                </a>
+<!-- Active Nav Link (About page intent) -->
+<a class="font-headline-md text-headline-md text-primary dark:text-primary-fixed border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200" href="#">
+                    เกี่ยวกับเรา
+                </a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-md flex-shrink-0 ml-auto md:ml-lg">
+<button aria-label="notifications" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button aria-label="help" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="hidden md:flex h-10 px-md items-center justify-center rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+                    เข้าสู่ระบบ
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[100px] pb-xl px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
+<!-- Hero Section (Glassmorphism & Depth) -->
+<section class="relative w-full h-[300px] md:h-[450px] rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,89,187,0.08)] mb-xl flex items-end">
+<!-- Hero Background Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A spectacular, high-resolution hero photograph displaying rows of exquisitely handcrafted Bo Sang paper umbrellas in Ton Pao, Chiang Mai. The umbrellas feature vivid hues of crimson, azure, and gold, illuminated by warm, dappled sunlight filtering through tropical foliage. The composition is wide and cinematic, establishing a vibrant, culturally rich atmosphere that perfectly complements a modern, airy UI design featuring azure blue and clean white tonal themes." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8ktiEz3BhdIregWtWmrXi_Mq-JC0sO32wCaj1dQ0tdS23u9kJ3gVnPvC4FIjA8g0LKoitnsHjf9QY4XhMgC_WgWD2AVL9Tp1gScVIZoblQIW_fwX4ycVsNxEaQp2LfK6NDJY4Vqa2_NzxR8ZPOCejjd7GWqqIp0mCVJ-1mIEFseh3NJrk_IGh8jpuKX45FgRXxj-cZxjBCAUWSvZ_5ubukavyR7V6EP3im3-0UhVlACFxUmqPgB8m')"></div>
+<!-- Glassmorphism Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/40 to-transparent"></div>
+<div class="relative z-10 p-lg md:p-xl w-full max-w-4xl">
+<h1 class="font-headline-xl text-headline-xl text-surface-container-lowest mb-sm drop-shadow-md">
+                    สัมผัสวิถีชีวิต ต้นเปา
+                </h1>
+<p class="font-body-lg text-body-lg text-surface-container-highest max-w-2xl drop-shadow">
+                    แพลตฟอร์มแผนที่ดิจิทัลเพื่อการท่องเที่ยวชุมชนและส่งเสริมหัตถกรรมท้องถิ่น เชื่อมโยงคุณเข้ากับอัตลักษณ์ที่แท้จริงของเทศบาลเมืองต้นเปา
+                </p>
+</div>
+</section>
+<!-- Asymmetric Bento Grid Content -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-lg mb-xl">
+<!-- Main Objective (Span 8) -->
+<div class="md:col-span-8 bg-surface-container rounded-xl p-lg md:p-xl shadow-sm hover:shadow-md transition-shadow duration-300 relative overflow-hidden">
+<!-- Decorative subtle shape -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-primary-fixed opacity-50 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-center gap-md mb-md relative z-10">
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined icon-fill">tour</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">ความเป็นมาและวัตถุประสงค์</h2>
+</div>
+<div class="space-y-4 relative z-10 text-on-surface-variant font-body-md text-body-md">
+<p class="">
+                        โครงการ <strong>TonPao Map</strong> เกิดขึ้นจากความตั้งใจที่จะยกระดับและเผยแพร่ศักยภาพด้านการท่องเที่ยวชุมชนของเทศบาลเมืองต้นเปา ซึ่งมีชื่อเสียงระดับโลกในด้านหัตถกรรมการทำร่มกระดาษสา (ร่มบ่อสร้าง) และผลิตภัณฑ์จากกระดาษสา
+                    </p>
+<p class="">
+                        เรามุ่งหวังที่จะสร้างเครื่องมือดิจิทัลที่เข้าถึงง่าย ทันสมัย เพื่อช่วยให้นักท่องเที่ยวทั้งชาวไทยและชาวต่างชาติสามารถค้นพบสถานที่น่าสนใจ ร้านค้าชุมชน แหล่งเรียนรู้งานฝีมือ และกิจกรรมทางวัฒนธรรมได้อย่างไร้รอยต่อ (Effortless Discovery) เป็นการกระตุ้นเศรษฐกิจฐานรากและอนุรักษ์ภูมิปัญญาท้องถิ่นให้ยั่งยืน
+                    </p>
+</div>
+</div>
+<!-- Vision (Span 4) -->
+<div class="md:col-span-4 bg-primary-container rounded-xl p-lg md:p-xl shadow-[0_4px_12px_rgba(0,89,187,0.08)] flex flex-col justify-center relative overflow-hidden text-on-primary-container group">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-4xl mb-md text-primary-fixed block">visibility</span>
+<h2 class="font-headline-md text-headline-md mb-sm text-surface-container-lowest">วิสัยทัศน์ของเรา</h2>
+<p class="font-body-md text-body-md text-primary-fixed-dim leading-relaxed">
+                        "เชื่อมโยงมรดกทางวัฒนธรรมเข้ากับเทคโนโลยีแห่งอนาคต สร้างแผนที่ดิจิทัลที่มีชีวิตและเติบโตไปพร้อมกับชุมชนเมืองต้นเปา"
+                    </p>
+</div>
+</div>
+</section>
+<!-- Key Features (Tactile Softness & Tonal Layering) -->
+<section class="mb-xl">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-lg text-center">ฟีเจอร์เด่นของแพลตฟอร์ม</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Feature Card 1 -->
+<div class="bg-surface rounded-xl p-md border border-outline-variant/30 shadow-sm hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary mb-md">
+<span class="material-symbols-outlined">map</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">แผนที่เชิงโต้ตอบ</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">ค้นหาสถานที่ท่องเที่ยว ร้านอาหาร และจุดน่าสนใจด้วยระบบนำทางที่แม่นยำ</p>
+</div>
+<!-- Feature Card 2 -->
+<div class="bg-surface rounded-xl p-md border border-outline-variant/30 shadow-sm hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary mb-md">
+<span class="material-symbols-outlined">handyman</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">แหล่งหัตถกรรม</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">รวบรวมข้อมูลแหล่งผลิตร่มบ่อสร้างและกระดาษสา ให้คุณได้สัมผัสวิถีช่างฝีมือ</p>
+</div>
+<!-- Feature Card 3 -->
+<div class="bg-surface rounded-xl p-md border border-outline-variant/30 shadow-sm hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary-container mb-md">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">ปฏิทินกิจกรรม</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">ไม่พลาดทุกเทศกาลสำคัญและงานประเพณีท้องถิ่นของเทศบาลเมืองต้นเปา</p>
+</div>
+<!-- Feature Card 4 -->
+<div class="bg-surface rounded-xl p-md border border-outline-variant/30 shadow-sm hover:shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-fixed-variant mb-md">
+<span class="material-symbols-outlined">route</span>
+</div>
+<h4 class="font-label-md text-label-md text-on-surface mb-xs">เส้นทางแนะนำ</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">จัดทริปท่องเที่ยวตามสไตล์คุณ ด้วยเส้นทางที่คัดสรรมาอย่างดี</p>
+</div>
+</div>
+</section>
+<!-- Partnership & Contact Area -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-lg bg-surface-container-low rounded-xl p-lg md:p-xl shadow-sm border border-outline-variant/20">
+<!-- Partnership -->
+<div class="flex flex-col justify-center">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">สนับสนุนโดย</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">
+                    โครงการนี้ได้รับความร่วมมือและการสนับสนุนอย่างเป็นทางการจาก <strong>เทศบาลเมืองต้นเปา</strong> เพื่อผลักดันการท่องเที่ยวดิจิทัลระดับท้องถิ่นให้เป็นรูปธรรม
+                </p>
+<div class="flex items-center gap-md">
+<!-- Placeholder for Municipality Logo -->
+<div class="w-24 h-24 bg-surface rounded-full shadow-sm flex items-center justify-center p-2 border border-surface-variant">
+<img class="w-full h-full object-contain" data-alt="A clean, vector-style logo of the Ton Pao Municipality set against a pure white circular background. The logo features traditional Thai heraldic elements infused with modern minimalist design, utilizing deep blues and subtle golds. The graphic is sharp, high-contrast, and perfectly suited for a modern web application's partnership section, conveying official authority and civic pride within the light-mode UI context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXoAan5eAy65YZl9PIHc1BI56jDj8hyU_8ccMifjBJ0l6Ib0702gyIOTfihqQ6nJW7d1unHHcNdSIpUmJKmHujwAT7xvHboCoVCEtmyi6238wuHYLC07gvskf_dCp1LDG8yctqvL-nGir2zMTu-aLZU9Udl5rGYLI4L3K24DVApw1IdFkknv5QqefaRkjYJ-roSxPZ_82vaMYUuBu6cWVa8pOqi8A7sk4ISB4xaGMBm4rTvonTyacZ">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">เทศบาลเมืองต้นเปา</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">อ.สันกำแพง จ.เชียงใหม่</p>
+</div>
+</div>
+</div>
+<!-- Contact -->
+<div class="flex flex-col justify-center md:pl-lg md:border-l border-outline-variant/30 mt-lg md:mt-0 pt-lg md:pt-0">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">ติดต่อเรา</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary mt-1">location_on</span>
+<div>
+<span class="block font-label-md text-label-md text-on-surface">สำนักงานเทศบาลเมืองต้นเปา</span>
+<span class="font-body-md text-body-md text-sm">เลขที่ 333 หมู่ 6 ต.ต้นเปา อ.สันกำแพง จ.เชียงใหม่ 50130</span>
+</div>
+</li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">call</span>
+<span class="font-body-md text-body-md text-sm">053-338-048</span>
+</li>
+<li class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="font-body-md text-body-md text-sm">info@tonpao.go.th</span>
+</li>
+</ul>
+<button class="mt-lg self-start h-11 px-lg rounded-full bg-surface-tint text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">send</span> ส่งข้อความถึงเรา
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<!-- Applying: style_bg_color, style_component_shape, style_separation_logic -->
+<footer class="bg-surface-container-highest dark:bg-surface-dim w-full py-lg border-t border-outline-variant mt-auto">
+<!-- Applying: style_shell_layout -->
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<!-- Applying: style_brand_logo -->
+<div class="font-headline-md text-headline-md text-primary font-bold">TonPao Map</div>
+<!-- Footer Links -->
+<nav class="flex flex-wrap justify-center gap-x-md gap-y-sm">
+<!-- Applying: style_inactive_navigation, style_typography, style_universal_hover -->
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+                    Privacy Policy
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+                    Terms of Service
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+                    Contact Us
+                </a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+                    Tourism Office
+                </a>
+</nav>
+<!-- Copyright -->
+<div class="font-body-md text-body-md text-on-surface-variant text-sm text-center md:text-right">
+                © 2024 Ton Pao Municipality. All rights reserved.
+            </div>
+</div>
+</footer>
+
+
+<script src="../../prototype-nav.js"></script></body></html>

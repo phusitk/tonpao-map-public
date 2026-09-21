@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ไม่พบหน้า — TonPao Map</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0059bb",
+                        "primary-fixed": "#d7e2ff",
+                        "secondary-container": "#98f3af",
+                        "surface-tint": "#075bbd",
+                        "on-primary-fixed": "#001a40",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-tertiary-fixed-variant": "#6c3a00",
+                        "outline": "#727784",
+                        "on-secondary-fixed-variant": "#005228",
+                        "secondary-fixed-dim": "#80d997",
+                        "surface-variant": "#dde2f3",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#161c28",
+                        "secondary": "#006d37",
+                        "inverse-surface": "#2a303d",
+                        "secondary-fixed": "#9bf6b2",
+                        "primary": "#00428e",
+                        "surface-container-high": "#e3e8f9",
+                        "tertiary-container": "#8b4c00",
+                        "on-secondary-container": "#0b723b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#ffcaa0",
+                        "on-secondary-fixed": "#00210c",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c2c6d5",
+                        "on-surface-variant": "#424752",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "primary-fixed-dim": "#acc7ff",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#004492",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#acc7ff",
+                        "on-primary-container": "#c3d5ff",
+                        "surface": "#f9f9ff",
+                        "tertiary": "#693800",
+                        "on-background": "#161c28",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d4daeb",
+                        "inverse-on-surface": "#ecf0ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-highest": "#dde2f3",
+                        "surface-container": "#e8eeff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "lg": "24px",
+                        "xl": "40px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "sm": "8px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col antialiased">
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)] transition-all duration-300 ease-in-out border-b border-white/20">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-2 cursor-pointer">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">TonPao Map</span>
+</div>
+<div class="flex items-center gap-4">
+<a class="font-label-md text-label-md bg-primary-container text-on-primary h-[44px] px-6 rounded-full flex items-center justify-center hover:bg-surface-tint transition-colors" href="#">เข้าสู่ระบบ</a>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-xl">
+<div class="max-w-2xl w-full flex flex-col items-center text-center gap-lg">
+<div class="w-64 h-64 md:w-80 md:h-80 relative mb-4">
+<div class="absolute inset-0 bg-primary-fixed-dim/20 rounded-full blur-3xl animate-pulse"></div>
+<img alt="404 Illustration" class="relative w-full h-full object-contain drop-shadow-xl z-10" data-alt="A friendly, modern, and stylized 2D flat vector illustration of a cute, slightly confused local Northern Thai mascot character (like a small stylized elephant or a traveler in traditional indigo clothing) holding a blank map upside down. The scene is set against a clean, airy white and soft blue background with subtle orange accents, perfectly matching a bright, light-mode minimalist corporate-hybrid UI aesthetic. The mood is lighthearted, approachable, and apologetic, designed specifically for a 404 error page." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuwXWTmpsnxKSuMr7fdL7XuTD85aqwTSnPCJ4jIThl1eImU23Wx5kRnEINIiuWFkpHkr-8oYtbEOMFsd0uz38hlyllLsdpgUfazI1GgXDgXhcrqWZ9HMCxpYMFqxKFY3D-PQVgEiro6jagFAWuo6V9nu12ENML_I2lNj8wigicvGDfTiqJa_jCRQgkp9n_e4F412CC-xwcbG36l9bR5p9KCo1EC1louKGHaheR2xEeCq2bOyRfjMqE">
+</div>
+<div class="flex flex-col gap-sm">
+<h1 class="font-headline-xl text-headline-xl text-primary font-bold">404 - ไม่พบหน้าที่คุณต้องการ</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mx-auto">
+                    ขออภัย เราไม่พบหน้าที่คุณกำลังค้นหา หน้าเว็บนี้อาจถูกย้ายหรือลบออกไปแล้ว
+                </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-md">
+<a class="h-[44px] px-8 rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">home</span>
+                    กลับสู่หน้าหลัก
+                </a>
+<a class="h-[44px] px-8 rounded-full bg-surface-variant text-on-surface-variant font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-outline-variant/50 transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">explore</span>
+                    สำรวจแผนที่
+                </a>
+</div>
+</div>
+</main>
+<footer class="w-full py-lg border-t border-outline-variant bg-surface-container-highest">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-headline-md text-headline-md text-primary font-bold">TonPao Map</span>
+<span class="font-body-md text-body-md text-on-surface-variant">© 2024 Ton Pao Municipality. All rights reserved.</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">นโยบายความเป็นส่วนตัว</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ข้อกำหนดการใช้งาน</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">ติดต่อเรา</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">สำนักงานการท่องเที่ยว</a>
+</nav>
+</div>
+</footer>
+
+
+<script src="../../prototype-nav.js"></script></body></html>

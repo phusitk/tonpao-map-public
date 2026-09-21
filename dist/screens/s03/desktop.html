@@ -1,0 +1,300 @@
+<!DOCTYPE html><html class="light" lang="th" style="" data-lt-installed="true"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#0059bb",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#0059bb",
+                    "on-primary-container": "#c3d5ff",
+                    "surface": "#f9f9ff",
+                    "on-surface": "#161c28", // Dark Voyage Blue for headings via font classes
+                    "on-surface-variant": "#424752", // High-contrast charcoal
+                    "outline-variant": "#c2c6d5",
+                    "surface-container-low": "#f1f3ff",
+                    "surface-container-high": "#e3e8f9",
+                    "surface-container-highest": "#dde2f3",
+                    "secondary-container": "#98f3af",
+                    "on-secondary-container": "#0b723b",
+                    "secondary-fixed": "#9bf6b2",
+                    "on-secondary-fixed-variant": "#005228",
+                    "tertiary": "#693800",
+                    "outline": "#727784"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "40px",
+                    "sm": "8px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "md": "16px",
+                    "margin-desktop": "32px"
+            },
+            "fontFamily": {
+                    "body-md": ["Be Vietnam Pro"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "headline-xl": ["Plus Jakarta Sans"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["15px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script></head><body class="bg-surface font-body-md text-on-surface-variant">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 glass-panel shadow-[0_2px_8px_rgba(0,89,187,0.05)]">
+    <div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+        <div class="flex items-center gap-xl">
+            <a href="#" onclick="window.location.href='/'" class="brand-text cursor-pointer transition-opacity duration-[250ms]">TonPao Map</a>
+            <nav class="hidden md:flex gap-lg"><a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#" onclick="window.location.href='/'">สำรวจ</a><a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#" onclick="window.location.href='#'">กิจกรรม</a><a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#" onclick="window.location.href='#'">แผนที่</a><a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#" onclick="window.location.href='#'">เกี่ยวกับเรา</a></nav>
+        </div>
+        <div class="flex items-center gap-md">
+            <button class="text-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">help</span>
+            </button>
+            <button class="bg-primary text-on-primary px-lg py-2.5 rounded-full font-label-md hover:opacity-90 transition-opacity">เข้าสู่ระบบ</button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Canvas -->
+<main class="pt-16 h-screen flex overflow-hidden" style="min-height: calc(100vh - 64px - 56px);">
+    <!-- Left Sidebar: Filters -->
+    <aside class="w-[220px] shrink-0 border-r border-outline-variant bg-surface-container-low flex flex-col h-full overflow-y-auto custom-scrollbar p-md gap-lg" onchange="const container = document.getElementById('results-container'); container.style.opacity = '0.5'; setTimeout(() =&gt; container.style.opacity = '1', 400);">
+        <div>
+            <h3 class="font-headline-md text-on-surface mb-lg">ตัวกรอง</h3>
+            
+            <!-- Search within results -->
+            <div class="relative mb-lg">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+                <input class="w-full bg-surface border-outline-variant rounded-xl pl-10 pr-4 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-body-md transition-all" placeholder="ค้นหาในผลลัพธ์..." type="text">
+            </div>
+
+            <!-- Categories -->
+            <section class="mb-lg space-y-md">
+                <label class="font-label-md text-on-surface block mb-sm">หมวดหมู่</label>
+                <div class="space-y-sm">
+                    <label class="flex items-center gap-sm cursor-pointer group">
+                        <input checked="" class="rounded text-primary focus:ring-primary border-outline-variant h-5 w-5" type="checkbox">
+                        <span class="text-body-md group-hover:text-primary transition-colors">หัตถกรรม</span>
+                    </label>
+                    <label class="flex items-center gap-sm cursor-pointer group">
+                        <input class="rounded text-primary focus:ring-primary border-outline-variant h-5 w-5" type="checkbox">
+                        <span class="text-body-md group-hover:text-primary transition-colors">วัดและโบราณสถาน</span>
+                    </label>
+                    <label class="flex items-center gap-sm cursor-pointer group">
+                        <input class="rounded text-primary focus:ring-primary border-outline-variant h-5 w-5" type="checkbox">
+                        <span class="text-body-md group-hover:text-primary transition-colors">อาหารและเครื่องดื่ม</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Distance -->
+            <section class="mb-lg space-y-md">
+                <label class="font-label-md text-on-surface block mb-sm">ระยะทาง (กม.)</label>
+                <input class="w-full h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer accent-primary" max="50" min="1" type="range" value="10">
+                <div class="flex justify-between text-label-sm text-outline mt-2">
+                    <span class="">1 กม.</span>
+                    <span class="">50 กม.</span>
+                </div>
+            </section>
+
+            <!-- Toggles -->
+            <section class="space-y-lg">
+                <div class="flex justify-between items-center">
+                    <span class="text-body-md">เปิดตอนนี้</span>
+                    <button class="w-11 h-6 bg-outline-variant rounded-full p-1 transition-colors relative" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+                        <div class="w-4 h-4 bg-white rounded-full transition-transform"></div>
+                    </button>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-body-md">เหมาะสำหรับครอบครัว</span>
+                    <button class="w-11 h-6 bg-outline-variant rounded-full p-1 transition-colors relative" onclick="this.classList.toggle('bg-primary'); this.querySelector('div').classList.toggle('translate-x-5')">
+                        <div class="w-4 h-4 bg-white rounded-full transition-transform"></div>
+                    </button>
+                </div>
+            </section>
+        </div>
+
+        <button class="mt-auto w-full border border-primary text-primary font-label-md py-3 rounded-xl hover:bg-primary/5 transition-colors">
+            ล้างตัวกรองทั้งหมด
+        </button>
+    </aside>
+
+    <!-- Center: Result List -->
+    <section class="w-[500px] shrink-0 flex flex-col bg-surface border-r border-outline-variant">
+        <!-- Sticky Search Header -->
+        <div class="p-md border-b border-outline-variant bg-surface/80 backdrop-blur-md">
+            <div class="flex flex-col gap-md">
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-2xl group-focus-within:scale-110 transition-transform">search</span>
+                    <input class="w-full bg-surface-container-high border-none rounded-2xl pl-14 pr-6 py-4 text-body-lg shadow-sm focus:ring-2 focus:ring-primary-container outline-none transition-all" placeholder="ค้นหาสถานที่..." type="text" value="บ่อสร้าง">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex gap-sm overflow-x-auto no-scrollbar">
+                        <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm flex items-center gap-1 whitespace-nowrap hover:opacity-80">
+                            หัตถกรรม <span class="material-symbols-outlined text-[16px] cursor-pointer">close</span>
+                        </span>
+                        <span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-label-sm flex items-center gap-1 whitespace-nowrap hover:opacity-80">
+                            ภายใน 10 กม. <span class="material-symbols-outlined text-[16px] cursor-pointer">close</span>
+                        </span>
+                    </div>
+                    <div class="flex bg-surface-container-highest rounded-lg p-1 shrink-0 ml-2">
+                        <button class="bg-surface shadow-sm text-primary px-3 py-1.5 rounded-md flex items-center gap-2 text-label-md transition-all">
+                            <span class="material-symbols-outlined text-[18px]">list</span>
+                        </button>
+                        <button class="text-on-surface-variant px-3 py-1.5 rounded-md flex items-center gap-2 text-label-md hover:bg-surface-variant/30 transition-all" onclick="window.location.href='#'">
+                            <span class="material-symbols-outlined text-[18px]">map</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List Content -->
+        <div class="flex-1 overflow-y-auto p-md custom-scrollbar" id="results-container">
+            <p class="text-label-md text-on-surface-variant mb-lg font-medium">พบ 24 รายการใน ต้นเปา (แสดง 4 รายการ)</p><div class="flex items-center justify-between mb-md">
+<div class="flex items-center gap-1 text-label-sm text-on-surface-variant cursor-pointer hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+<span class="">เรียงตาม: <span class="text-primary font-semibold">ยอดนิยม</span></span>
+</div>
+</div>
+            <div class="grid gap-md">
+                <!-- POI Card 1 -->
+                <div class="flex bg-surface-container-low rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-primary/20 group cursor-pointer p-3 gap-md" onclick="window.location.href='#'">
+                    <div class="w-[140px] h-32 shrink-0 overflow-hidden rounded-lg">
+                        <img alt="ศูนย์อุตสาหกรรมทำร่มบ่อสร้าง" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjHmIaUNMNFdB1OnBjHLV3dLjBTfh4Jz5qq4jfjzOnD7VxYtCFD8LREeSWgE03t9cUjh8TUBFwoK-20DYlbzMAcwqEBG8_9nXoOU8_62irxj9eloJ5bNHPk6gmJbP53T9VJ-uGvGZu9Vv67Ta5tLQ1m7B4VM6DAvqXi7oBv12w70TkBmIQNws9xLznumt9GfKa9CXg9G4Dhe2A2yTVosWtISwdPETRfbO_lytKk7MkJf_s-9jZhd4e">
+                    </div>
+                    <div class="flex-1 flex flex-col justify-between min-w-0 py-1">
+                        <div>
+                            <h4 class="font-bold text-[18px] text-on-surface line-clamp-1 leading-tight mb-1 font-headline-md">ศูนย์อุตสาหกรรมทำร่มบ่อสร้าง</h4>
+                            <p class="text-on-surface-variant text-label-sm flex items-center gap-1 mb-1">
+                                <span class="material-symbols-outlined text-[16px]">palette</span> หัตถกรรม • 1.2 กม.
+                            </p>
+                            <div class="flex items-center gap-1 text-tertiary">
+                                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+                                <span class="font-bold text-label-md">4.8</span>
+                                <span class="text-label-sm text-outline">(120+)</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between gap-2 mt-2">
+                            <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-0.5 rounded text-[11px] font-bold">เปิดแล้ว</span>
+                            <button class="bg-primary-container text-white w-[120px] h-[44px] rounded-lg font-semibold text-label-md hover:opacity-90 transition-opacity whitespace-nowrap flex items-center justify-center" onclick="window.location.href='#'">
+                                ดูรายละเอียด
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POI Card 2 -->
+                <div class="flex bg-surface-container-low rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-primary/20 group cursor-pointer p-3 gap-md" onclick="window.location.href='#'"><div class="w-[140px] h-32 shrink-0 overflow-hidden rounded-lg"><img alt="ศูนย์สืบสานภูมิปัญญาแกะสลักไม้" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGOujYVZ3_ZO7xT3EL5rvxdPDX0qVEy_a_twfudL6yvmhZSAtOTls9SITPPqUnzKYB4kt73DFh8_SWYlFP1K9bYMJ87bBL2wVBaOds6-7j2-Mlzns3fbknk5fQpCy0dkaQChGEpz4nh6-63lHMQQOSDs5Nam10vs78jTJ6iN9sgk21Hif-BfQIszOmbyQc1PJNG_jIttWcajipy-Xql-y2ZOaVB7NYQzUaFW0Q6eChx9i10b0R7R6u"></div><div class="flex-1 flex flex-col justify-between min-w-0 py-1"><div><h4 class="font-bold text-[18px] text-on-surface line-clamp-1 leading-tight mb-1 font-headline-md">ศูนย์สืบสานภูมิปัญญาแกะสลักไม้</h4><p class="text-on-surface-variant text-label-sm flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[16px]">palette</span> หัตถกรรม • 3.0 กม.</p><div class="flex items-center gap-1 text-tertiary"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span><span class="font-bold text-label-md">4.6</span><span class="text-label-sm text-outline">(50+)</span></div></div><div class="flex items-center justify-between gap-2 mt-2"><span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-0.5 rounded text-[11px] font-bold">เปิดแล้ว</span><button class="bg-primary-container text-white w-[120px] h-[44px] rounded-lg font-semibold text-label-md hover:opacity-90 transition-opacity whitespace-nowrap flex items-center justify-center" onclick="window.location.href='#'">ดูรายละเอียด</button></div></div></div>
+
+                
+            <!-- POI Card 3 -->
+<div class="flex bg-surface-container-low rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-primary/20 group cursor-pointer p-3 gap-md" onclick="window.location.href='#'">
+    <div class="w-[140px] h-32 shrink-0 overflow-hidden rounded-lg">
+        <img alt="กลุ่มหัตถกรรมกระดาษสาบ้านต้นเปา" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&amp;fit=crop&amp;q=80&amp;w=400">
+    </div>
+    <div class="flex-1 flex flex-col justify-between min-w-0 py-1">
+        <div>
+            <h4 class="font-bold text-[18px] text-on-surface line-clamp-1 leading-tight mb-1 font-headline-md">กลุ่มหัตถกรรมกระดาษสาบ้านต้นเปา</h4>
+            <p class="text-on-surface-variant text-label-sm flex items-center gap-1 mb-1">
+                <span class="material-symbols-outlined text-[16px]">palette</span> หัตถกรรม • 1.8 กม.
+            </p>
+            <div class="flex items-center gap-1 text-tertiary">
+                <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+                <span class="font-bold text-label-md">4.7</span>
+                <span class="text-label-sm text-outline">(95+)</span>
+            </div>
+        </div>
+        <div class="flex items-center justify-between gap-2 mt-2">
+            <span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-0.5 rounded text-[11px] font-bold">เปิดแล้ว</span>
+            <button class="bg-primary-container text-white w-[120px] h-[44px] rounded-lg font-semibold text-label-md hover:opacity-90 transition-opacity whitespace-nowrap flex items-center justify-center" onclick="window.location.href='#'">
+                ดูรายละเอียด
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- POI Card 4 -->
+<div class="flex bg-surface-container-low rounded-2xl overflow-hidden hover:shadow-lg transition-all border border-transparent hover:border-primary/20 group cursor-pointer p-3 gap-md" onclick="window.location.href='#'"><div class="w-[140px] h-32 shrink-0 overflow-hidden rounded-lg"><img alt="ตลาดหัตถกรรมบ้านบ่อสร้าง" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzA-gFmRUuBtnbiGEjTWuYkTPoyudyaGwXnrhJ3rftdxCSfgmenW11yQGQVH-7kz1PtwT0b2OiZrVuDolq3GwzGL7HZn-yPGlWwTEUJ9-3TNIgT5wOmTDnAPmMB6uWq_8EpxqRdQZtBVHl8cRJx9_Z_V7fCGv4wwJA5BZat_FBno4KDSb2gwHvpMWiSRPvsBNdhdl8YO9CWw2GXfp3yAEKqsD1AMtkK0TYVlNKe---B0k1OX45FBoo_E9yfpJfNxIP-NFqAGw8U3jW5g"></div><div class="flex-1 flex flex-col justify-between min-w-0 py-1"><div><h4 class="font-bold text-[18px] text-on-surface line-clamp-1 leading-tight mb-1 font-headline-md">ตลาดหัตถกรรมบ้านบ่อสร้าง</h4><p class="text-on-surface-variant text-label-sm flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[16px]">palette</span> หัตถกรรม • 1.5 กม.</p><div class="flex items-center gap-1 text-tertiary"><span class="material-symbols-outlined text-[18px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span><span class="font-bold text-label-md">4.7</span><span class="text-label-sm text-outline">(120+)</span></div></div><div class="flex items-center justify-between gap-2 mt-2"><span class="bg-secondary-fixed text-on-secondary-fixed-variant px-2 py-0.5 rounded text-[11px] font-bold">เปิดแล้ว</span><button class="bg-primary-container text-white w-[120px] h-[44px] rounded-lg font-semibold text-label-md hover:opacity-90 transition-opacity whitespace-nowrap flex items-center justify-center" onclick="window.location.href='#'">ดูรายละเอียด</button></div></div></div></div>
+        <div class="py-8 flex justify-center"><button class="px-8 py-3 rounded-full border border-primary text-primary font-label-md hover:bg-primary/5 transition-all active:scale-95" onclick="this.innerText='กำลังโหลด...'; this.disabled=true; setTimeout(() =&gt; { this.innerText='โหลดเพิ่มเติม'; this.disabled=false; }, 1000)">โหลดเพิ่มเติม</button></div></div>
+    </section>
+
+    <!-- Right Side: Map Column -->
+    <section class="flex-1 h-full relative bg-surface-container">
+        <div class="w-full h-full relative">
+            <img class="w-full h-full object-cover" data-alt="Map of Ton Pao area" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWDEUXxagr3Acj_Zxw0hmzTEQ9pukonPZbGXRd8w_Hbg5-qMPrcEj_Uq2-2GzI8r1FJUIjv10o7e9RtcMValDSOdXXVu0O8MI7gw_5RonstMYsY1ovYhszhBSwnQ-DevoSxSygA-IZYraRHsvn74bwO_9c_qEdlk8vD693pCNQA1mXftbDM3O9AzfHaPbTMRkWF31KwsJGq9hh-1XBxTJJF_-aIB7YB2_mSMx9IlUfwZ_8nhwMQl2J">
+            
+            <!-- Map Controls -->
+            <div class="absolute top-4 right-4 flex flex-col gap-2 z-10">
+                <button class="bg-surface w-10 h-10 rounded-xl shadow-md flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">add</span>
+                </button>
+                <button class="bg-surface w-10 h-10 rounded-xl shadow-md flex items-center justify-center text-on-surface hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">remove</span>
+                </button>
+            </div>
+
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 w-[90%] max-w-sm">
+                <div class="glass-panel p-4 rounded-2xl border border-white/40 shadow-lg flex items-center justify-between">
+                    <div>
+                        <p class="font-label-md text-primary mb-0.5">พิกัดปัจจุบัน</p>
+                        <p class="text-label-sm text-on-surface-variant">ต้นเปา, สันกำแพง, เชียงใหม่</p>
+                        <p class="text-[11px] text-outline">18.760, 99.074</p>
+                    </div>
+                    <button class="bg-primary w-12 h-12 rounded-full text-white flex items-center justify-center shadow-md hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined">my_location</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Interactive Pin Mock -->
+            </div></section></main>
+
+
+
+
+
+
+
+<footer class="bg-surface border-t border-outline-variant py-4 px-lg shadow-sm">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+        <p class="text-on-surface-variant text-label-sm">
+            ©2026 Ton Pao Municipality. All rights reserved.
+        </p>
+        <div class="flex gap-lg">
+            <a href="#" class="text-primary hover:text-primary/80 text-label-sm transition-colors">นโยบายความเป็นส่วนตัว</a>
+            <a href="#" class="text-primary hover:text-primary/80 text-label-sm transition-colors">ข้อกำหนดการใช้งาน</a>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+<script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>

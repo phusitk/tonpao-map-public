@@ -1,0 +1,338 @@
+<!DOCTYPE html><html class="light" lang="th"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "surface-container-low": "#f1f3ff",
+                            "on-surface": "#161c28",
+                            "background": "#f9f9ff",
+                            "secondary-container": "#98f3af",
+                            "primary-fixed": "#d7e2ff",
+                            "on-secondary": "#ffffff",
+                            "error-container": "#ffdad6",
+                            "primary-fixed-dim": "#acc7ff",
+                            "surface": "#f9f9ff",
+                            "tertiary-fixed-dim": "#ffb779",
+                            "on-surface-variant": "#424752",
+                            "surface-container-highest": "#dde2f3",
+                            "on-primary-container": "#c3d5ff",
+                            "surface-tint": "#075bbd",
+                            "primary": "#00428e",
+                            "on-secondary-container": "#0b723b",
+                            "inverse-primary": "#acc7ff",
+                            "on-tertiary-fixed-variant": "#6c3a00",
+                            "surface-container-lowest": "#ffffff",
+                            "on-secondary-fixed-variant": "#005228",
+                            "on-background": "#161c28",
+                            "surface-variant": "#dde2f3",
+                            "on-error": "#ffffff",
+                            "primary-container": "#0059bb",
+                            "secondary": "#006d37",
+                            "outline-variant": "#c2c6d5",
+                            "on-tertiary-fixed": "#2e1500",
+                            "surface-container-high": "#e3e8f9",
+                            "on-primary-fixed-variant": "#004492",
+                            "on-error-container": "#93000a",
+                            "tertiary-container": "#8b4c00",
+                            "surface-dim": "#d4daeb",
+                            "secondary-fixed": "#9bf6b2",
+                            "on-secondary-fixed": "#00210c",
+                            "on-primary-fixed": "#001a40",
+                            "error": "#ba1a1a",
+                            "tertiary-fixed": "#ffdcc1",
+                            "secondary-fixed-dim": "#80d997",
+                            "outline": "#727784",
+                            "tertiary": "#693800",
+                            "surface-container": "#e8eeff",
+                            "inverse-surface": "#2a303d",
+                            "on-tertiary-container": "#ffcaa0",
+                            "on-tertiary": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "inverse-on-surface": "#ecf0ff",
+                            "surface-bright": "#f9f9ff"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "1.5rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "margin-desktop": "32px",
+                            "xl": "40px",
+                            "lg": "24px",
+                            "gutter": "16px",
+                            "xs": "4px",
+                            "margin-mobile": "16px",
+                            "md": "16px",
+                            "sm": "8px",
+                            "base": "4px"
+                        },
+                        "fontFamily": {
+                            "headline-lg": ["Plus Jakarta Sans"],
+                            "label-sm": ["Be Vietnam Pro"],
+                            "headline-md": ["Plus Jakarta Sans"],
+                            "label-md": ["Be Vietnam Pro"],
+                            "headline-xl": ["Plus Jakarta Sans"],
+                            "body-md": ["Be Vietnam Pro"],
+                            "body-lg": ["Be Vietnam Pro"]
+                        }
+                    }
+                }
+            }
+        } catch (_e) {}
+    </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 border-b border-white/20 bg-surface/90 backdrop-blur-md shadow-[0_4px_12px_rgba(0,89,187,0.08)]">
+<div class="flex justify-between items-center px-lg h-16 w-full max-w-[1440px] mx-auto">
+<div class="flex items-center gap-xl">
+<a class="font-headline-lg text-headline-lg font-bold text-primary transition-all duration-200 hover:opacity-80" href="#">TonPao Map</a>
+<nav class="hidden md:flex items-center gap-lg"><a class="text-primary dark:text-primary-fixed border-b-2 border-primary pb-1 font-label-md text-label-md transition-colors duration-200" href="#">สำรวจ</a><a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors duration-200" href="#">กิจกรรม</a><a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors duration-200" href="#">แผนที่</a><a class="text-on-surface-variant dark:text-outline-variant hover:text-primary font-label-md text-label-md transition-colors duration-200" href="#">เกี่ยวกับเรา</a></nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md text-label-md hover:opacity-90 transition-opacity">เข้าสู่ระบบ</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 max-w-[1440px] mx-auto px-lg transition-opacity duration-[250ms]">
+<!-- Breadcrumb -->
+<nav class="mb-lg flex items-center gap-xs text-on-surface-variant font-label-md text-label-md"><a class="hover:text-primary transition-colors" href="#">หน้าแรก</a><span class="material-symbols-outlined text-[16px]">chevron_right</span><a class="hover:text-primary transition-colors" href="#">หัตถกรรม</a><span class="material-symbols-outlined text-[16px]">chevron_right</span><span class="text-primary font-bold">ศูนย์อุตสาหกรรมทำร่มบ่อสร้าง</span></nav>
+<!-- POI Hero Gallery -->
+<section class="grid grid-cols-12 gap-md mb-xl">
+<div class="col-span-12 lg:col-span-8 relative h-[500px] rounded-xl overflow-hidden shadow-lg">
+<img alt="Bo Sang Umbrella Making Centre Main Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-KtfvwzHlKaG6LN1KQFAjGmllbky5R3V6ZuUiG-Ui6yJCmbJCUcnoKt7SV_uGWRxJw1PFUQjzOkZHcTySg-ndJi2dTE5HF8I3n43COmFA3RN2Y5eSijnvJI06JZAeHiWdX-7edVZJ6ZoCY4xEWW7-xUYPqs1BelD3SWmJaQuQGZaf6psiaVL6S4FGxn0Is2sdUWFk2yEntrOzg1aP4dUXY64NlXNWNrM6uLWpeiiJUcaym4_UjLnm073GB_WAvODqOw">
+<div class="absolute bottom-md left-md flex gap-sm">
+<span class="bg-secondary text-on-secondary px-md py-xs rounded-full font-label-md text-label-md shadow-sm">
+                        เปิดอยู่
+                    </span>
+<span class="bg-white/90 backdrop-blur text-on-surface px-md py-xs rounded-full font-label-md text-label-md shadow-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px] text-tertiary" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+                        4.8
+                    </span>
+</div>
+</div>
+<div class="hidden lg:grid col-span-4 grid-rows-2 gap-md h-[500px]">
+<div class="rounded-xl overflow-hidden shadow-md">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAz1Dzo-QYzHm6Lpq3EL2fAnGm7KcHEBWUVFwAiHQ1K14FJTwj8IU0K_7iMgH-Fjxowdjr3aImWbrk_8HroWNi5u_yC7dyJC4BzWrOOVwVTiAdECBtVem9IZkZ3EE5iF0rhFIkOBgqm6bpj_UEOBROfA15zX9dvfrYOr0HpfTQba7VTQ-5Ofo0HupDX8bAmUJmX0JjRlfKmZifWj0f-FFIx0ygDsBFgpomYUl1YLlfvyEtxg2NoPRPm&quot;);"></div>
+</div>
+<div class="rounded-xl overflow-hidden shadow-md relative group cursor-pointer">
+<div class="w-full h-full bg-cover bg-center" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuBjZutslNb-RWJ2Kbj4DVgcfc6x6wERSdAs37tubONfSL7q52-vyBvR1ffm4WzZQwhbsJ_rHLo4m9OKMjlGAUuZ1oSq34uqP_tjBPiQVfJ6Rzz_ZZ8CfuyVlMYaA0LPFC6vEMCd18_Fs1oZk5u1Ifw-SUEIbNovEg5mQkAG2UY7_bqZWu2YgLhmvrqADdym_tF-eFzyk2eSIr9c_rA102ISo2k0k30gvnIwzJdZoCToQYhKThfMcNDz&quot;);"></div>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-white font-label-md">+ ดูรูปภาพทั้งหมด</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+<!-- Left Column: Primary Info -->
+<div class="md:col-span-8">
+<div class="mb-xl">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-sm">ศูนย์อุตสาหกรรมทำร่มบ่อสร้าง</h1>
+<div class="flex items-center gap-md text-on-surface-variant font-label-md text-label-md mb-lg">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="">1.2 กม. จากตำแหน่งของคุณ</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">palette</span>
+<span class="">หมวดหมู่: หัตถกรรม</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface mb-xl leading-relaxed">
+                        เรียนรู้วิถีชีวิตและกระบวนการทำร่มแบบดั้งเดิม ตั้งแต่การทำโครงไม้ไผ่จนถึงการเพ้นท์ลายดอกไม้ที่เป็นเอกลักษณ์ของบ้านบ่อสร้าง 
+                        สัมผัสจิตวิญญาณแห่งล้านนาที่สืบทอดกันมารุ่นต่อรุ่นในหมู่บ้านทำร่มที่มีชื่อเสียงระดับโลก
+                    </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-md mb-xl">
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant/30 flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary text-[32px]">brush</span>
+<h3 class="font-label-md text-label-md font-bold">เวิร์กช็อปเพ้นท์ร่ม</h3>
+<p class="text-[12px] text-on-surface-variant">ลงมือสร้างสรรค์ลวดลายด้วยตัวเองพร้อมคำแนะนำจากช่างฝีมือ</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant/30 flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary text-[32px]">visibility</span>
+<h3 class="font-label-md text-label-md font-bold">ชมการทำร่ม</h3>
+<p class="text-[12px] text-on-surface-variant">ชมการสาธิตการทำร่มแบบดั้งเดิมทุกขั้นตอนอย่างใกล้ชิด</p>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant/30 flex flex-col gap-sm">
+<span class="material-symbols-outlined text-primary text-[32px]">shopping_bag</span>
+<h3 class="font-label-md text-label-md font-bold">เลือกซื้อสินค้า</h3>
+<p class="text-[12px] text-on-surface-variant">ของที่ระลึกหัตถกรรมคุณภาพเยี่ยมราคามิตรภาพจากชุมชน</p>
+</div>
+</div>
+<!-- Story Section -->
+<div class="mb-xl p-lg bg-primary-container/10 rounded-xl border-l-4 border-primary">
+<h2 class="font-headline-md text-headline-md text-primary mb-md">เรื่องราวของชุมชน</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            ภูมิปัญญาการทำร่มกระดาษสาและผ้าฝ้ายของบ้านบ่อสร้างได้ถูกสืบทอดกันมานานกว่า 100 ปี เริ่มต้นจากพระสงฆ์รูปหนึ่งที่นำวิชาจากต่างแดนมาเผยแผ่ให้กับชาวบ้าน 
+                            จนกลายเป็นอาชีพเสริมและกลายมาเป็นอัตลักษณ์ที่สร้างชื่อเสียงให้กับตำบลต้นเปาในที่สุด ทุกคันที่ผลิตคือผลงานศิลปะที่เต็มไปด้วยความพิถีพิถัน
+                        </p>
+</div>
+<!-- Experiences -->
+<div class="mb-xl">
+<h2 class="font-headline-md text-headline-md text-primary mb-lg">สัมผัสประสบการณ์</h2>
+<div class="space-y-md">
+<div class="flex gap-md items-start p-md hover:bg-surface-container transition-colors rounded-xl border border-transparent hover:border-outline-variant">
+<div class="w-16 h-16 bg-surface-container-highest rounded-lg flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold">การสาธิตเหลาไม้ไผ่</h4>
+<p class="text-body-md text-on-surface-variant">ชมความชำนาญในการคัดเลือกและเหลาไม้ไผ่เพื่อทำเป็นโครงร่มที่แข็งแรงแต่ยืดหยุ่น</p>
+</div>
+</div>
+<div class="flex gap-md items-start p-md hover:bg-surface-container transition-colors rounded-xl border border-transparent hover:border-outline-variant">
+<div class="w-16 h-16 bg-surface-container-highest rounded-lg flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold">นิทรรศการร่มโบราณ</h4>
+<p class="text-body-md text-on-surface-variant">เรียนรู้วิวัฒนาการของร่มบ่อสร้างผ่านคอลเลกชันร่มหายากและประวัติชุมชน</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Related Events Section -->
+<div class="border-t border-outline-variant pt-xl mb-xl">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-md text-headline-md text-primary">ดูกิจกรรมที่จัดที่นี่</h2>
+<button class="text-primary font-bold text-label-md hover:underline">ดูทั้งหมด</button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/50 rounded-xl p-lg flex flex-col md:flex-row gap-lg items-center text-center md:text-left shadow-sm">
+<div class="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container text-[40px]">event_note</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md font-bold text-lg mb-xs">เทศกาลร่มบ่อสร้างและหัตถกรรมสันกำแพง</h3>
+<p class="text-on-surface-variant text-body-md">พบกับขบวนพาเหรดร่มสุดอลังการ การประกวดธิดาร่ม และการแสดงศิลปวัฒนธรรมต้นปีหน้า</p>
+</div>
+<div class="flex-shrink-0">
+<span class="text-secondary font-bold px-md py-xs rounded-full bg-secondary-container/30 text-label-md">มกราคม 2568</span>
+</div>
+</div>
+</div>
+<!-- Related Places -->
+<div class="border-t border-outline-variant pt-xl">
+<div class="flex justify-between items-center mb-md">
+<h2 class="font-headline-md text-headline-md text-primary">สถานที่ใกล้เคียง</h2>
+<button class="text-primary font-bold text-label-md hover:underline">ดูทั้งหมด</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md"><div class="flex gap-md bg-white p-md rounded-xl border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer" onclick="window.location.href='#'"><div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-high"><img alt="Local Cafe" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxb7XEcxchfUddjk41HxFK8J9js891CoDShcfj8xQqjFRAw0ODJ4hlWP7AixRXqHkVjwMZWgzLGMe6FryX7_9sEY9vKAtdLuTStY6YQFwqxqTTVXdXy7hhl4CpotJlilSg0jDshvNrO8jjjyC00qR4iUcIVm1_q9pv1df04hEGFEjNBkw3PEAORiBfYVuM2ZZ3qA730MPVT_gxZ_4y7hrEbED6fldGLikFT5o_mIAebSiRRMXihCcI"></div><div class="flex flex-col justify-center"><h4 class="font-bold text-label-md text-on-surface">ร้านกาแฟวิถีชุมชน</h4><p class="text-[12px] text-on-surface-variant">ห่างจากที่นี่ 300 ม.</p><div class="flex items-center gap-xs mt-xs"><span class="material-symbols-outlined text-tertiary text-[14px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span><span class="text-[12px] font-bold">4.5</span></div></div></div><div class="flex gap-md bg-white p-md rounded-xl border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer" onclick="window.location.href='#'"><div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container-high"><img alt="Temple" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuyMKMS4K3edp0ybKBagGmObtx6CuD8oe_-pSqJAsKvRS-VlZoUHWSrRZrDMMcgmgtyv7VUBM1LRfD3Sov-pw1P56bpl0MPGo7mZYxjArO2G0hCY9HSuimiW5qFS01rjKFAR_eExoD6hFxgt1pd1JgupoBQ7H31R8tXbN5bM8yF7G-rB-pmH2eUXDu1BCXIBF_SSu3uzSv2lHWIRbPV5cVfZpTOjCngxhoPjJ-pT3zxsfpjhMGCHBS"></div><div class="flex flex-col justify-center"><h4 class="font-bold text-label-md text-on-surface">วัดศรีมุงเมือง</h4><p class="text-[12px] text-on-surface-variant">ห่างจากที่นี่ 800 ม.</p><div class="flex items-center gap-xs mt-xs"><span class="material-symbols-outlined text-tertiary text-[14px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span><span class="text-[12px] font-bold">4.7</span></div></div></div></div>
+</div>
+</div>
+</div>
+<!-- Right Column: Sticky Rail -->
+<div class="md:col-span-4">
+<aside class="sticky top-24 flex flex-col gap-lg">
+<!-- Status Card -->
+<div class="bg-surface-container-highest/50 backdrop-blur-md rounded-xl p-lg shadow-sm border border-white/20">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="text-secondary font-bold text-label-md flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                                    เปิดอยู่
+                                </span>
+<p class="text-on-surface-variant text-label-sm">ปิดเวลา 17:00 น.</p>
+</div>
+<div class="bg-primary-container/20 text-primary p-xs rounded-lg">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-md rounded-xl font-headline-md text-headline-md flex items-center justify-center gap-md hover:shadow-lg transition-all active:scale-95 mb-md" onclick="window.open('https://www.google.com/maps', '_blank')">
+<span class="material-symbols-outlined">directions</span>
+                            นำทาง
+                        </button>
+<div class="grid grid-cols-5 gap-xs">
+<button class="flex flex-col items-center justify-center p-xs hover:bg-white rounded-lg transition-colors border border-transparent hover:border-outline-variant active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs">call</span>
+<span class="text-[10px]">โทร</span>
+</button>
+<button class="flex flex-col items-center justify-center p-xs hover:bg-white rounded-lg transition-colors border border-transparent hover:border-outline-variant active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs">language</span>
+<span class="text-[10px]">เว็บไซต์</span>
+</button>
+<button class="flex flex-col items-center justify-center p-xs hover:bg-white rounded-lg transition-colors border border-transparent hover:border-outline-variant active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs">facebook</span>
+<span class="text-[10px]">Facebook</span>
+</button>
+<button class="flex flex-col items-center justify-center p-xs hover:bg-white rounded-lg transition-colors border border-transparent hover:border-outline-variant active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs">share</span>
+<span class="text-[10px]">แชร์</span>
+</button>
+<button class="flex flex-col items-center justify-center p-xs hover:bg-white rounded-lg transition-colors border border-transparent hover:border-outline-variant active:scale-95">
+<span class="material-symbols-outlined text-primary mb-xs">bookmark</span>
+<span class="text-[10px]">บันทึก</span>
+</button>
+</div>
+</div>
+<!-- Weather Advisory -->
+<div class="bg-[#e7f0ff] p-md rounded-xl border border-primary/20 flex items-center gap-md shadow-sm"><div class="text-center flex-shrink-0"><span class="material-symbols-outlined text-primary text-[32px]">sunny</span><p class="font-bold text-primary">32°C</p></div><div class="flex-1"><div class="flex justify-between items-start"><p class="text-label-sm font-bold text-primary">สภาพอากาศ: แจ่มใส</p><p class="text-[10px] text-on-surface-variant/70">อัปเดตล่าสุด: 10:30 น.</p></div><p class="text-label-sm text-on-surface-variant">"เหมาะสำหรับการเดินชมกลางแจ้ง"</p></div></div>
+<!-- Open Hours -->
+<div class="bg-surface rounded-xl p-lg border border-outline-variant shadow-sm">
+<h3 class="font-label-md text-label-md font-bold mb-md">เวลาเปิด-ปิด</h3>
+<div class="space-y-xs text-label-md">
+<div class="flex justify-between text-on-surface-variant"><span class="">จันทร์</span> <span class="">08:30 - 17:00</span></div>
+<div class="flex justify-between text-on-surface-variant"><span class="">อังคาร</span> <span class="">08:30 - 17:00</span></div>
+<div class="flex justify-between text-on-surface-variant"><span class="">พุธ</span> <span class="">08:30 - 17:00</span></div>
+<div class="flex justify-between text-on-surface-variant"><span class="">พฤหัสบดี</span> <span class="">08:30 - 17:00</span></div>
+<div class="flex justify-between text-on-surface-variant"><span class="">ศุกร์</span> <span class="">08:30 - 17:00</span></div>
+<div class="flex justify-between text-primary font-bold"><span class="">เสาร์</span> <span class="">08:30 - 17:30</span></div>
+<div class="flex justify-between text-primary font-bold"><span class="">อาทิตย์</span> <span class="">08:30 - 17:30</span></div>
+</div>
+</div>
+<!-- Mini Map -->
+<div class="bg-surface rounded-xl overflow-hidden border border-outline-variant shadow-sm group">
+<div class="h-48 relative overflow-hidden">
+<div class="absolute inset-0 grayscale group-hover:grayscale-0 transition-all duration-500" style="background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuAxSuJbSH4T4MeeCsyetjNrqLqzlbFOjubmd7gdh3QJeXUKqHcaEc9dYhweLi_GLKl822EH5k7dL2d3mplmXXBxa4p3GdPyvdmf3_YQyj3S1qzKsUIg5icV7SNV64f_rW3Zt940iG2uTwEwmRyrhOlqBpjBlAMzgSbCXD04Anczi5xL1P0RGBNYCvLqqJW_jesJW-68jmgNe2WlaFlNnQUCbWfLT_39mAuBvDj19uIeGhzQ6VWgydgd&quot;); background-size: cover;"></div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-primary w-10 h-10 rounded-full flex items-center justify-center border-4 border-white shadow-lg animate-bounce">
+<span class="material-symbols-outlined text-white text-[20px]" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+</div>
+</div>
+</div>
+<div class="p-md bg-white">
+<p class="text-label-sm text-on-surface-variant mb-xs">ที่อยู่: 111/2 หมู่ 3 ถ.บ่อสร้าง-ดอยสะเก็ด</p>
+<p class="text-label-sm text-on-surface-variant">ต.ต้นเปา อ.สันกำแพง จ.เชียงใหม่ 50130</p>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant py-lg">
+<div class="max-w-7xl mx-auto px-lg flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-md text-headline-md text-primary">TonPao Map</span>
+<p class="text-on-surface-variant font-body-md text-body-md">©2026 Ton Pao Municipality. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md"><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">นโยบายความเป็นส่วนตัว</a><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">ข้อกำหนดการใช้งาน</a></div>
+</div>
+</footer>
+<script>
+        // Simple scroll spy for header glassmorphism
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+
+
+<script src="/poi-detail-dynamic.js"></script><script src="/desktop-prototype.js"></script><script src="/prototype-nav.js"></script></body></html>
