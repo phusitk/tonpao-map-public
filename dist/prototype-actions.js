@@ -296,10 +296,9 @@
     on(control => /ติดต่อฝ่ายสนับสนุน/.test(labelOf(control)), () => go('/about'));
   }
 
-  // s12 about: the contact card lists the municipality address.
-  on(control => screen === 's12' && /ส่งข้อความถึงเรา/.test(labelOf(control)), () => {
-    window.open(`mailto:info@tonpao.go.th?subject=${encodeURIComponent('ติดต่อจาก TonPao Map')}`, '_self');
-  });
+  // s12 about: the contact details are mockups, so don't send anything to them.
+  on(control => screen === 's12' && /ส่งข้อความถึงเรา/.test(labelOf(control)),
+    () => toast('ช่องทางส่งข้อความยังไม่เปิดใช้งาน ข้อมูลติดต่อในหน้านี้เป็นตัวอย่าง'));
 
   // s42 my itineraries.
   on(control => screen === 's42' && labelOf(control) === 'ดำเนินการต่อ', () => go('/plan/result'));
