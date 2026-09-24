@@ -56,11 +56,11 @@
 | รายการ | สถานะ |
 |---|---|
 | Hosting แบบ static (`.openai/hosting.json` → `dist`) | มี · ใช้ path แบบ absolute (`/router.js`, `/responsive-shell.css`) · บน GitHub Pages ใช้ `scripts/prepare-github-pages.py` เติม prefix `/tonpao-map-public` ให้ (ทดสอบแล้วว่าการนำทางที่แก้ทำงานทั้งบน root และ Pages) |
-| ซอร์สโค้ด / `package.json` / ขั้นตอน build | ❌ ไม่มี — repo มีแค่ไฟล์ output, README ถูกลบในคอมมิต import |
+| ซอร์สโค้ด / `package.json` / ขั้นตอน build | ❌ ไม่มี — repo มีแค่ไฟล์ output (มี README อธิบายโครงสร้าง วิธีรัน และ deploy แล้ว) |
 | Tailwind | ใช้ Play CDN (`cdn.tailwindcss.com`) ที่ Tailwind ระบุว่า **ไม่ใช่สำหรับ production** (คอมไพล์ในเบราว์เซอร์ทุกครั้ง ช้า และล่มตาม CDN) |
 | Dependency ภายนอกขณะรันไทม์ | unpkg (Leaflet), Google Fonts, OSM tiles, รูปจาก `lh3.googleusercontent.com` 122 จุด (URL ที่ AI/Stitch สร้าง อาจหมดอายุ) |
 | PWA (manifest, service worker, ไอคอน) | ❌ ไม่มี · หน้า "ออฟไลน์" (`/offline`) เป็นแค่หน้าจอตัวอย่าง ใช้งานออฟไลน์จริงไม่ได้ |
-| favicon | ❌ ไม่มี |
+| favicon | ✅ เพิ่มแล้ว (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) |
 | ข้อมูล | hard-code ใน JS · สถานะเก็บใน `localStorage` เท่านั้น · ไม่มี API/backend |
 | การยืนยันตัวตน Contributor | mock (อีเมล/รหัสผ่านตัวอย่างเติมไว้ในฟอร์ม) |
 | Routing | hash router + iframe (URL เป็น `/#/…`, SEO/แชร์ลิงก์ไม่ดี, ปุ่ม back ซ้อน) |
@@ -73,7 +73,7 @@
 
 ## 6. ข้อเสนอแนะ
 
-**ระยะสั้น (แก้ได้ทันที):** ~~แก้บั๊กข้อ 3.1–3.4~~ (แก้แล้ว), เพิ่ม favicon, คืน README อธิบายโครงสร้างและ route
+**ระยะสั้น (แก้ได้ทันที):** ~~แก้บั๊กข้อ 3.1–3.6~~, ~~เพิ่ม favicon~~, ~~คืน README อธิบายโครงสร้างและ route~~ (ทำแล้วทั้งหมด)
 
 **ระยะกลาง (ก่อนเปิดใช้จริง):** ย้ายเป็นโปรเจกต์มีซอร์ส + build (เช่น Vite) คอมไพล์ Tailwind ตอน build, bundle Leaflet และฟอนต์เอง, เก็บรูปไว้ใน repo, เลิกใช้ iframe เปลี่ยนเป็น router ปกติ, เพิ่ม manifest + service worker ให้ใช้ออฟไลน์ได้จริง
 
