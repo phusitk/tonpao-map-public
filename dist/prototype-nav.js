@@ -515,6 +515,29 @@
     const ariaLabel = (control.getAttribute('aria-label') || '').trim();
     // Desktop itinerary builder validates and stores the form before routing.
     if (screen === 's10' && /แนะนำแผนการเดินทาง|สร้างแผนเที่ยวให้ฉัน/.test(label)) return;
+    // Explicit routes win over label heuristics, so "กลับหน้าแรก" links (brand, error pages) go home instead of history.back().
+    // Match app routes with or without a deploy prefix (e.g. GitHub Pages rewrites them to /tonpao-map-public/#/…).
+    const explicit = (control.getAttribute('href') || '').match(/^(?:\/[\w.-]+)*\/#(\/[^#]*)?$/);
+    if (explicit) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      go(explicit[1] || '/');
+      return;
+    }
+    // "ปรับเงื่อนไข" carries a "กลับไป…" aria-label but must open the builder, not step back.
+    if (screen === 's11' && control.matches('[data-edit-itinerary]')) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      go('/plan/build');
+      return;
+    }
+    // Header sign-in buttons lead to the contributor login.
+    if (control.closest('header') && /^(เข้าสู่ระบบ|Sign In)$/.test(label)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      go('/contributor/login');
+      return;
+    }
     if (/ย้อนกลับ|กลับไป/.test(label) || /กลับ/.test(ariaLabel) || ariaLabel === 'Back') {
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -531,12 +554,6 @@
       event.preventDefault();
       event.stopImmediatePropagation();
       go('/');
-      return;
-    }
-    const explicit = control.getAttribute('href');
-    if (explicit && explicit.startsWith('/#')) {
-      event.preventDefault();
-      go(explicit.slice(2) || '/');
       return;
     }
     const route = routeFor(label);
