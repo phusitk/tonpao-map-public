@@ -85,6 +85,13 @@ frame.addEventListener('load', () => {
       script.dataset.responsiveShell = 'true';
       doc.body.appendChild(script);
     }
+
+    if (!doc.querySelector('script[data-prototype-actions]')) {
+      const script = doc.createElement('script');
+      script.src = '/prototype-actions.js';
+      script.dataset.prototypeActions = 'true';
+      doc.body.appendChild(script);
+    }
   }
   status.hidden = true;
 });
