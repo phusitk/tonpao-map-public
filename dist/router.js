@@ -47,7 +47,7 @@ let currentScreen = '';
 
 function currentRoute() {
   const value = location.hash.replace(/^#/, '') || '/';
-  return routes[value] || /^\/poi\/[a-z0-9-]+$/.test(value) ? value : '/404';
+  return (routes[value] || /^\/poi\/[a-z0-9-]+$/.test(value)) ? value : '/404';
 }
 
 function render() {
