@@ -27,6 +27,14 @@ python3 -m http.server 8080 --directory dist
 
 ทดสอบ build ของ Pages บนเครื่องได้ด้วย `python3 scripts/prepare-github-pages.py` แล้วเสิร์ฟ `pages-dist/` ใต้ path `/tonpao-map-public/` (อย่า commit โฟลเดอร์ `pages-dist/`)
 
+## รูปภาพ
+
+รูปประกอบเดิมโหลดจากภายนอก (`lh3.googleusercontent.com/aida-public/…` ที่เครื่องมือ AI ของ Google สร้างไว้ และ Unsplash) ซึ่งอาจหมดอายุได้ สคริปต์ [`scripts/localize-images.py`](scripts/localize-images.py) จะดาวน์โหลดรูปมาเก็บที่ `dist/assets/images/` (ตั้งชื่อตาม hash ของ URL และบันทึก URL ต้นทางไว้ใน `manifest.json`) แล้วเปลี่ยนลิงก์ในไฟล์ให้ชี้ไปที่รูปในเครื่องแบบ path สัมพัทธ์
+
+- รันบน GitHub: workflow [`localize-images.yml`](.github/workflows/localize-images.yml) รันเองเมื่อ push สคริปต์เข้า branch `claude/**` หรือกดรันเองที่แท็บ Actions แล้วจะ commit ผลกลับเข้า branch นั้น
+- รันบนเครื่อง: `python3 scripts/localize-images.py` (ใส่ `--dry-run` เพื่อดูรายการก่อน)
+- รูปที่ดาวน์โหลดไม่ได้จะคงลิงก์เดิมไว้ และรันซ้ำได้โดยไม่ดาวน์โหลดรูปที่มีอยู่แล้ว
+
 ## โครงสร้าง
 
 ```

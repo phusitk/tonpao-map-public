@@ -58,7 +58,7 @@
 | Hosting แบบ static (`.openai/hosting.json` → `dist`) | มี · ใช้ path แบบ absolute (`/router.js`, `/responsive-shell.css`) · บน GitHub Pages ใช้ `scripts/prepare-github-pages.py` เติม prefix `/tonpao-map-public` ให้ (ทดสอบแล้วว่าการนำทางที่แก้ทำงานทั้งบน root และ Pages) |
 | ซอร์สโค้ด / `package.json` / ขั้นตอน build | ❌ ไม่มี — repo มีแค่ไฟล์ output (มี README อธิบายโครงสร้าง วิธีรัน และ deploy แล้ว) |
 | Tailwind | ใช้ Play CDN (`cdn.tailwindcss.com`) ที่ Tailwind ระบุว่า **ไม่ใช่สำหรับ production** (คอมไพล์ในเบราว์เซอร์ทุกครั้ง ช้า และล่มตาม CDN) |
-| Dependency ภายนอกขณะรันไทม์ | unpkg (Leaflet), Google Fonts, OSM tiles, รูปจาก `lh3.googleusercontent.com` 122 จุด (URL ที่ AI/Stitch สร้าง อาจหมดอายุ) |
+| Dependency ภายนอกขณะรันไทม์ | unpkg (Leaflet), Google Fonts, OSM tiles · ✅ รูปประกอบ 71 รูป (เดิมโหลดจาก `lh3.googleusercontent.com`/Unsplash) ย้ายมาเก็บใน `dist/assets/images/` แล้ว |
 | PWA (manifest, service worker, ไอคอน) | ❌ ไม่มี · หน้า "ออฟไลน์" (`/offline`) เป็นแค่หน้าจอตัวอย่าง ใช้งานออฟไลน์จริงไม่ได้ |
 | favicon | ✅ เพิ่มแล้ว (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) |
 | ข้อมูล | hard-code ใน JS · สถานะเก็บใน `localStorage` เท่านั้น · ไม่มี API/backend |

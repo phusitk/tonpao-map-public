@@ -8,14 +8,14 @@
       status: 'ongoing', period: 'today', date: '16–20 กันยายน 2569', time: '09:00–21:00 น.',
       venue: 'ศูนย์อุตสาหกรรมทำร่มบ่อสร้าง', distance: '1.2 กม.', lat: 18.7682, lng: 99.1195,
       type: 'เทศกาลและหัตถกรรม', description: 'ชมการสาธิตร่มกระดาษสา เลือกซื้อผลิตภัณฑ์ชุมชน และร่วมกิจกรรมเชิงสร้างสรรค์',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBztzVOxpzy8_yHgs3_QD6qplZInQo_2_NUivuMjajY7bf5srAJl9P_DBSMaWPFbps7_i70K_dq_41EvaQLV3wTj_0trhFVowfVxAKQWu9Om9QIcOXPLDVmSRoTerKqmTW1cpIxwltdGq7xKXcopQkl8-IQuumeJkTxsz--wrkBBR93v1gCiYUXNQwXZ5g0Q6nFJnqXB6JAAphCzbzWAitc5LgzC9CH3jvANg4HCHn8iF97-6YAPmeT'
+      image: '../../assets/images/720acd948d5417ab.jpg'
     },
     {
       id: 'walking-street', name: 'ถนนคนเดินวิถีชุมชนต้นเปา',
       status: 'upcoming', period: 'weekend', date: '19–20 กันยายน 2569', time: '16:00–21:00 น.',
       venue: 'ลานอเนกประสงค์เทศบาลเมืองต้นเปา', distance: '3.5 กม.', lat: 18.7772, lng: 99.1154,
       type: 'ตลาดชุมชน', description: 'พบอาหารพื้นถิ่น งานทำมือ ดนตรีชุมชน และสินค้าจากผู้ประกอบการในพื้นที่',
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCyf5BUQPvxNSoVSRO3G0PMy6ipf1lJEMFK2lfhmXMzBzDmEu8C6OvKO4JRo6E-chg1m5hwDcO563NUrC89jdp2qqZem5fDXO-Uo-jp9qOLzb_zmYVuUU0JU18XXkiIYTmNaHOWZnUyMPHLhgnZuvAZLsJzh3k1d7mFZ8sGxLJHqOgFwfu3dU4T0_C493NiwIiLNmZghCDVWObNaI7p7ovM2cNKTlFlWBTafDLg1cw9UH0gERAX0bh4'
+      image: '../../assets/images/82e72987c4466e27.jpg'
     },
     {
       id: 'sa-paper-workshop', name: 'เวิร์กชอปทำกระดาษสาและของที่ระลึก',
