@@ -55,7 +55,7 @@
 
 | รายการ | สถานะ |
 |---|---|
-| Hosting แบบ static (`.openai/hosting.json` → `dist`) | มี · ใช้ path แบบ absolute (`/router.js`, `/responsive-shell.css`) ต้อง deploy ที่ root ของโดเมน (เช่น GitHub Pages แบบ project path จะพัง) |
+| Hosting แบบ static (`.openai/hosting.json` → `dist`) | มี · ใช้ path แบบ absolute (`/router.js`, `/responsive-shell.css`) · บน GitHub Pages ใช้ `scripts/prepare-github-pages.py` เติม prefix `/tonpao-map-public` ให้ (ทดสอบแล้วว่าการนำทางที่แก้ทำงานทั้งบน root และ Pages) |
 | ซอร์สโค้ด / `package.json` / ขั้นตอน build | ❌ ไม่มี — repo มีแค่ไฟล์ output, README ถูกลบในคอมมิต import |
 | Tailwind | ใช้ Play CDN (`cdn.tailwindcss.com`) ที่ Tailwind ระบุว่า **ไม่ใช่สำหรับ production** (คอมไพล์ในเบราว์เซอร์ทุกครั้ง ช้า และล่มตาม CDN) |
 | Dependency ภายนอกขณะรันไทม์ | unpkg (Leaflet), Google Fonts, OSM tiles, รูปจาก `lh3.googleusercontent.com` 122 จุด (URL ที่ AI/Stitch สร้าง อาจหมดอายุ) |

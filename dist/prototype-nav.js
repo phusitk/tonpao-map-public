@@ -516,11 +516,12 @@
     // Desktop itinerary builder validates and stores the form before routing.
     if (screen === 's10' && /แนะนำแผนการเดินทาง|สร้างแผนเที่ยวให้ฉัน/.test(label)) return;
     // Explicit routes win over label heuristics, so "กลับหน้าแรก" links (brand, error pages) go home instead of history.back().
-    const explicit = control.getAttribute('href');
-    if (explicit && explicit.startsWith('/#')) {
+    // Match app routes with or without a deploy prefix (e.g. GitHub Pages rewrites them to /tonpao-map-public/#/…).
+    const explicit = (control.getAttribute('href') || '').match(/^(?:\/[\w.-]+)*\/#(\/[^#]*)?$/);
+    if (explicit) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      go(explicit.slice(2) || '/');
+      go(explicit[1] || '/');
       return;
     }
     // "ปรับเงื่อนไข" carries a "กลับไป…" aria-label but must open the builder, not step back.
