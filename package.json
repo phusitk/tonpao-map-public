@@ -1,0 +1,16 @@
+{
+  "name": "tonpao-map-public",
+  "private": true,
+  "description": "TonPao Map public prototype (static site in dist/)",
+  "scripts": {
+    "test": "node tests/behaviour.test.js",
+    "test:offline": "STUB_CDN=1 node tests/behaviour.test.js"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  },
+  "optionalDependencies": {
+    "@tailwindcss/browser": "^4.1.0",
+    "leaflet": "1.9.4"
+  }
+}

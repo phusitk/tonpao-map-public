@@ -94,6 +94,19 @@ dist/
 3. ลิงก์ภายในให้เขียนเป็น `href="/#/route"` (สคริปต์ Pages จะเติม prefix ให้เอง) หลีกเลี่ยง `href="#"` และชื่อไฟล์ตรง ๆ
 4. ถ้าเขียนโค้ดที่ตรวจ href ใน JavaScript อย่าเขียนสตริง `'/#` ตรง ๆ เพราะสคริปต์ Pages จะแก้สตริงนั้นด้วย ให้ใช้ regex แบบใน `prototype-nav.js` แทน
 
+## การทดสอบ
+
+ชุดทดสอบพฤติกรรม [`tests/behaviour.test.js`](tests/behaviour.test.js) ตรวจ 71 กรณี (ตัวกรองหน้าหมวดหมู่, บันทึกสถานที่, หน้า POI, แถบหัว/ส่วนท้าย, ตารางกิจกรรม, หน้าช่วยเหลือ, ที่จอดรถ และบั๊กที่เคยแก้) กับทั้ง `dist/` ที่ root และ build ของ GitHub Pages ใต้ `/tonpao-map-public/` รวม 142 การตรวจต่อรอบ
+
+```bash
+npm ci
+npx playwright install chromium   # ครั้งแรกครั้งเดียว
+npm test                          # ใช้ Tailwind/Leaflet/ฟอนต์จาก CDN จริง
+npm run test:offline              # ใช้สำเนาในเครื่องแทน CDN (เมื่อไม่มีอินเทอร์เน็ต)
+```
+
+GitHub Actions รันชุดทดสอบนี้อัตโนมัติทุก Pull Request และทุกครั้งที่ push เข้า `main` ([`.github/workflows/test.yml`](.github/workflows/test.yml)) เมื่อเพิ่มหรือแก้ปุ่ม ควรเพิ่มกรณีทดสอบในไฟล์นี้ด้วย
+
 ## ข้อจำกัดที่ทราบ
 
 - ใช้ Tailwind Play CDN ที่ไม่ได้ออกแบบมาสำหรับ production
