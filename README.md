@@ -4,7 +4,7 @@
 
 **เว็บที่ deploy แล้ว:** https://phusitk.github.io/tonpao-map-public/
 
-> สถานะ: เป็นต้นแบบสำหรับสาธิตและทดสอบกับผู้ใช้ ข้อมูลทั้งหมดเขียนไว้ในโค้ด ไม่มี backend และการล็อกอินเป็นแบบจำลอง ดูผลการตรวจความสมบูรณ์ได้ที่ [`AUDIT_REPORT.md`](AUDIT_REPORT.md)
+> สถานะ: เป็นต้นแบบสำหรับสาธิตและทดสอบกับผู้ใช้ ข้อมูลทั้งหมดเขียนไว้ในโค้ด ไม่มี backend และการล็อกอินเป็นแบบจำลอง ดูผลการตรวจความสมบูรณ์ได้ที่ [`AUDIT_REPORT.md`](AUDIT_REPORT.md) และรายงานผลการทดสอบฉบับ Word ที่ [`docs/TonPao-Map-Test-Report.docx`](docs/TonPao-Map-Test-Report.docx)
 
 ## เปิดใช้งานบนเครื่อง
 
